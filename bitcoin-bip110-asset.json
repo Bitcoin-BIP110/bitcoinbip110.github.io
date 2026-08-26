@@ -1,0 +1,53 @@
+{
+  "schema_version": "2.0",
+  "updated_at": "2026-08-24",
+  "display_name": "Bitcoin BIP110",
+  "project_ticker": "BIP110",
+  "ticker_status": "project-declared; service adoption may vary",
+  "asset_type": "native coin",
+  "origin_chain": "Bitcoin",
+  "history": {
+    "last_common_height": 961631,
+    "last_common_block_hash": "00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a",
+    "first_divergent_height": 961632,
+    "first_bip110_block_hash": "0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16",
+    "observed_sha256d_tip_height": 961638,
+    "observed_sha256d_tip_date": "2026-08-24"
+  },
+  "proof_of_work": {
+    "observed_mainnet_branch": "SHA-256d",
+    "planned": "BLAKE2b header v2",
+    "mainnet_activation_height": null,
+    "first_blake2b_mainnet_block_hash": null
+  },
+  "chain_identity": {
+    "rpc_network_name": "main",
+    "identity_check_rpc": "getblockhash 961632",
+    "identity_check_expected_hash": "0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16",
+    "p2p_magic_wire_order_development": "f9 be b4 d9",
+    "default_p2p_port_development": 8333,
+    "parameters_status": "subject to change before a stable mainnet release"
+  },
+  "monetary_policy": {
+    "decimal_places": 8,
+    "initial_subsidy": 50,
+    "halving_interval": 210000,
+    "subsidy_at_height_961638": 3.125,
+    "next_halving_height": 1050000,
+    "coinbase_maturity": 100
+  },
+  "replay_protection": {
+    "observed_sha256d_branch": "none active",
+    "testnet_rc2": "opt-in SIGHASH_UNIFIED",
+    "mainnet_status": "pending"
+  },
+  "reference_software": {
+    "stable_mainnet_release": null,
+    "testnet_candidate_tag": "v29.4.1.knots20260508rc2",
+    "testnet_candidate_commit": "c25ad6bcd18fa65cd78f176a52be062411507741"
+  },
+  "website": "https://bitcoinbip110.org",
+  "technical_contact": null,
+  "security_contact": null,
+  "affiliation_or_official_endorsement": false
+}
