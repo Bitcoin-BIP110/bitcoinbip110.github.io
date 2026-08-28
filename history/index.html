@@ -66,11 +66,11 @@
       What is Bitcoin BIP110?
      </p>
      <h1>
-      From BIP 110 to an independent BLAKE2b chain
+      From BIP 110 to the BLAKE2b hard fork
      </h1>
      <div class="intro-copy">
       <p>
-       The network is intended to continue the historical BIP 110 enforcement branch. Its Bitcoin history and UTXO set predate the split; its proposed proof-of-work transition creates a later, separate consensus boundary.
+       Bitcoin BIP110 inherits the Bitcoin ledger through height 961,631 and continues the BIP 110 enforcement branch from height 961,632 onward. A later hard fork is intended to replace SHA-256d with BLAKE2b proof-of-work while preserving the existing chain history and UTXO set.
       </p>
      </div>
     </div>
@@ -90,7 +90,7 @@
       3. BLAKE2b continuation
      </a>
      <a href="#identity">
-      Chain identity
+      4. Chain identity
      </a>
     </aside>
     <article>
@@ -112,10 +112,10 @@
        <strong>
         Reduced Data Temporary Softfork
        </strong>
-       , proposed temporary additional consensus restrictions on several transaction data fields. Its stated objective was to reduce the cost imposed on node operators by arbitrary-data storage, preserve block space for monetary use, and signal that general-purpose data storage was outside the author's intended scope for Bitcoin. The proposal described a one-year intervention while longer-term alternatives could be developed.
+       , proposed a temporary set of consensus restrictions on several transaction data fields. Its stated goals were to: reduce the burden of arbitrary-data storage on node operators, preserve block space for monetary use, and discourage Bitcoin from becoming a general-purpose data-storage system. The restrictions were intended to remain active for one year while longer-term solutions were developed.
       </p>
       <h3>
-       The seven proposed consensus restrictions
+       The proposed restrictions
       </h3>
       <p>
        While the deployment was ACTIVE, blocks would have been checked against these rules:
@@ -180,7 +180,7 @@
        For input-side script and witness checks, an input spending a UTXO created before the RDTS activation height would be exempt. The design allowed pre-activation outputs to remain spendable under the rules that existed when they were created. New outputs created while RDTS was active would still be subject to the output-size rule. Once the temporary deployment expired, UTXOs of every height would again be unrestricted by RDTS.
       </p>
       <h3>
-       Modified versionbits deployment
+       Modified version bits deployment
       </h3>
       <p>
        The BIP used a modified BIP 9 state machine with deployment name
@@ -683,52 +683,61 @@
    </div>
   </main>
   <footer class="site-footer">
-   <div class="footer-grid">
-    <div>
-     <p class="footer-title">
-      Bitcoin BIP110
-     </p>
-     <p>
-      Independent community reference for the network, its history, protocol, software, infrastructure, and operational status.
-     </p>
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">
+          Bitcoin BIP110
+        </p>
+
+        <p>
+          This is a public reference for the Bitcoin BIP110 network, its history,
+          protocol, software, infrastructure, and operational status.
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Reference
+        </p>
+
+        <a href="./history">History</a>
+        <a href="./timeline">Timeline</a>
+        <a href="./technical">Technical data</a>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Sources
+        </p>
+
+        <a href="./sources">
+          Sources and policy
+        </a>
+
+        <a
+          href="https://bips.dev/110/"
+          rel="noreferrer"
+        >
+          Original BIP 110
+        </a>
+
+        <a
+          href="https://github.com/bitcoinknots/bitcoin/pull/359"
+          rel="noreferrer"
+        >
+          BLAKE2b development
+        </a>
+      </div>
     </div>
-    <div>
-     <p class="footer-label">
-      Reference
-     </p>
-     <a href="../history">
-      History
-     </a>
-     <a href="../timeline">
-      Timeline
-     </a>
-     <a href="../technical">
-      Technical data
-     </a>
+
+    <div class="footer-bottom">
+      <span>
+        © Bitcoin BIP110 Project 2026. Released under the MIT license.
+      </span>
+
+      <span>
+      </span>
     </div>
-    <div>
-     <p class="footer-label">
-      Evidence
-     </p>
-     <a href="../sources">
-      Sources and policy
-     </a>
-     <a href="https://bips.dev/110/" rel="noreferrer">
-      Original BIP 110
-     </a>
-     <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
-      BLAKE2b development
-     </a>
-    </div>
-   </div>
-   <div class="footer-bottom">
-    <span>
-     Content snapshot: 24 August 2026
-    </span>
-    <span>
-     Unaffiliated with Bitcoin Core, Bitcoin Knots, miners, exchanges, or wallet vendors.
-    </span>
-   </div>
   </footer>
  </body>
 </html>
