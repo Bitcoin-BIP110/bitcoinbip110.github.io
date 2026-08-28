@@ -1,2 +1,734 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/index-CS8UUhtA.css" data-rsc-css-href="../assets/index-CS8UUhtA.css" data-precedence="vite-rsc/importer-resources"/><title>History | Bitcoin BIP110</title><meta name="description" content="The history of Bitcoin BIP110, from the original BIP 110 proposal through the enforcement-chain split and BLAKE2b development."/><meta name="robots" content="index, follow"/><meta property="og:title" content="Bitcoin BIP110"/><meta property="og:description" content="Independent network reference"/><meta property="og:url" content="../"/><meta property="og:site_name" content="Bitcoin BIP110"/><meta property="og:type" content="website"/><meta property="og:image" content="../og.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image:alt" content="Bitcoin BIP110 independent network reference"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Bitcoin BIP110"/><meta name="twitter:description" content="Independent network reference"/><meta name="twitter:image" content="../og.png"/><link rel="shortcut icon" href="../favicon.svg"/><link rel="icon" href="../favicon.svg"/><link rel="canonical" href="../"/>
-</head><body><header class="site-header"><div class="header-inner"><a class="brand" href="../" aria-label="Bitcoin BIP110 home"><span class="bitcoin-logo" aria-hidden="true">₿</span><span>Bitcoin BIP110</span></a><nav aria-label="Primary navigation"><a href="../">Overview</a><a href="../history">History</a><a href="../timeline">Timeline</a><a href="../technical">Technical</a><a href="../sources">Sources</a></nav></div></header><main><section class="page-intro"><div class="content-narrow"><p class="eyebrow">What is Bitcoin BIP110?</p><h1>From BIP 110 to an independent BLAKE2b chain</h1><div class="intro-copy"><p>The network is intended to continue the historical BIP 110 enforcement branch. Its Bitcoin history and UTXO set predate the split; its proposed proof-of-work transition creates a later, separate consensus boundary.</p></div></div></section><div class="article-layout"><aside class="article-nav" aria-label="History page sections"><p>On this page</p><a href="#phase-one">1. Original proposal</a><a href="#phase-two">2. Enforcement split</a><a href="#phase-three">3. BLAKE2b continuation</a><a href="#identity">Chain identity</a></aside><article><section class="prose-section" id="phase-one"><span class="phase-number">Phase 1</span><h2>The original BIP 110 proposal</h2><h3>Purpose and motivation</h3><p><a href="https://bips.dev/110/">BIP 110</a>, officially titled <strong>Reduced Data Temporary Softfork</strong>, proposed temporary additional consensus restrictions on several transaction data fields. Its stated objective was to reduce the cost imposed on node operators by arbitrary-data storage, preserve block space for monetary use, and signal that general-purpose data storage was outside the author&#x27;s intended scope for Bitcoin. The proposal described a one-year intervention while longer-term alternatives could be developed.</p><h3>The seven proposed consensus restrictions</h3><p>While the deployment was ACTIVE, blocks would have been checked against these rules:</p><ol><li>A newly created output <code>scriptPubKey</code> longer than 34 bytes would be invalid. An output beginning with <code>OP_RETURN</code> could be up to 83 bytes.</li><li><code>OP_PUSHDATA*</code> payloads and script-argument witness items longer than 256 bytes would be invalid. The redeemScript push in a BIP 16 <code>scriptSig</code> was exempt.</li><li>Spending an undefined witness version or undefined Tapleaf version would be invalid. Creating an output using an undefined witness version would remain valid.</li><li>A Taproot spend containing an annex would be invalid.</li><li>A Taproot control block longer than 257 bytes would be invalid.</li><li>A Tapscript containing an <code>OP_SUCCESS*</code> opcode anywhere, including an unexecuted branch, would be invalid.</li><li>A Tapscript that executed <code>OP_IF</code> or <code>OP_NOTIF</code> would be invalid regardless of the condition&#x27;s result.</li></ol><p>These were proposed consensus restrictions, separate from relay and mining policy defaults.</p><h3>UTXO grandfathering</h3><p>For input-side script and witness checks, an input spending a UTXO created before the RDTS activation height would be exempt. The design allowed pre-activation outputs to remain spendable under the rules that existed when they were created. New outputs created while RDTS was active would still be subject to the output-size rule. Once the temporary deployment expired, UTXOs of every height would again be unrestricted by RDTS.</p><h3>Modified versionbits deployment</h3><p>The BIP used a modified BIP 9 state machine with deployment name <code>reduced_data</code>and version bit 4.</p><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Parameter</th><th>BIP 110 value</th></tr></thead><tbody><tr><td>Start time</td><td>2025-12-01 00:00:00 UTC</td></tr><tr><td>Timeout</td><td>None</td></tr><tr><td>Signaling threshold</td><td>1,109 of 2,016 blocks, or 55%</td></tr><tr><td>Minimum activation height</td><td>0</td></tr><tr><td>Maximum activation height</td><td>965,664</td></tr><tr><td>Mandatory-signaling window</td><td>Heights 961,632 through 963,647</td></tr><tr><td>Latest forced lock-in boundary</td><td>Height 963,648</td></tr><tr><td>Active duration</td><td>52,416 blocks, approximately one year</td></tr></tbody></table></div><p>The lower threshold, height-based activation deadline, mandatory-signaling interval, and temporary <code>EXPIRED</code> state deviated from standard BIP 9. A successful mandatory window would place the deployment in <code>LOCKED_IN</code> at height 963,648 and <code>ACTIVE</code> one 2,016-block period later at height 965,664. If activated there, the rules would apply through height 1,018,079 and expire at 1,018,080.</p><div class="callout"><p><strong>Final proposal status:</strong> The official BIP record was marked Closed on 9 August 2026, with the changelog citing the chain split and stalled mining.</p><a class="external-link" href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">Read the official BIP record<!-- --> <span aria-hidden="true">↗</span></a></div></section><section class="prose-section" id="phase-two"><span class="phase-number">Phase 2</span><h2>The enforcement-chain split</h2><h3>The common parent and first divergent blocks</h3><p>Both histories contain block 961,631, the last shared block. Its hash is<span class="hash"> 00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a</span>.</p><p>At height 961,632, AntPool mined a block without version bit 4. Nodes following ordinary Bitcoin rules accepted it. BIP 110 enforcing nodes rejected it because this was the first block of the mandatory-signaling window. Those nodes accepted a competing bit-4-signaling block mined by Roughnecks through OCEAN DATUM.</p><div class="data-table-wrap"><table class="data-table"><thead><tr><th>History</th><th>Height</th><th>Block hash</th><th>Signaling</th><th>Miner or path</th></tr></thead><tbody><tr><td>Bitcoin BTC mainnet</td><td>961,632</td><td class="hash">00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba</td><td>Bit 4 absent, <code>0x20006000</code></td><td>AntPool</td></tr><tr><td>BIP 110 enforcement branch</td><td>961,632</td><td class="hash">0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16</td><td>Bit 4 present, <code>0x27d60010</code></td><td>Roughnecks through OCEAN DATUM</td></tr></tbody></table></div><p>The blocks have the same parent and different transaction sets. From height 961,632, the two groups of nodes follow different block histories.</p><h3>Early SHA-256d mining history</h3><p>The enforcement branch initially remained on SHA-256d at Bitcoin&#x27;s inherited difficulty. Roughnecks mined blocks 961,632 and 961,633 on 8 August 2026. Later blocks appeared intermittently. The observed tip on 24 August 2026 was height 961,638, hash<span class="hash"> 000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f</span>.</p><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Height</th><th>Block timestamp, UTC</th><th>Time since prior branch block</th></tr></thead><tbody><tr><td>961,632</td><td>2026-08-08 20:12:12</td><td>First divergent block</td></tr><tr><td>961,633</td><td>2026-08-08 21:49:26</td><td>1 hour 37 minutes</td></tr><tr><td>961,634</td><td>2026-08-12 05:29:08</td><td>3 days 7 hours 40 minutes</td></tr><tr><td>961,635</td><td>2026-08-12 09:18:27</td><td>3 hours 49 minutes</td></tr><tr><td>961,636</td><td>2026-08-17 19:47:43</td><td>5 days 10 hours 29 minutes</td></tr><tr><td>961,637</td><td>2026-08-21 18:48:48</td><td>3 days 23 hours 1 minute</td></tr><tr><td>961,638</td><td>2026-08-23 05:04:57</td><td>1 day 10 hours 16 minutes</td></tr></tbody></table></div><p>The dated record shows very slow and intermittently stalled production. Any current status should time-stamp its observed tip.</p><h3>Mandatory signaling was separate from RDTS activation</h3><p>Mandatory signaling determined which blocks enforcing nodes accepted during the final pre-lock-in period. The seven reduced-data restrictions would become consensus rules only after <code>LOCKED_IN</code>, at the later <code>ACTIVE</code> boundary. The branch never reached height 963,648, so the original deployment never locked in and its seven RDTS restrictions never became active there.</p></section><section class="prose-section" id="phase-three"><span class="phase-number">Phase 3</span><h2>Bitcoin BIP110 and BLAKE2b</h2><h3>Continuation as an independent chain</h3><p>After the SHA-256d branch separated and advanced too slowly for normal operation, development shifted toward continuing it through an explicit proof-of-work hard fork. On 15 August 2026, Luke Dashjr opened Bitcoin Knots pull request #359, titled<strong> Hardfork: New BLAKE2b proof-of-work algorithm</strong>. The proposed client accepts SHA-256d blocks before a configured activation height and requires BLAKE2b header-v2 blocks at and after that height.</p><p>The intended lineage preserves the enforcement branch&#x27;s Bitcoin history, UTXO set, and SHA-256d branch blocks before activation. It does not begin from a new genesis. The exact mainnet anchor, parent block, and activation height remain pending until fixed in signed mainnet source.</p><h3>Why the SHA-256d branch was constrained</h3><p>The split occurred at a Bitcoin difficulty-adjustment boundary. The branch inherited difficulty of approximately 127.48 trillion, calibrated for the dominant Bitcoin network&#x27;s hash rate. A small fraction of that rate mined the enforcement branch. Bitcoin&#x27;s ordinary adjustment occurs every 2,016 blocks, so low hash rate also delayed its ability to reach the next adjustment. The multi-day block gaps followed.</p><p>A proof-of-work change creates a boundary for a BLAKE2b-specific target adjustment and a different installed base of mining hardware. It also prevents SHA-256d Bitcoin ASICs from mining post-activation blocks under the new rules.</p><h3>Why BLAKE2b was selected</h3><p>Pull request #359 targets compatibility with proof-of-work hardware from several vendors. Its 164-byte header-v2 design includes four selectable ASIC profiles, more nonce space, an opt-in block-withholding defense, future merge-mining fields, block height, and transaction-count commitments. The practical target is Sia-style BLAKE2b hardware.</p><p>Compatibility must be demonstrated for each miner and firmware combination. A chip that computes BLAKE2b does not establish compatibility with the header serialization and Stratum job format.</p><h3>Testnet implementation and activation</h3><div class="data-table-wrap"><table class="data-table"><thead><tr><th>Source tag</th><th>Tag date</th><th>Testnet4 height</th><th>Status</th></tr></thead><tbody><tr><td>v29.4.1.knots20260508rc1</td><td>2026-08-21</td><td>149,460</td><td>Obsolete. Superseded after RC2 changed the activation height.</td></tr><tr><td>v29.4.1.knots20260508rc2</td><td>2026-08-22</td><td>149,537</td><td>Current documented RC2 test chain as of 2026-08-24.</td></tr></tbody></table></div><p>The testnet4 guide records validation across height 149,537 and warns that the release candidate is unmerged, source-only, and subject to change. RC2 couples the BLAKE2b transition, RDTS activation, and unified signature-hash activation at one testnet height. This does not establish final mainnet composition.</p><h3>Reference client and mining stack</h3><p>As of 24 August 2026, pull request #359 remained open and described itself as an unfinished draft. It implements header-v2, a height-based proof-of-work transition, first-block target adjustment, ASIC profiles, validation tests, and mining interfaces. No signed stable mainnet release had been published.</p><p>The ordinary DATUM Gateway does not support this BLAKE2b work. The test setup uses a BLAKE2b-capable DATUM Gateway fork that requests templates with the <code>blake2b</code>rule, constructs header-v2 Stratum jobs, and selects the algorithm and ASIC profile. The Antminer A3 is explicitly named. Other BLAKE2b-Sia miners require end-to-end testing. SHA-256d ASICs cannot be converted into BLAKE2b miners through firmware alone.</p><h3>Mainnet activation status</h3><p>No BLAKE2b mainnet activation height was present in the development branch or RC2 mainnet parameters on 24 August 2026. The default mainnet <code>Blake2bHeight</code>remained unscheduled. Rumored dates or heights are not activation parameters.</p><p>A stable record should include a signed tag, commit, activation height and parent hash, BLAKE2b target shift, RDTS rule, coinbase commitment, replay rule, test vectors, and binary signatures. The network becomes operational under BLAKE2b after a valid activation block is mined and independently observed.</p><h3>Replay-protection design</h3><p>Proof-of-work separation does not make transactions chain-specific. Bitcoin Knots pull request #357 proposes <code>SIGHASH_UNIFIED = 0x20</code>, which changes the signed message when a signer opts in. A protected signature under that algorithm fails verification on a chain that does not implement it.</p><p>The design is opt-in and one-directional. Transactions signed without<code>SIGHASH_UNIFIED</code> remain potentially replayable between compatible histories. Protection attaches to each signature rather than a particular UTXO age. The testnet release candidates contain the implementation, but no active mainnet rule had been published.</p></section><section class="prose-section" id="identity"><span class="phase-number">Chain identity</span><h2>An independent network and native coin</h2><p>The split at height 961,632 created an independent block history. A mainnet BLAKE2b activation would add another explicit consensus boundary through a new proof-of-work algorithm and header format. Bitcoin BIP110 would operate with its own nodes, miners, wallets, infrastructure, and inherited pre-split UTXOs. It is a native coin, not a token, and has no contract address.</p><p><strong>Bitcoin BIP110</strong> and <strong>BIP110</strong> are project-facing name and ticker declarations. Names and tickers are not consensus fields, and exchanges or data services may assign different identifiers.</p><div class="callout"><p><strong>Core historical statement:</strong> Bitcoin BTC mainnet and Bitcoin BIP110 share the Bitcoin ledger through height 961,631. Beginning at height 961,632, they have independent block histories. The proposed BLAKE2b transition is a later hard fork of the Bitcoin BIP110 branch, separate from the original BIP 110 specification.</p></div></section></article></div></main><footer class="site-footer"><div class="footer-grid"><div><p class="footer-title">Bitcoin BIP110</p><p>Independent community reference for the network, its history, protocol, software, infrastructure, and operational status.</p></div><div><p class="footer-label">Reference</p><a href="../history">History</a><a href="../timeline">Timeline</a><a href="../technical">Technical data</a></div><div><p class="footer-label">Evidence</p><a href="../sources">Sources and policy</a><a href="https://bips.dev/110/" rel="noreferrer">Original BIP 110</a><a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">BLAKE2b development</a></div></div><div class="footer-bottom"><span>Content snapshot: 24 August 2026</span><span>Unaffiliated with Bitcoin Core, Bitcoin Knots, miners, exchanges, or wallet vendors.</span></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
+  <title>
+   History | Bitcoin BIP110
+  </title>
+  <meta content="The history of Bitcoin BIP110, from the original BIP 110 proposal through the enforcement-chain split and BLAKE2b development." name="description">
+  <meta content="index, follow" name="robots">
+  <meta content="Bitcoin BIP110" property="og:title">
+  <meta content="Independent network reference" property="og:description">
+  <meta content="../" property="og:url">
+  <meta content="Bitcoin BIP110" property="og:site_name">
+  <meta content="website" property="og:type">
+  <meta content="../og.png" property="og:image">
+  <meta content="1200" property="og:image:width">
+  <meta content="630" property="og:image:height">
+  <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="Bitcoin BIP110" name="twitter:title">
+  <meta content="Independent network reference" name="twitter:description">
+  <meta content="../og.png" name="twitter:image">
+  <link href="../favicon.svg" rel="shortcut icon">
+  <link href="../favicon.svg" rel="icon">
+  <link href="../" rel="canonical">
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+        class="bitcoin-logo"
+        src="../favicon.svg"
+        alt=""
+        aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+    <nav aria-label="Primary navigation">
+     <a href="../">
+      Overview
+     </a>
+     <a href="../history">
+      History
+     </a>
+     <a href="../timeline">
+      Timeline
+     </a>
+     <a href="../technical">
+      Technical
+     </a>
+     <a href="../sources">
+      Sources
+     </a>
+    </nav>
+   </div>
+  </header>
+  <main>
+   <section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">
+      What is Bitcoin BIP110?
+     </p>
+     <h1>
+      From BIP 110 to an independent BLAKE2b chain
+     </h1>
+     <div class="intro-copy">
+      <p>
+       The network is intended to continue the historical BIP 110 enforcement branch. Its Bitcoin history and UTXO set predate the split; its proposed proof-of-work transition creates a later, separate consensus boundary.
+      </p>
+     </div>
+    </div>
+   </section>
+   <div class="article-layout">
+    <aside aria-label="History page sections" class="article-nav">
+     <p>
+      On this page
+     </p>
+     <a href="#phase-one">
+      1. Original proposal
+     </a>
+     <a href="#phase-two">
+      2. Enforcement split
+     </a>
+     <a href="#phase-three">
+      3. BLAKE2b continuation
+     </a>
+     <a href="#identity">
+      Chain identity
+     </a>
+    </aside>
+    <article>
+     <section class="prose-section" id="phase-one">
+      <span class="phase-number">
+       Phase 1
+      </span>
+      <h2>
+       The original BIP 110 proposal
+      </h2>
+      <h3>
+       Purpose and motivation
+      </h3>
+      <p>
+       <a href="https://bips.dev/110/">
+        BIP 110
+       </a>
+       , officially titled
+       <strong>
+        Reduced Data Temporary Softfork
+       </strong>
+       , proposed temporary additional consensus restrictions on several transaction data fields. Its stated objective was to reduce the cost imposed on node operators by arbitrary-data storage, preserve block space for monetary use, and signal that general-purpose data storage was outside the author's intended scope for Bitcoin. The proposal described a one-year intervention while longer-term alternatives could be developed.
+      </p>
+      <h3>
+       The seven proposed consensus restrictions
+      </h3>
+      <p>
+       While the deployment was ACTIVE, blocks would have been checked against these rules:
+      </p>
+      <ol>
+       <li>
+        A newly created output
+        <code>
+         scriptPubKey
+        </code>
+        longer than 34 bytes would be invalid. An output beginning with
+        <code>
+         OP_RETURN
+        </code>
+        could be up to 83 bytes.
+       </li>
+       <li>
+        <code>
+         OP_PUSHDATA*
+        </code>
+        payloads and script-argument witness items longer than 256 bytes would be invalid. The redeemScript push in a BIP 16
+        <code>
+         scriptSig
+        </code>
+        was exempt.
+       </li>
+       <li>
+        Spending an undefined witness version or undefined Tapleaf version would be invalid. Creating an output using an undefined witness version would remain valid.
+       </li>
+       <li>
+        A Taproot spend containing an annex would be invalid.
+       </li>
+       <li>
+        A Taproot control block longer than 257 bytes would be invalid.
+       </li>
+       <li>
+        A Tapscript containing an
+        <code>
+         OP_SUCCESS*
+        </code>
+        opcode anywhere, including an unexecuted branch, would be invalid.
+       </li>
+       <li>
+        A Tapscript that executed
+        <code>
+         OP_IF
+        </code>
+        or
+        <code>
+         OP_NOTIF
+        </code>
+        would be invalid regardless of the condition's result.
+       </li>
+      </ol>
+      <p>
+       These were proposed consensus restrictions, separate from relay and mining policy defaults.
+      </p>
+      <h3>
+       UTXO grandfathering
+      </h3>
+      <p>
+       For input-side script and witness checks, an input spending a UTXO created before the RDTS activation height would be exempt. The design allowed pre-activation outputs to remain spendable under the rules that existed when they were created. New outputs created while RDTS was active would still be subject to the output-size rule. Once the temporary deployment expired, UTXOs of every height would again be unrestricted by RDTS.
+      </p>
+      <h3>
+       Modified versionbits deployment
+      </h3>
+      <p>
+       The BIP used a modified BIP 9 state machine with deployment name
+       <code>
+        reduced_data
+       </code>
+       and version bit 4.
+      </p>
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Parameter
+          </th>
+          <th>
+           BIP 110 value
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           Start time
+          </td>
+          <td>
+           2025-12-01 00:00:00 UTC
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Timeout
+          </td>
+          <td>
+           None
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Signaling threshold
+          </td>
+          <td>
+           1,109 of 2,016 blocks, or 55%
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Minimum activation height
+          </td>
+          <td>
+           0
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Maximum activation height
+          </td>
+          <td>
+           965,664
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Mandatory-signaling window
+          </td>
+          <td>
+           Heights 961,632 through 963,647
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Latest forced lock-in boundary
+          </td>
+          <td>
+           Height 963,648
+          </td>
+         </tr>
+         <tr>
+          <td>
+           Active duration
+          </td>
+          <td>
+           52,416 blocks, approximately one year
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <p>
+       The lower threshold, height-based activation deadline, mandatory-signaling interval, and temporary
+       <code>
+        EXPIRED
+       </code>
+       state deviated from standard BIP 9. A successful mandatory window would place the deployment in
+       <code>
+        LOCKED_IN
+       </code>
+       at height 963,648 and
+       <code>
+        ACTIVE
+       </code>
+       one 2,016-block period later at height 965,664. If activated there, the rules would apply through height 1,018,079 and expire at 1,018,080.
+      </p>
+      <div class="callout">
+       <p>
+        <strong>
+         Final proposal status:
+        </strong>
+        The official BIP record was marked Closed on 9 August 2026, with the changelog citing the chain split and stalled mining.
+       </p>
+       <a class="external-link" href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">
+        Read the official BIP record
+        <!-- -->
+        <span aria-hidden="true">
+         &nearrow;
+        </span>
+       </a>
+      </div>
+     </section>
+     <section class="prose-section" id="phase-two">
+      <span class="phase-number">
+       Phase 2
+      </span>
+      <h2>
+       The enforcement-chain split
+      </h2>
+      <h3>
+       The common parent and first divergent blocks
+      </h3>
+      <p>
+       Both histories contain block 961,631, the last shared block. Its hash is
+       <span class="hash">
+        00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a
+       </span>
+       .
+      </p>
+      <p>
+       At height 961,632, AntPool mined a block without version bit 4. Nodes following ordinary Bitcoin rules accepted it. BIP 110 enforcing nodes rejected it because this was the first block of the mandatory-signaling window. Those nodes accepted a competing bit-4-signaling block mined by Roughnecks through OCEAN DATUM.
+      </p>
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           History
+          </th>
+          <th>
+           Height
+          </th>
+          <th>
+           Block hash
+          </th>
+          <th>
+           Signaling
+          </th>
+          <th>
+           Miner or path
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           Bitcoin BTC mainnet
+          </td>
+          <td>
+           961,632
+          </td>
+          <td class="hash">
+           00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba
+          </td>
+          <td>
+           Bit 4 absent,
+           <code>
+            0x20006000
+           </code>
+          </td>
+          <td>
+           AntPool
+          </td>
+         </tr>
+         <tr>
+          <td>
+           BIP 110 enforcement branch
+          </td>
+          <td>
+           961,632
+          </td>
+          <td class="hash">
+           0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16
+          </td>
+          <td>
+           Bit 4 present,
+           <code>
+            0x27d60010
+           </code>
+          </td>
+          <td>
+           Roughnecks through OCEAN DATUM
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <p>
+       The blocks have the same parent and different transaction sets. From height 961,632, the two groups of nodes follow different block histories.
+      </p>
+      <h3>
+       Early SHA-256d mining history
+      </h3>
+      <p>
+       The enforcement branch initially remained on SHA-256d at Bitcoin's inherited difficulty. Roughnecks mined blocks 961,632 and 961,633 on 8 August 2026. Later blocks appeared intermittently. The observed tip on 24 August 2026 was height 961,638, hash
+       <span class="hash">
+        000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f
+       </span>
+       .
+      </p>
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Height
+          </th>
+          <th>
+           Block timestamp, UTC
+          </th>
+          <th>
+           Time since prior branch block
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           961,632
+          </td>
+          <td>
+           2026-08-08 20:12:12
+          </td>
+          <td>
+           First divergent block
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,633
+          </td>
+          <td>
+           2026-08-08 21:49:26
+          </td>
+          <td>
+           1 hour 37 minutes
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,634
+          </td>
+          <td>
+           2026-08-12 05:29:08
+          </td>
+          <td>
+           3 days 7 hours 40 minutes
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,635
+          </td>
+          <td>
+           2026-08-12 09:18:27
+          </td>
+          <td>
+           3 hours 49 minutes
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,636
+          </td>
+          <td>
+           2026-08-17 19:47:43
+          </td>
+          <td>
+           5 days 10 hours 29 minutes
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,637
+          </td>
+          <td>
+           2026-08-21 18:48:48
+          </td>
+          <td>
+           3 days 23 hours 1 minute
+          </td>
+         </tr>
+         <tr>
+          <td>
+           961,638
+          </td>
+          <td>
+           2026-08-23 05:04:57
+          </td>
+          <td>
+           1 day 10 hours 16 minutes
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <p>
+       The dated record shows very slow and intermittently stalled production. Any current status should time-stamp its observed tip.
+      </p>
+      <h3>
+       Mandatory signaling was separate from RDTS activation
+      </h3>
+      <p>
+       Mandatory signaling determined which blocks enforcing nodes accepted during the final pre-lock-in period. The seven reduced-data restrictions would become consensus rules only after
+       <code>
+        LOCKED_IN
+       </code>
+       , at the later
+       <code>
+        ACTIVE
+       </code>
+       boundary. The branch never reached height 963,648, so the original deployment never locked in and its seven RDTS restrictions never became active there.
+      </p>
+     </section>
+     <section class="prose-section" id="phase-three">
+      <span class="phase-number">
+       Phase 3
+      </span>
+      <h2>
+       Bitcoin BIP110 and BLAKE2b
+      </h2>
+      <h3>
+       Continuation as an independent chain
+      </h3>
+      <p>
+       After the SHA-256d branch separated and advanced too slowly for normal operation, development shifted toward continuing it through an explicit proof-of-work hard fork. On 15 August 2026, Luke Dashjr opened Bitcoin Knots pull request #359, titled
+       <strong>
+        Hardfork: New BLAKE2b proof-of-work algorithm
+       </strong>
+       . The proposed client accepts SHA-256d blocks before a configured activation height and requires BLAKE2b header-v2 blocks at and after that height.
+      </p>
+      <p>
+       The intended lineage preserves the enforcement branch's Bitcoin history, UTXO set, and SHA-256d branch blocks before activation. It does not begin from a new genesis. The exact mainnet anchor, parent block, and activation height remain pending until fixed in signed mainnet source.
+      </p>
+      <h3>
+       Why the SHA-256d branch was constrained
+      </h3>
+      <p>
+       The split occurred at a Bitcoin difficulty-adjustment boundary. The branch inherited difficulty of approximately 127.48 trillion, calibrated for the dominant Bitcoin network's hash rate. A small fraction of that rate mined the enforcement branch. Bitcoin's ordinary adjustment occurs every 2,016 blocks, so low hash rate also delayed its ability to reach the next adjustment. The multi-day block gaps followed.
+      </p>
+      <p>
+       A proof-of-work change creates a boundary for a BLAKE2b-specific target adjustment and a different installed base of mining hardware. It also prevents SHA-256d Bitcoin ASICs from mining post-activation blocks under the new rules.
+      </p>
+      <h3>
+       Why BLAKE2b was selected
+      </h3>
+      <p>
+       Pull request #359 targets compatibility with proof-of-work hardware from several vendors. Its 164-byte header-v2 design includes four selectable ASIC profiles, more nonce space, an opt-in block-withholding defense, future merge-mining fields, block height, and transaction-count commitments. The practical target is Sia-style BLAKE2b hardware.
+      </p>
+      <p>
+       Compatibility must be demonstrated for each miner and firmware combination. A chip that computes BLAKE2b does not establish compatibility with the header serialization and Stratum job format.
+      </p>
+      <h3>
+       Testnet implementation and activation
+      </h3>
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Source tag
+          </th>
+          <th>
+           Tag date
+          </th>
+          <th>
+           Testnet4 height
+          </th>
+          <th>
+           Status
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           v29.4.1.knots20260508rc1
+          </td>
+          <td>
+           2026-08-21
+          </td>
+          <td>
+           149,460
+          </td>
+          <td>
+           Obsolete. Superseded after RC2 changed the activation height.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           v29.4.1.knots20260508rc2
+          </td>
+          <td>
+           2026-08-22
+          </td>
+          <td>
+           149,537
+          </td>
+          <td>
+           Current documented RC2 test chain as of 2026-08-24.
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <p>
+       The testnet4 guide records validation across height 149,537 and warns that the release candidate is unmerged, source-only, and subject to change. RC2 couples the BLAKE2b transition, RDTS activation, and unified signature-hash activation at one testnet height. This does not establish final mainnet composition.
+      </p>
+      <h3>
+       Reference client and mining stack
+      </h3>
+      <p>
+       As of 24 August 2026, pull request #359 remained open and described itself as an unfinished draft. It implements header-v2, a height-based proof-of-work transition, first-block target adjustment, ASIC profiles, validation tests, and mining interfaces. No signed stable mainnet release had been published.
+      </p>
+      <p>
+       The ordinary DATUM Gateway does not support this BLAKE2b work. The test setup uses a BLAKE2b-capable DATUM Gateway fork that requests templates with the
+       <code>
+        blake2b
+       </code>
+       rule, constructs header-v2 Stratum jobs, and selects the algorithm and ASIC profile. The Antminer A3 is explicitly named. Other BLAKE2b-Sia miners require end-to-end testing. SHA-256d ASICs cannot be converted into BLAKE2b miners through firmware alone.
+      </p>
+      <h3>
+       Mainnet activation status
+      </h3>
+      <p>
+       No BLAKE2b mainnet activation height was present in the development branch or RC2 mainnet parameters on 24 August 2026. The default mainnet
+       <code>
+        Blake2bHeight
+       </code>
+       remained unscheduled. Rumored dates or heights are not activation parameters.
+      </p>
+      <p>
+       A stable record should include a signed tag, commit, activation height and parent hash, BLAKE2b target shift, RDTS rule, coinbase commitment, replay rule, test vectors, and binary signatures. The network becomes operational under BLAKE2b after a valid activation block is mined and independently observed.
+      </p>
+      <h3>
+       Replay-protection design
+      </h3>
+      <p>
+       Proof-of-work separation does not make transactions chain-specific. Bitcoin Knots pull request #357 proposes
+       <code>
+        SIGHASH_UNIFIED = 0x20
+       </code>
+       , which changes the signed message when a signer opts in. A protected signature under that algorithm fails verification on a chain that does not implement it.
+      </p>
+      <p>
+       The design is opt-in and one-directional. Transactions signed without
+       <code>
+        SIGHASH_UNIFIED
+       </code>
+       remain potentially replayable between compatible histories. Protection attaches to each signature rather than a particular UTXO age. The testnet release candidates contain the implementation, but no active mainnet rule had been published.
+      </p>
+     </section>
+     <section class="prose-section" id="identity">
+      <span class="phase-number">
+       Chain identity
+      </span>
+      <h2>
+       An independent network and native coin
+      </h2>
+      <p>
+       The split at height 961,632 created an independent block history. A mainnet BLAKE2b activation would add another explicit consensus boundary through a new proof-of-work algorithm and header format. Bitcoin BIP110 would operate with its own nodes, miners, wallets, infrastructure, and inherited pre-split UTXOs. It is a native coin, not a token, and has no contract address.
+      </p>
+      <p>
+       <strong>
+        Bitcoin BIP110
+       </strong>
+       and
+       <strong>
+        BIP110
+       </strong>
+       are project-facing name and ticker declarations. Names and tickers are not consensus fields, and exchanges or data services may assign different identifiers.
+      </p>
+      <div class="callout">
+       <p>
+        <strong>
+         Core historical statement:
+        </strong>
+        Bitcoin BTC mainnet and Bitcoin BIP110 share the Bitcoin ledger through height 961,631. Beginning at height 961,632, they have independent block histories. The proposed BLAKE2b transition is a later hard fork of the Bitcoin BIP110 branch, separate from the original BIP 110 specification.
+       </p>
+      </div>
+     </section>
+    </article>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="footer-grid">
+    <div>
+     <p class="footer-title">
+      Bitcoin BIP110
+     </p>
+     <p>
+      Independent community reference for the network, its history, protocol, software, infrastructure, and operational status.
+     </p>
+    </div>
+    <div>
+     <p class="footer-label">
+      Reference
+     </p>
+     <a href="../history">
+      History
+     </a>
+     <a href="../timeline">
+      Timeline
+     </a>
+     <a href="../technical">
+      Technical data
+     </a>
+    </div>
+    <div>
+     <p class="footer-label">
+      Evidence
+     </p>
+     <a href="../sources">
+      Sources and policy
+     </a>
+     <a href="https://bips.dev/110/" rel="noreferrer">
+      Original BIP 110
+     </a>
+     <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
+      BLAKE2b development
+     </a>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <span>
+     Content snapshot: 24 August 2026
+    </span>
+    <span>
+     Unaffiliated with Bitcoin Core, Bitcoin Knots, miners, exchanges, or wallet vendors.
+    </span>
+   </div>
+  </footer>
+ </body>
+</html>
