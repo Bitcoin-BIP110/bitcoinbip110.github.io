@@ -266,7 +266,8 @@
   box-sizing: border-box
 }
 html {
-  scroll-behavior: smooth
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px
 }
 body {
   background: var(--white);
@@ -378,11 +379,12 @@ h1,h2,h3 {
   color: inherit
 }
 .home-hero {
+  position: relative;
   border-bottom: 1px solid var(--gray-200);
   text-align: center;
   place-items: center;
-  min-height: 650px;
-  padding: 110px 0 118px;
+  min-height: calc(100svh - 76px);
+  padding: 80px 0;
   display: grid
 }
 .hero-inner h1 {
@@ -433,7 +435,35 @@ h1,h2,h3 {
 .hero-note {
   color: var(--gray-500);
   margin: 28px 0 0;
-  font-size: 13px
+  font-size: 16px
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  color: var(--gray-700);
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column
+}
+.scroll-cue span {
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700
+}
+.scroll-cue img {
+  width: 22px;
+  height: 22px;
+  opacity: .9;
+  transition: transform .2s ease,opacity .2s ease
+}
+.scroll-cue:hover img {
+  opacity: 1;
+  transform: translateY(4px)
 }
 .snapshot,.route-section,.safety-section,.closing-cta {
   padding: 112px 0
@@ -606,9 +636,13 @@ h1,h2,h3 {
   margin-top: 36px
 }
 .page-intro {
+  position: relative;
   border-bottom: 1px solid var(--gray-200);
   text-align: center;
-  padding: 96px 0 82px
+  place-items: center;
+  min-height: calc(100svh - 76px);
+  padding: 80px 0;
+  display: grid
 }
 .page-intro h1 {
   letter-spacing: -.055em;
@@ -1009,15 +1043,7 @@ h1,h2,h3 {
     gap: 42px
   }
   .article-nav {
-    border-bottom: 1px solid var(--gray-200);
-    flex-wrap: wrap;
-    gap: 0 20px;
-    padding-bottom: 20px;
-    display: flex;
-    position: static
-  }
-  .article-nav p {
-    width: 100%
+    display: none
   }
   .timeline-item {
     grid-template-columns: 150px minmax(0,1fr)
@@ -1032,6 +1058,9 @@ h1,h2,h3 {
   }
 }
 @media (width<=640px) {
+  html {
+    scroll-padding-top: 0
+  }
   .content-wide,.content-narrow,.header-inner,.footer-grid,.footer-bottom,.article-layout {
     width: calc(100% - 32px)
   }
@@ -1054,8 +1083,15 @@ h1,h2,h3 {
     margin-top: 18px
   }
   .home-hero {
-    min-height: auto;
-    padding: 82px 0
+    min-height: calc(100svh - 110px);
+    padding: 64px 0
+  }
+  .page-intro {
+    min-height: calc(100svh - 110px);
+    padding: 64px 0
+  }
+  .scroll-cue {
+    bottom: 18px
   }
   .hero-inner h1 {
     font-size: clamp(52px,17vw,76px)
@@ -1140,6 +1176,9 @@ h1,h2,h3 {
     scroll-behavior: auto
   }
   .button {
+    transition: none
+  }
+  .scroll-cue img {
     transition: none
   }
 }
