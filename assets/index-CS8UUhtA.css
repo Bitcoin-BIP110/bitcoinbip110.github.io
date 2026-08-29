@@ -106,7 +106,6 @@
     list-style: none
   }
   img,svg,video,canvas,audio,iframe,embed,object {
-    vertical-align: middle;
     display: block
   }
   img,video {
@@ -519,6 +518,118 @@ h1,h2,h3 {
   margin: 10px 0 0;
   font-size: 14px;
   line-height: 1.55
+}
+.fork-diagram {
+  max-width: 980px;
+  margin: 64px auto 0
+}
+.diagram-kicker {
+  color: var(--gray-500);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+  display: block
+}
+.shared-history-card {
+  border: 1px solid var(--black);
+  background: var(--white);
+  text-align: center;
+  max-width: 610px;
+  margin: 0 auto;
+  padding: 28px
+}
+.shared-history-card strong {
+  letter-spacing: -.025em;
+  margin-top: 14px;
+  font-size: 24px;
+  display: block
+}
+.shared-history-card>span:last-child {
+  color: var(--gray-700);
+  margin-top: 9px;
+  font-size: 14px;
+  display: block
+}
+.fork-marker {
+  position: relative;
+  text-align: center;
+  height: 108px;
+  display: grid;
+  place-items: center
+}
+.fork-marker:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 1px solid var(--black)
+}
+.fork-marker span {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--black);
+  background: var(--gray-100);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 700
+}
+.fork-branches {
+  position: relative;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 52px;
+  padding-top: 42px;
+  display: grid
+}
+.fork-branches:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  border-top: 1px solid var(--black)
+}
+.branch-card {
+  position: relative;
+  border: 1px solid var(--black);
+  background: var(--white);
+  padding: 30px
+}
+.branch-card:before {
+  content: "";
+  position: absolute;
+  top: -43px;
+  left: 50%;
+  height: 42px;
+  border-left: 1px solid var(--black)
+}
+.branch-card h3 {
+  letter-spacing: -.025em;
+  margin: 16px 0 28px;
+  font-size: 25px;
+  line-height: 1.2
+}
+.branch-card dl {
+  margin: 0
+}
+.branch-card dl>div {
+  border-top: 1px solid var(--gray-300);
+  grid-template-columns: 145px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  display: grid
+}
+.branch-card dt {
+  color: var(--gray-500);
+  font-size: 12px
+}
+.branch-card dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45
 }
 .route-section {
   border-bottom: 1px solid var(--gray-200)
@@ -1117,6 +1228,21 @@ h1,h2,h3 {
   }
   .section-heading>p:last-child {
     font-size: 17px
+  }
+  .fork-branches {
+    grid-template-columns: 1fr;
+    gap: 42px;
+    padding-top: 0
+  }
+  .fork-branches:before,.branch-card:before {
+    display: none
+  }
+  .fork-marker {
+    height: 84px
+  }
+  .branch-card dl>div {
+    grid-template-columns: 1fr;
+    gap: 5px
   }
   .contrast-section {
     padding: 80px 0

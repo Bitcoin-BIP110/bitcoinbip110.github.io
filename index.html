@@ -79,8 +79,8 @@
         <h1>Bitcoin BIP110</h1>
 
         <p class="hero-lede">
-          A public resource for understanding Bitcoin BIP110, the history behind the chain split, 
-          the transition to BLAKE2b, and the implications for Bitcoin holders.
+          A public resource for understanding Bitcoin BIP110, the history behind the chain split,
+          and the implications for Bitcoin holders.
         </p>
 
         <div class="button-row">
@@ -105,6 +105,7 @@
       </div>
     </section>
 
+
     <section
       class="snapshot"
       id="snapshot"
@@ -113,51 +114,85 @@
       <div class="content-wide">
         <div class="section-heading centered">
           <p class="eyebrow">
-            How it was created
+            Bitcoin BIP110 at a glance
           </p>
 
           <h2 id="snapshot-title">
-            Bitcoin BIP110 was created from Bitcoin BTC.
+            How Bitcoin BIP110 was created.
           </h2>
 
           <p>
-            The mandatory enforcement of BIP 110 on Bitcoin BTC caused at chain split 
-            on 8 August 2026, at block height 961,632. This new chain became Bitcoin BIP110.
+            On 8 August 2026, the mandatory enforcement of BIP 110 on the Bitcoin BTC mainnet
+            caused a chain split at block height 961,632. The new chain became Bitcoin BIP110.
           </p>
         </div>
 
-        <div class="metric-grid">
-          <article>
-            <span class="metric">961,631</span>
-            <h3>Last shared height</h3>
-            <p>
-              The final block present in both histories.
-            </p>
-          </article>
+        <div class="fork-diagram" aria-label="Bitcoin chain lineage diagram">
+          <div class="shared-history-card">
+            <span class="diagram-kicker">Bitcoin mainnet</span>
+            <strong>Genesis through block 961,631</strong>
+            <span>Bitcoin BTC and Bitcoin BIP110 shared the same UTXO history pre-split.</span>
+          </div>
 
-          <article>
-            <span class="metric">961,632</span>
-            <h3>First divergent height</h3>
-            <p>
-              Enforcing nodes rejected the non-signaling BTC block.
-            </p>
-          </article>
+          <div class="fork-marker">
+            <span>Split at height 961,632</span>
+          </div>
 
-          <article>
-            <span class="metric">961,638</span>
-            <h3>Observed branch tip</h3>
-            <p>
-              SHA-256d enforcement-branch tip observed on 24 August 2026.
-            </p>
-          </article>
+          <div class="fork-branches">
+            <article class="branch-card">
+              <span class="diagram-kicker">Bitcoin mainnet continuation branch</span>
+              <h3>Bitcoin BTC</h3>
+              <dl>
+                <div>
+                  <dt>Algorithm</dt>
+                  <dd>SHA-256d Proof-of-Work</dd>
+                </div>
+                <div>
+                  <dt>Primary Implementation</dt>
+                  <dd>Bitcoin Core</dd>
+                </div>
+                <div>
+                  <dt>Maximum Supply</dt>
+                  <dd>21,000,000</dd>
+                </div>
+                <div>
+                  <dt>Exchange Listed Name</dt>
+                  <dd>Bitcoin</dd>
+                </div>
+                <div>
+                  <dt>Exchange Listed Ticker</dt>
+                  <dd>BTC</dd>
+                </div>
+              </dl>
+            </article>
 
-          <article>
-            <span class="metric">BLAKE2b</span>
-            <h3>Planned proof of work</h3>
-            <p>
-              Testnet implementation exists. Mainnet activation is pending.
-            </p>
-          </article>
+            <article class="branch-card">
+              <span class="diagram-kicker">BIP 110 enforcement branch</span>
+              <h3>Bitcoin BIP110</h3>
+              <dl>
+                <div>
+                  <dt>Algorithm</dt>
+                  <dd>BLAKE2b Proof-of-Work (planned)</dd>
+                </div>
+                <div>
+                  <dt>Primary Implementation</dt>
+                  <dd>Bitcoin Knots</dd>
+                </div>
+                <div>
+                  <dt>Maximum Supply</dt>
+                  <dd>21,000,000</dd>
+                </div>
+                <div>
+                  <dt>Exchange Listed Name</dt>
+                  <dd>Bitcoin BIP110 (proposed)</dd>
+                </div>
+                <div>
+                  <dt>Exchange Listed Ticker</dt>
+                  <dd>BIP110 (proposed)</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
         </div>
       </div>
     </section>
