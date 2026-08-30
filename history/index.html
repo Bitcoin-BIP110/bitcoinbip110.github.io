@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
-  <title>
-   History of Bitcoin BIP110 | Bitcoin BIP110
-  </title>
-  <meta content="A sourced history of Bitcoin BIP110, from the original BIP 110 proposal and enforcement-chain split to the development of a BLAKE2b continuation." name="description">
-  <meta content="index, follow" name="robots">
-  <meta content="History of Bitcoin BIP110" property="og:title">
-  <meta content="A sourced history of the BIP 110 proposal, chain split, and BLAKE2b continuation." property="og:description">
-  <meta content="../history/" property="og:url">
-  <meta content="Bitcoin BIP110" property="og:site_name">
-  <meta content="website" property="og:type">
-  <meta content="../og.png" property="og:image">
-  <meta content="1200" property="og:image:width">
-  <meta content="630" property="og:image:height">
-  <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
-  <meta content="summary_large_image" name="twitter:card">
-  <meta content="History of Bitcoin BIP110" name="twitter:title">
-  <meta content="A sourced history of the BIP 110 proposal, chain split, and BLAKE2b continuation." name="twitter:description">
-  <meta content="../og.png" name="twitter:image">
-  <link href="../favicon.svg" rel="shortcut icon">
-  <link href="../favicon.svg" rel="icon">
-  <link href="../history/" rel="canonical">
- </head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    rel="stylesheet"
+    href="../assets/index-CS8UUhtA.css"
+    data-rsc-css-href="../assets/index-CS8UUhtA.css"
+    data-precedence="vite-rsc/importer-resources"
+  />
+
+  <title>Bitcoin BIP110 History | Network Reference</title>
+
+  <meta
+    name="description"
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+  />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link rel="canonical" href="https://bitcoinbip110.org/history/" />
+
+  <meta property="og:title" content="Bitcoin BIP110 History | Network Reference" />
+  <meta
+    property="og:description"
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+  />
+  <meta property="og:url" content="https://bitcoinbip110.org/history/" />
+  <meta property="og:site_name" content="Bitcoin BIP110" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://bitcoinbip110.org/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta
+    property="og:image:alt"
+    content="Bitcoin BIP110 network reference"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin BIP110 History | Network Reference" />
+  <meta
+    name="twitter:description"
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+  />
+  <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
+  <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Bitcoin BIP110 History",
+      "description": "A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development.",
+      "url": "https://bitcoinbip110.org/history/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Bitcoin BIP110",
+        "alternateName": "Bitcoin BIP110 Network Reference",
+        "url": "https://bitcoinbip110.org/"
+      }
+    }
+  </script>
+</head>
  <body>
   <header class="site-header">
    <div class="header-inner">
@@ -47,8 +85,8 @@
      <a href="../history">
       History
      </a>
-     <a href="../timeline">
-      Timeline
+     <a href="../user_guide">
+      User Guide
      </a>
      <a href="../technical">
       Technical
@@ -535,7 +573,8 @@
        Related replay-protection work
       </h3>
       <p>
-       A change in proof of work does not make ordinary transactions valid on only one chain. A separate Bitcoin Knots proposal, pull request #357, introduced an optional signature mode called <code>SIGHASH_UNIFIED</code>.<sup><a href="#ref-11">[11]</a></sup> Signatures that opt in use a different signed message and therefore fail verification on software that does not implement the rule. Transactions signed without the option can remain replayable between compatible histories.
+       A change in proof of work does not make ordinary transactions valid on only one chain. A separate Bitcoin Knots proposal, pull request #357, introduced an optional signature mode called <code>SIGHASH_UNIFIED</code>.<sup><a href="#ref-11">[11]</a></sup> Signatures that opt in use a different signed message and therefore fail verification on software that does not implement the rule. 
+       Transactions signed without the option can remain replayable between compatible histories.
       </p>
       <p>
        The replay-protection proposal and the BLAKE2b proof-of-work proposal were separate development efforts. Their appearance together in testnet release candidates did not by itself establish that both would appear together under final mainnet rules.
@@ -545,7 +584,7 @@
        Development status
       </h3>
       <p>
-       As of 30 August 2026, pull request #359 remained open and no signed stable Bitcoin BIP110 mainnet release had been published. The BLAKE2b network would become operational on mainnet only after final consensus parameters were published in a release and a valid activation block was mined and independently observed.
+       As of 30 August 2026, pull request #359 remains open, and the project has not yet published a signed stable Bitcoin BIP110 mainnet release. Bitcoin BIP110 will become operational under BLAKE2b once the final consensus parameters are published in a mainnet release and miners produce a valid activation block that independent nodes can verify.
       </p>
      </section>
 
@@ -557,15 +596,25 @@
        Network Identity
       </h2>
       <p>
-       The split at height 961,632 created a block history separate from Bitcoin BTC mainnet. A mainnet BLAKE2b activation would introduce a second consensus boundary through a different proof-of-work algorithm and block-header format. The resulting network would require its own compatible nodes, miners, wallets, explorers, and other infrastructure.
+       The split at height 961,632 created a block history separate from Bitcoin (BTC) mainnet. Bitcoin BTC continued on the non-signaling SHA-256d chain, while Bitcoin BIP110 is intended to continue the BIP 110 enforcement branch.
       </p>
       <p>
-       Because the project continues an existing blockchain history, it inherits the Bitcoin ledger and UTXO set through block 961,631 as well as the BIP 110 enforcement-branch blocks that follow. Its asset is therefore a native coin rather than a token issued through a contract.
+       Once Bitcoin BIP110 activates BLAKE2b on mainnet, it would transition proof of work from SHA-256d to BLAKE2b and introduce the new header-v2 block format required for BLAKE2b mining. 
+       From that point forward, Bitcoin BIP110 would require its own compatible nodes, miners, wallets, explorers, exchanges, and supporting infrastructure.
+      </p>
+      <p>
+       Despite these technical differences, Bitcoin BIP110 inherits Bitcoin's blockchain history and UTXO set through block 961,631, together with the BIP 110 enforcement-branch blocks that follow.
+       Holders of eligible pre-split Bitcoin UTXOs may therefore control corresponding coins on both histories. Bitcoin BIP110 is a native proof-of-work coin rather than a token issued through a contract.
+      </p>
+      <p>
+       Bitcoin BIP110's monetary policy also preserves Bitcoin's 21 million coin maximum supply. The hard fork changes the chain's proof-of-work system and other consensus behavior, rather than creating an additional token supply on top of the inherited ledger.
       </p>
       <p>
        <strong>Bitcoin BIP110</strong> is the pending exchange listed name, and <strong>BIP110</strong> is its pending exchange listed ticker.
       </p>
-
+      <p>
+       Bitcoin BIP110's final consensus parameters have not yet been published in a signed stable release. BitcoinBIP110.org will publish the exact subsidy and halving rules when Bitcoin Knots releases the final mainnet implementation.
+      </p>
       <div class="callout">
        <p>
         <strong>
@@ -652,49 +701,124 @@
           </div>
      </section>
 
-     <section class="prose-section" id="references">
-      <span class="phase-number">
-       Sources
+  <section class="prose-section" id="references">
+  <span class="phase-number">References</span>
+  <h2>Verified Primary Sources</h2>
+  <p>
+    Dated source material supporting the historical and technical claims documented on this page.
+  </p>
+
+  <div class="source-links guide-source-links">
+    <a href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">
+      <span>01</span>
+      <span>
+        <strong>Official BIP 110 record</strong>
+        <small>Specification, deployment parameters, changelog, and closed status</small>
       </span>
-      <h2>
-       References
-      </h2>
-      <ol>
-       <li id="ref-1">
-        <a href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">BIP 110: Reduced Data Temporary Softfork</a>, official Bitcoin BIPs repository.
-       </li>
-       <li id="ref-2">
-        <a href="https://mempool.space/block/00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a" rel="noreferrer">Bitcoin block 961,631</a>, last common block.
-       </li>
-       <li id="ref-3">
-        <a href="https://mempool.space/block/00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba" rel="noreferrer">Bitcoin BTC block 961,632</a>, non-signaling block.
-       </li>
-       <li id="ref-4">
-        <a href="https://mempool.guide/block/0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16" rel="noreferrer">BIP 110 enforcement-branch block 961,632</a>, signaling block.
-       </li>
-       <li id="ref-5">
-        <a href="https://mempool.guide/block/000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f" rel="noreferrer">BIP 110 enforcement-branch block 961,638</a>, observed branch tip on 24 August 2026.
-       </li>
-       <li id="ref-6">
-        <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">Bitcoin Knots pull request #359: Hardfork: New BLAKE2b proof-of-work algorithm</a>.
-       </li>
-       <li id="ref-7">
-        <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc1" rel="noreferrer">Bitcoin Knots testnet release candidate 1</a>.
-       </li>
-       <li id="ref-8">
-        <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc2" rel="noreferrer">Bitcoin Knots testnet release candidate 2</a>.
-       </li>
-       <li id="ref-9">
-        <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc3" rel="noreferrer">Bitcoin Knots testnet release candidate 3</a>.
-       </li>
-       <li id="ref-10">
-        <a href="https://github.com/AcesHigh70/blake2b-testnet4" rel="noreferrer">Mining the BLAKE2b hard fork on testnet4</a>, archived testnet guide.
-       </li>
-       <li id="ref-11">
-        <a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">Bitcoin Knots pull request #357: Unified opt-in sighash for all transaction types</a>.
-       </li>
-      </ol>
-     </section>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://mempool.space/block/00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a" rel="noreferrer">
+      <span>02</span>
+      <span>
+        <strong>Bitcoin block 961,631</strong>
+        <small>Last block shared by both histories</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://mempool.space/block/00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba" rel="noreferrer">
+      <span>03</span>
+      <span>
+        <strong>Bitcoin BTC block 961,632</strong>
+        <small>First divergent non-signaling block accepted by Bitcoin mainnet</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://mempool.guide/block/0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16" rel="noreferrer">
+      <span>04</span>
+      <span>
+        <strong>BIP 110 enforcement-branch block 961,632</strong>
+        <small>First divergent signaling block accepted by enforcing nodes</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://mempool.guide/block/000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f" rel="noreferrer">
+      <span>05</span>
+      <span>
+        <strong>BIP 110 enforcement-branch block 961,638</strong>
+        <small>Observed SHA-256d branch tip on 24 August 2026</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
+      <span>06</span>
+      <span>
+        <strong>BLAKE2b proof-of-work development</strong>
+        <small>Bitcoin Knots pull request #359</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc1" rel="noreferrer">
+      <span>07</span>
+      <span>
+        <strong>Bitcoin Knots RC1 source tag</strong>
+        <small>First documented BLAKE2b testnet4 release candidate</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc2" rel="noreferrer">
+      <span>08</span>
+      <span>
+        <strong>Bitcoin Knots RC2 source tag</strong>
+        <small>Superseding BLAKE2b testnet4 release candidate</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc3" rel="noreferrer">
+      <span>09</span>
+      <span>
+        <strong>Bitcoin Knots RC3 source tag</strong>
+        <small>Later signed development release candidate</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/AcesHigh70/blake2b-testnet4" rel="noreferrer">
+      <span>10</span>
+      <span>
+        <strong>BLAKE2b testnet4 mining guide</strong>
+        <small>Archived implementation and mining documentation</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">
+      <span>11</span>
+      <span>
+        <strong>Opt-in unified signature hash</strong>
+        <small>Bitcoin Knots pull request #357</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a href="../sources">
+      <span>12</span>
+      <span>
+        <strong>BitcoinBIP110.org sources</strong>
+        <small>Site reference index and dated evidence</small>
+      </span>
+      <b aria-hidden="true">→</b>
+    </a>
+  </div>
+  </section>
+
     </article>
    </div>
   </main>

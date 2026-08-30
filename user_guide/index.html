@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    rel="stylesheet"
+    href="../assets/index-CS8UUhtA.css"
+    data-rsc-css-href="../assets/index-CS8UUhtA.css"
+    data-precedence="vite-rsc/importer-resources"
+  />
+
+  <title>Bitcoin BIP110 User Guide | Network Reference</title>
+
+  <meta
+    name="description"
+    content="A practical guide to Bitcoin BIP110, covering ownership after the chain split, accessing coins, wallet and exchange support, coin separation, security risks, and network status."
+  />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link rel="canonical" href="https://bitcoinbip110.org/user_guide/" />
+
+  <meta property="og:title" content="Bitcoin BIP110 User Guide | Network Reference" />
+  <meta
+    property="og:description"
+    content="A practical guide to Bitcoin BIP110, covering ownership after the chain split, accessing coins, wallet and exchange support, coin separation, security risks, and network status."
+  />
+  <meta property="og:url" content="https://bitcoinbip110.org/user_guide/" />
+  <meta property="og:site_name" content="Bitcoin BIP110" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://bitcoinbip110.org/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta
+    property="og:image:alt"
+    content="Bitcoin BIP110 network reference"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin BIP110 User Guide | Network Reference" />
+  <meta
+    name="twitter:description"
+    content="A practical guide to Bitcoin BIP110, covering ownership after the chain split, accessing coins, wallet and exchange support, coin separation, security risks, and network status."
+  />
+  <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
+  <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Bitcoin BIP110 User Guide",
+      "description": "A practical guide to Bitcoin BIP110, covering ownership after the chain split, accessing coins, wallet and exchange support, coin separation, security risks, and network status.",
+      "url": "https://bitcoinbip110.org/user_guide/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Bitcoin BIP110",
+        "alternateName": "Bitcoin BIP110 Network Reference",
+        "url": "https://bitcoinbip110.org/"
+      }
+    }
+  </script>
+ </head>
+
+ <body>
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+      class="bitcoin-logo"
+      src="../favicon.svg"
+      alt=""
+      aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+     <a href="../">
+      Overview
+     </a>
+     <a href="../history">
+      History
+     </a>
+     <a href="../user_guide">
+      User Guide
+     </a>
+     <a href="../technical">
+      Technical
+     </a>
+     <a href="../sources">
+      Sources
+     </a>
+    </nav>
+   </div>
+  </header>
+
+  <main>
+   <section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">
+      Bitcoin BIP110 User Guide
+     </p>
+
+     <h1>
+      How to Use Bitcoin BIP110 Safely 
+     </h1>
+
+     <div class="intro-copy">
+      <p>
+       Practical guidance for understanding ownership, accessing coins, evaluating wallet and exchange support,
+       separating coins, checking compatibility, and avoiding common risks after the Bitcoin BIP110 chain split.
+      </p>
+     </div>
+    </div>
+
+    <a
+     class="scroll-cue"
+     href="#guide-content"
+    >
+     <img
+      src="../scroll-down.svg"
+      alt=""
+      aria-hidden="true"
+     />
+    </a>
+   </section>
+
+   <div class="article-layout" id="guide-content">
+    <aside aria-label="User guide sections" class="article-nav">
+     <p>
+      On this page
+     </p>
+
+     <a href="#overview">
+      Overview
+     </a>
+
+     <a href="#ownership">
+      1. Ownership and Access
+     </a>
+
+     <a href="#exchange">
+      2. Exchange Support
+     </a>
+
+     <a href="#wallet">
+      3. Wallet Support
+     </a>
+
+     <a href="#separation">
+      4. Coin Separation
+     </a>
+
+     <a href="#integration">
+      5. Integration Support
+     </a>
+
+     <a href="#security">
+      6. Security, Scams, and Risks
+     </a>
+
+     <a href="#status">
+      Current Status
+     </a>
+    </aside>
+
+    <article>
+     <section class="prose-section" id="overview">
+      <span class="phase-number">
+       Overview
+      </span>
+
+      <h2>
+       Bitcoin BIP110 User Guide
+      </h2>
+
+      <p>
+       This guide provides practical information for anyone seeking to understand, access, and safely use Bitcoin BIP110.
+       It covers ownership following the Bitcoin BTC chain split, wallet and exchange support, coin separation,
+       compatibility with existing Bitcoin BTC features, security risks, and the current operational status of the network.
+      </p>
+
+      <p>
+       Bitcoin BIP110 remains under active development. Wallet support, exchange support, network infrastructure,
+       and other services are expected to develop as the BLAKE2b mainnet becomes operational.
+       BitcoinBIP110.org will document verified support and provide updated guidance as that infrastructure becomes available.
+      </p>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Category
+          </th>
+          <th>
+           At a glance
+          </th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td>
+           <strong>Name / Ticker</strong>
+          </td>
+          <td>
+           Bitcoin BIP110 / BIP110 (pending)
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Network Status</strong>
+          </td>
+          <td>
+           BLAKE2b mainnet (pending)
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Reference Software</strong>
+          </td>
+          <td>
+           Bitcoin Knots
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Wallet Support</strong>
+          </td>
+          <td>
+           No supported wallets currently available
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Mempool Explorer</strong>
+          </td>
+          <td>
+           Mempool.Guide
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Block Explorer</strong>
+          </td>
+          <td>
+           No supported block explorers available
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </section>
+
+     <section class="prose-section" id="ownership">
+      <span class="phase-number">
+       Chapter 1
+      </span>
+
+      <h2>
+       Ownership and Access
+      </h2>
+
+      <h3>
+       I own Bitcoin BTC. How do I know if I have Bitcoin BIP110?
+      </h3>
+
+      <p>
+       Bitcoin BTC and Bitcoin BIP110 share the same blockchain history through block <strong>961,631</strong>.
+       Their block histories diverged beginning at block <strong>961,632</strong>.
+      </p>
+
+      <p>
+       If you held Bitcoin BTC before the time of the split, roughly 8 August 2026,
+       you should also have corresponding Bitcoin BIP110 coins on the Bitcoin BIP110 blockchain.
+      </p>
+
+      <h4>
+       If you held Bitcoin in self-custody
+      </h4>
+
+      <p>
+       If your Bitcoin BTC was controlled by a self-custody wallet for which <strong>you hold the private keys or seed phrase</strong>,
+       and those coins existed before the chain split, you should also own the corresponding Bitcoin BIP110 coins.
+      </p>
+
+      <p>
+       Your Bitcoin BTC does not need to be converted, exchanged, registered, or redeemed to create Bitcoin BIP110.
+       Your Bitcoin BIP110 coins are already on the Bitcoin BIP110 chain. You will be able to control them using the same private keys 
+       that controlled your Bitcoin BTC before the split.
+      </p>
+
+      <h4>
+       If your Bitcoin was held by an exchange or custodian
+      </h4>
+
+      <p>
+       If an exchange, broker, ETF, wallet service, or other custodian controlled the private keys at the time of the split,
+       then that service controls the corresponding keys on the Bitcoin BIP110 chain.
+      </p>
+
+      <p>
+       Whether you receive access to any Bitcoin BIP110 associated with your account depends on the custodian's policies
+       and support for the network. Contact your exchange or custodian directly to confirm whether they plan to 
+       provide access to Bitcoin BIP110 once the network is live.
+      </p>
+
+      <h4>
+       If you received Bitcoin BTC after the split
+      </h4>
+
+      <p>
+       Bitcoin BTC received from transactions occurring after block 961,631 does not automatically have a corresponding
+       Bitcoin BIP110 balance.
+      </p>
+
+      <p>
+       From block 961,632 onward, Bitcoin BTC and Bitcoin BIP110 are on seperate branches.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        Having Bitcoin BIP110 associated with your keys does not require any immediate action. 
+        Before attempting to access or move those coins, verify wallet compatibility, understand the current replay behavior, 
+        confirm the software is authentic, and make sure the network is operational.
+       </p>
+      </div>
+
+      <h3>
+       How can I check my Bitcoin BIP110 balance?
+      </h3>
+
+      <p>
+       Bitcoin BIP110 block explorers are not currently available.
+      </p>
+
+      <p>
+       Once a reliable explorer is available, you should be able to enter a Bitcoin address 
+       and check whether it has corresponding Bitcoin BIP110 coins on the Bitcoin BIP110 chain.
+      </p>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+       Never enter your seed phrase or private key to check a balance.
+      </p>
+      </div>
+
+      <p>
+       BitcoinBIP110.org will publish verified block explorer information here once it becomes available.
+      </p>
+
+      <h3>
+       How do I access my Bitcoin BIP110?
+      </h3>
+
+      <p>
+       If you controlled Bitcoin BTC before the chain split, the corresponding pre-split coins may already exist under the same
+       keys in the Bitcoin BIP110 ledger.
+      </p>
+
+      <p>
+       You do not need to register, redeem, convert, or claim them from another party.
+      </p>
+
+      <p>
+       Accessing these coins requires a Bitcoin BIP110-compatible wallet software capable of recognizing the Bitcoin BIP110 network
+       and creating valid transactions for it.
+      </p>
+
+      <p>
+       Currently, Bitcoin BIP110 is not live. There is no compatible wallet software.
+      </p>
+
+      <p>
+       The first verified wallet software will come from Bitcoin Knots, the official maintainers of Bitcoin BIP110.
+       Once the wallet software information becomes available, BitcoinBIP110.org will publish it here.
+      </p>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+       Do not import your seed phrase into unfamiliar software.
+      </p>
+      </div>
+
+      <p>
+       Your Bitcoin seed phrase or private keys may control valuable coins on both Bitcoin BTC and Bitcoin BIP110.
+      </p>
+
+      <p>
+       Entering those credentials into an unverified wallet, website, claiming tool, or third-party service could expose
+       coins on both networks.
+      </p>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+      There is no "claim process" or "claim deadline". If you keep your Bitcoin BTC keys secure, your corresponding Bitcoin BIP110
+      coins will be secure also.
+      </p>
+      </div>
+
+      <p>
+       It is often safer to wait until your existing wallet client or your existing exchange supports 
+       Bitcoin BIP110 before attempting to access it.
+      </p>
+
+      <p>
+       Be especially cautious of websites or individuals offering to "claim your Bitcoin BIP110" in exchange for your seed phrase,
+       private keys, wallet file, or an upfront payment.
+      </p>
+     </section>
+
+     <section class="prose-section" id="exchange">
+      <span class="phase-number">
+       Chapter 2
+      </span>
+
+      <h2>
+       Exchange Support
+      </h2>
+
+      <h3>
+       What if I held Bitcoin on an exchange or with a custodian?
+      </h3>
+
+      <p>
+       Holding Bitcoin BTC through an exchange or custodian is different from holding Bitcoin BTC in self-custody.
+      </p>
+
+      <p>
+       The party controlling the private keys at the time of the split controls the corresponding Bitcoin BIP110 coins.
+      </p>
+
+      <p>
+       If your Bitcoin BTC was held by an exchange, broker, custodial wallet, ETF, or similar service,
+       you should not assume that you personally have direct access to the corresponding Bitcoin BIP110.
+      </p>
+
+      <p>
+       The service may choose to:
+      </p>
+
+      <ul>
+       <li>Support Bitcoin BIP110 and provide access to customers.</li>
+       <li>Distribute corresponding coins at a later date.</li>
+       <li>Support trading without deposits or withdrawal.</li>
+       <li>Delay a decision while the network develops.</li>
+       <li>Provide no Bitcoin BIP110 support.</li>
+      </ul>
+
+      <p>
+       Reputable exchanges and custodians should make an official statement describing its Bitcoin BIP110 policy once it becomes live.
+       You may contact your exchange or custodian directly to confirm whether they plan to support Bitcoin BIP110.
+      </p>
+
+      <h3>
+       How do I buy, sell, and trade Bitcoin BIP110?
+      </h3>
+
+      <p>
+       Bitcoin BIP110 is not currently available to buy, sell, or trade.
+      </p>
+
+      <p>
+       Once compatible wallet support becomes available and the Bitcoin BIP110 network is operational,
+       you will be able to conduct Bitcoin BIP110 transactions peer-to-peer.
+      </p>
+
+      <p>
+       Exchange trading will become available when exchanges add support for Bitcoin BIP110.
+       Each exchange will independently determine whether to support deposits, withdrawals, and trading.
+      </p>
+
+      <p>
+       BitcoinBIP110.org will publish verified wallet and exchange support as it becomes available.
+      </p>
+
+      <h3>
+       Which exchanges support Bitcoin BIP110?
+      </h3>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+       Currently Bitcoin BIP110 is not listed on any exchanges. BitcoinBIP110.org will update this status once this changes.
+      </p>
+      </div>
+
+      <p>
+       Currently, the pending exchange listed name is <strong>Bitcoin BIP110</strong>,
+       and the pending exchange listed ticker is <strong>BIP110</strong>.
+      </p>
+
+      <p>
+       Do not send Bitcoin BIP110 to an exchange unless the exchange has explicitly confirmed support for the Bitcoin BIP110 network.
+       Support for Bitcoin BTC does not imply support for Bitcoin BIP110.
+      </p>
+
+     </section>
+
+     <section class="prose-section" id="wallet">
+      <span class="phase-number">
+       Chapter 3
+      </span>
+
+      <h2>
+       Wallet Support
+      </h2>
+
+      <h3>
+       Which wallets support Bitcoin BIP110?
+      </h3>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+       Bitcoin BIP110 does not have an official wallet currently. The first verified wallet software will come from Bitcoin Knots,
+       the official maintainers of Bitcoin BIP110. 
+      </p>
+      </div>
+
+      <p>
+       BitcoinBIP110.org will post the official wallet here once it becomes available. A wallet that supports Bitcoin BTC does not automatically support Bitcoin BIP110.
+       Bitcoin BIP110 requires software capable of recognizing its network rules and, following BLAKE2b activation, its separate network infrastructure.
+      </p>
+
+      <h3>
+       Can I use my existing Bitcoin BTC wallet with Bitcoin BIP110?
+      </h3>
+
+      <p>
+       The fact that Bitcoin BTC and Bitcoin BIP110 share historical keys, addresses, and pre-split ownership
+       does not mean that ordinary Bitcoin wallet software is compatible with Bitcoin BIP110.
+      </p>
+
+      <p>
+       Some wallets may eventually add native Bitcoin BIP110 support. Others may never support it.
+      </p>
+
+      <div class="callout">
+      <p>
+      <strong>Important:</strong>
+       Do not import your existing Bitcoin seed phrase into another wallet simply because that wallet claims to support BIP110.
+      </p>
+      </div>
+
+      <p>
+       Verify the exact wallet, version, download source, network support, and transaction behavior first.
+      </p>
+
+      <h3>
+       Do hardware wallets support Bitcoin BIP110?
+      </h3>
+
+      <p>
+       There are no hardware wallets that currently support Bitcoin BIP110. BitcoinBIP110.org will post it here once a hardware wallet adds support for BitcoinBIP110.
+      </p>
+
+      <p>
+       A hardware wallet may be capable of signing Bitcoin BTC style transactions while its companion software,
+       firmware, derivation handling, network identification, or transaction validation does not properly support Bitcoin BIP110.
+      </p>
+
+      <p>
+       Do not treat the signing capability as support. Wait until the specific hardware wallet publishes their official support of Bitcoin BIP110.
+      </p>
+     </section>
+
+     <section class="prose-section" id="separation">
+      <span class="phase-number">
+       Chapter 4
+      </span>
+
+      <h2>
+       Coin Separation
+      </h2>
+
+      <h3>
+       What is coin separation?
+      </h3>
+
+      <p>
+       Coin separation, sometimes called coin splitting, is the process of establishing independent control over
+       corresponding coins on two chains after a blockchain split.
+      </p>
+
+      <p>
+       The objective is to reach a state where:
+      </p>
+
+      <ul>
+       <li>Bitcoin BTC can be spent without unintentionally spending Bitcoin BIP110</li>
+       <li>Bitcoin BIP110 can be spent without unintentionally spending Bitcoin BTC</li>
+      </ul>
+
+      <p>
+       The exact safe procedure depends on the consensus rules, replay behavior, wallet support,
+       and transaction tools available on both networks.
+      </p>
+
+      <h3>
+       How do I safely separate my Bitcoin BTC and Bitcoin BIP110?
+      </h3>
+
+      <p>
+       A safe coin-separation process depends on the final Bitcoin BIP110 mainnet software and its replay behavior.
+       Until those details are confirmed, there is no verified procedure users should follow.
+      </p>
+
+      <p>
+       Avoid any unofficial guide that asks you to:
+      </p>
+
+      <ul>
+       <li>Enter your seed phrase into a website.</li>
+       <li>Send coins to a "splitting service".</li>
+       <li>Import your wallet into unfamiliar software.</li>
+       <li>Expose any private keys.</li>
+       <li>Install unsigned or unverifiable software.</li>
+       <li>Sending transactions without knowing whether they could also be valid on the other chain.</li>
+      </ul>
+
+      <p>
+       BitcoinBIP110.org will publish a verified coin-separation guide once the required mainnet software 
+       and transaction behavior have been confirmed.
+      </p>
+
+      <h3>
+       Can I move my Bitcoin BTC and still access my Bitcoin BIP110?
+      </h3>
+
+      <p>
+       Moving Bitcoin BTC after the split does not erase the historical Bitcoin BIP110 ledger.
+      </p>
+
+      <p>
+       The two networks have separate block histories beginning at height 961,632.
+       A Bitcoin BTC transaction that occurs only on Bitcoin BTC does not automatically spend the corresponding coins on Bitcoin BIP110.
+      </p>
+
+      <p>
+       However, transactions involving pre-split coins can create complexities because similar transactions
+       may be valid on both networks.
+      </p>
+
+      <p>
+       If you have pre-split Bitcoin BTC, the best practice is to leave those coins untouched until Bitcoin BIP110
+       is fully operational and there is an official verified separation procedure.
+      </p>
+
+      <p>
+       If you have already moved your Bitcoin BTC after the split, this does not necessarily mean your Bitcoin BIP110 is lost.
+       You must keep a record of the addresses and private keys associated with Bitcoin BTC that you moved in order to access the 
+       Bitcoin BIP110 that may still be in your account.
+      </p>
+
+     </section>
+
+     <section class="prose-section" id="integration">
+      <span class="phase-number">
+       Chapter 5
+      </span>
+
+      <h2>
+       Integration Support
+      </h2>
+
+      <h3>
+       Are Lightning, Taproot, SegWit, and other Bitcoin features compatible with Bitcoin BIP110?
+      </h3>
+
+      <p>
+       Bitcoin BIP110 inherits Bitcoin's transaction model and the consensus features that existed before the chain split,
+       including SegWit and Taproot. The transition to BLAKE2b changes proof-of-work and the block-header format;
+       it does not replace Bitcoin's underlying transaction system.
+      </p>
+
+      <h4>
+       SegWit
+      </h4>
+
+      <p>
+       Bitcoin BIP110 continues to recognize standard SegWit constructions.
+       BIP 110 explicitly identifies witness version 0 P2WPKH and P2WSH as defined witness types.
+      </p>
+
+      <p>
+       When the reduced-data rules are active, some witness data is subject to additional size restrictions.
+       Standard SegWit therefore remains available, but every possible Bitcoin BTC witness construction
+       may not be compatible.
+      </p>
+
+      <h4>
+       Taproot
+      </h4>
+
+      <p>
+       Taproot also remains part of Bitcoin BIP110. Pay-to-Taproot, or P2TR,
+       is explicitly recognized as a defined witness version under BIP 110.
+      </p>
+
+      <p>
+       Certain Taproot and Tapscript features are restricted while the reduced-data rules are active,
+       including Taproot annexes, very large control blocks, <code>OP_SUCCESS*</code>,
+       and some Tapscript uses of <code>OP_IF</code> and <code>OP_NOTIF</code>.
+       Taproot key-path spending and permitted script-path constructions remain available.
+      </p>
+
+      <h4>
+       Lightning Network
+      </h4>
+
+      <p>
+       Lightning is an additional protocol built on Bitcoin transactions rather than a base-layer consensus feature.
+      </p>
+
+      <p>
+       Bitcoin BIP110 retains many of the transaction features that Lightning depends on,
+       so Lightning functionality can potentially be implemented for the network.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        The current Lightning wallet, node, and routing-network support for Bitcoin BIP110 specific implementations
+        have not been tested or verified.
+       </p>
+      </div>
+
+      <p>
+       Existing Bitcoin BTC Lightning channels should not be treated as automatically portable to Bitcoin BIP110.
+       During a persistent chain split, a Lightning node watching one chain can be unaware of a channel transaction occurring
+       on the other chain. This creates particular risks around revoked channel states and time-sensitive penalty transactions.
+      </p>
+
+      <p>
+       BitcoinBIP110.org will document Lightning support when compatible implementations and operational infrastructure
+       have been verified.
+      </p>
+
+      <h4>
+       Other Bitcoin features
+      </h4>
+
+      <p>
+       Bitcoin BIP110 inherits much of Bitcoin's existing transaction functionality,
+       but compatibility should be evaluated feature by feature.
+      </p>
+
+      <p>
+       Some functionality may be affected by:
+      </p>
+
+      <ul>
+       <li>The BIP 110 reduced-data consensus rules.</li>
+       <li>The BLAKE2b block-header and proof-of-work transition.</li>
+       <li>Wallet and light-client compatibility.</li>
+       <li>Differences in network infrastructure.</li>
+       <li>Bitcoin BIP110-specific transaction or replay-protection rules.</li>
+      </ul>
+
+      <p>
+       Software or services that support Bitcoin BTC does not automatically establish support for Bitcoin BIP110.
+      </p>
+
+      <h3>
+       Does Bitcoin BIP110 support Ordinals, Inscriptions, and Tapscript?
+      </h3>
+
+      <p>
+       Bitcoin BIP110 retains Taproot and Tapscript functionality, but the reduced-data rules place additional restrictions on 
+       certain script constructions and large data pushes. As a result, ordinary Tapscript use remains possible, 
+       while the common transaction patterns used for Ordinals and Inscriptions are generally incompatible with the reduced-data rules once they are active.
+      </p>
+
+      <h4>
+       Tapscript
+      </h4>
+
+      <p>
+       Tapscript will be supported, but with additional restrictions.
+      </p>
+
+      <p>
+       Bitcoin BIP110 continues to recognize the Taproot witness version and the defined Tapscript Tapleaf version.
+       It does not disable Taproot or Tapscript as a whole.
+      </p>
+
+      <p>
+       While the reduced-data rules are active, however, several Tapscript constructions are restricted. Among them:
+      </p>
+
+      <ul>
+       <li><code>OP_SUCCESS*</code> opcodes are invalid</li>
+       <li>executing <code>OP_IF</code> or <code>OP_NOTIF</code> in Tapscript is invalid</li>
+       <li>Taproot annexes are invalid</li>
+       <li>Taproot control blocks larger than 257 bytes are invalid</li>
+       <li>individual script-argument witness items larger than 256 bytes are invalid</li>
+      </ul>
+
+      <p>
+       These rules deliberately preserve ordinary monetary and scripting functionality while restricting
+       several methods used for embedding arbitrary data.
+      </p>
+
+      <h4>
+       Ordinals and Inscriptions
+      </h4>
+
+      <p>
+       Ordinals and Inscriptions will not be supported under Bitcoin BIP110's reduced-data rules.
+      </p>
+
+      <p>
+       The Ordinals protocol itself is an external indexing convention rather than a Bitcoin consensus feature.
+       However, the common inscription method embeds data inside a Taproot script-path spend,
+       typically using a Tapscript envelope involving <code>OP_IF</code> and data pushes.
+      </p>
+
+      <p>
+       BIP 110 specifically restricts these mechanisms. Its rules prohibit executing <code>OP_IF</code>
+       or <code>OP_NOTIF</code> in Tapscript and restrict large arbitrary-data pushes.
+       The BIP explicitly describes limiting arbitrary-data storage as one of its purposes.
+      </p>
+
+      <p>
+       This means the standard inscription patterns commonly used on Bitcoin BTC would generally fail
+       the Bitcoin BIP110 reduced-data rules for post-activation outputs.
+      </p>
+
+      <p>
+       The only exception applies to inputs spending UTXOs created before the reduced-data activation height.
+       These UTXOs are grandfathered and remain exempt from the new restrictions,
+       preserving their spendability under the pre-activation rules.
+      </p>
+     </section>
+
+     <section class="prose-section" id="security">
+      <span class="phase-number">
+       Chapter 6
+      </span>
+
+      <h2>
+       Security, Scams, and Risks
+      </h2>
+
+      <h3>
+       What fraud, scams, and risks should I be aware of?
+      </h3>
+
+      <p>
+       The Bitcoin BIP110 chain split creates opportunities for scammers, malicious software, and costly user mistakes.
+      </p>
+
+      <p>
+       You must be especially cautious when attempting to access, move, exchange, or separate coins associated with the two networks.
+      </p>
+
+      <p>
+       The following will go over some common scams and risks that the community is already seeing.
+      </p>
+
+      <h4>
+       Fake claiming tools
+      </h4>
+
+      <p>
+       Scammers may create websites or applications claiming that they can "claim," "unlock," or "recover" your Bitcoin BIP110.
+      </p>
+
+      <p>
+       A legitimate Bitcoin BIP110 balance does not need to be granted by a third party.
+      </p>
+
+      <p>
+       Never provide a seed phrase, private key, wallet backup, or wallet file to a claiming service.
+      </p>
+
+      <h4>
+       Fraudulent wallets
+      </h4>
+
+      <p>
+       Attackers may distribute fake Bitcoin BIP110 wallets designed to steal private keys or seed phrases.
+      </p>
+
+      <p>
+       This risk is particularly serious because the same keys may control valuable coins on both Bitcoin BTC and Bitcoin BIP110.
+      </p>
+
+      <p>
+       Only use software whose source, release, version, and authenticity can be independently verified.
+      </p>
+
+      <h4>
+       Phishing and impersonation
+      </h4>
+
+      <p>
+       Scammers may imitate Bitcoin BIP110 websites, developers, exchanges, maintainers, or support personnel.
+      </p>
+
+      <p>
+       Be cautious of:
+      </p>
+
+      <ul>
+       <li>Misleading or misspelled domain names.</li>
+       <li>Unsolicited messages offering assistance.</li>
+       <li>Links distributed through social media or direct messages.</li>
+       <li>Fake software downloads/</li>
+       <li>Requests for seed phrases or private keys.</li>
+       <li>Claims that immediate action is required.</li>
+       <li>Fake announcements claiming wallet or exchange support.</li>
+      </ul>
+
+      <p>
+       No support representative will ask you for your seed phrase or private keys.
+      </p>
+
+      <h4>
+       Fake or misleading exchanges
+      </h4>
+
+      <p>
+       A website may falsely claim to support Bitcoin BIP110 deposits, withdrawals, trading, or distribution.
+      </p>
+
+      <p>
+       Before sending funds, independently verify that the service actually supports the Bitcoin BIP110 network
+       and determine exactly which functions are available.
+      </p>
+
+      <p>
+       Do not assume that an exchange supporting Bitcoin BTC also supports Bitcoin BIP110.
+      </p>
+
+      <h4>
+       Sending coins on the wrong network
+      </h4>
+
+      <p>
+       Bitcoin BTC and Bitcoin BIP110 have separate block histories beginning at height 961,632.
+      </p>
+
+      <p>
+       You may lose access to funds by:
+      </p>
+
+      <ul>
+       <li>Sending coins to a service that supports only the other network.</li>
+       <li>Using incompatible wallet software.</li>
+       <li>Misunderstanding which network a wallet is connected to.</li>
+       <li>Assuming similar-looking addresses indicate network compatibility.</li>
+      </ul>
+
+      <p>
+       Always verify the destination service and network before sending.
+      </p>
+
+      <h4>
+       Unsafe coin-separation instructions
+      </h4>
+
+      <p>
+       Unofficial guides may appear explaining how to separate Bitcoin BTC and Bitcoin BIP110. These guides may be malicious.
+      </p>
+
+      <p>
+       BitcoinBIP110.org will publish the official coin separation guide from Bitcoin Knots when it becomes available.
+      </p>
+
+      <p>
+       Treat any coin separation procedure requiring private-key exposure or third-party custody with extreme caution.
+      </p>
+
+      <h4>
+       Loss of access
+      </h4>
+
+      <p>
+       Users can also lose access without being directly scammed.
+      </p>
+
+      <p>
+       Possible causes include:
+      </p>
+
+      <ul>
+       <li>Discarded wallet backups.</li>
+       <li>Forgotten wallet information.</li>
+       <li>Incompatible software.</li>
+       <li>Incorrect network configuration.</li>
+       <li>Exposing keys to malicious software.</li>
+       <li>Misunderstanding replay behavior.</li>
+       <li>Sending funds to unsupported services.</li>
+      </ul>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        If you sold or moved your Bitcoin BTC after the split, your Bitcoin BIP110 may still be in your previous wallet or address.
+        Make sure to preserve existing backups of your wallets, addresses, and private keys.
+      </p>
+      </div>
+
+      <h4>
+       What is a replay attack?
+      </h4>
+
+      <p>
+       After a blockchain split, the same pre-split private keys may control coins on both chains.
+      </p>
+
+      <p>
+       If the two networks recognize the same transaction format and signature rules,
+       a transaction created for one network may also be valid on the other.
+       If that transaction is copied and broadcast on the second network, it has been replayed.
+      </p>
+
+      <p>
+       For example, a user may intend to spend Bitcoin BTC while leaving the corresponding Bitcoin BIP110 untouched.
+       If the transaction is also valid on Bitcoin BIP110 and is broadcast there,
+       the corresponding BIP110 coins could move as well.
+      </p>
+
+      <p>
+       The reverse situation may also be possible.
+      </p>
+
+      <p>
+       Bitcoin BIP110 development includes an opt-in <code>SIGHASH_UNIFIED</code> mechanism intended to make
+       certain signatures chain-specific. Users should rely on the final mainnet rules and verified wallet behavior
+       before assuming that a transaction is protected from replay.
+      </p>
+
+      <h3>
+       Is there a deadline to access my Bitcoin BIP110?
+      </h3>
+
+      <p>
+       There is no deadline to access your Bitcoin BIP110 coins. The coins already belong to you if 
+       you have access to the private keys associated with your Bitcoin BTC pre-split.
+      </p>
+
+      <p>
+       Any person or website asking you to "claim" your Bitcoin BIP110 is fraudulent and should be avoided.
+      </p>
+     </section>
+
+     <section class="prose-section" id="status">
+      <span class="phase-number">
+       Current Status
+      </span>
+
+      <h2>
+       Current State of Bitcoin BIP110
+      </h2>
+
+      <p>
+       Bitcoin BIP110's BLAKE2b mainnet is currently not live.
+       Mainnet activation is currently expected around <strong>September 1, 2026</strong>,
+       but the exact activation height and successful launch should be considered pending until an activation block has been mined.
+      </p>
+
+      <p>
+       BitcoinBIP110.org will update its network status when a valid BLAKE2b mainnet activation block
+       has been mined and independently observed.
+      </p>
+
+      <h3>
+       When can I access my Bitcoin BIP110?
+      </h3>
+
+      <p>
+        If you hold Bitcoin BTC, the safest action right now is to wait.</strong>
+      </p>
+
+      <p>
+       If you controlled Bitcoin BTC before the chain split, the corresponding Bitcoin BIP110 coins are preserved
+       in the inherited ledger. You do not need to rush to move or access them before it is safe.
+      </p>
+
+      <p>
+       Also, be careful when moving pre-split Bitcoin BTC before there is a safe seperation procedures. 
+       Moving your pre-split Bitcoin BTC could cause accessing your Bitcoin BIP110 more complicated.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+         For Bitcoin BTC holders who want to preserve the simplest path to accessing their Bitcoin BIP110,
+         the safest current approach is to leave pre-split coins untouched until Bitcoin BIP110 is live
+         and the access procedure has been verified.
+       </p>
+      </div>
+
+      <p>
+       BitcoinBIP110.org will update this guide when the BLAKE2b mainnet is confirmed operational
+       and will publish verified instructions for accessing and separating Bitcoin BIP110.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        There is no deadline to access Bitcoin BIP110.
+        Do not let anyone pressure you into "claiming" your Bitcoin BIP110.
+      </p>
+      </div>
+     </section>
+    </article>
+   </div>
+  </main>
+
+  <footer class="site-footer">
+   <div class="footer-grid">
+    <div>
+     <p class="footer-title">
+      Bitcoin BIP110
+     </p>
+
+     <p>
+      This is a public reference for the Bitcoin BIP110 network, its history,
+      protocol, software, infrastructure, and operational status.
+     </p>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Reference
+     </p>
+
+     <a href="../history">History</a>
+     <a href="../user_guide">User Guide</a>
+     <a href="../technical">Technical data</a>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Sources
+     </p>
+
+     <a href="../sources">
+      Sources and policy
+     </a>
+
+     <a
+      href="https://bips.dev/110/"
+      rel="noreferrer"
+     >
+      Original BIP 110
+     </a>
+
+     <a
+      href="https://github.com/bitcoinknots/bitcoin/pull/359"
+      rel="noreferrer"
+     >
+      BLAKE2b development
+     </a>
+    </div>
+   </div>
+
+   <div class="footer-bottom">
+    <span>
+     © Bitcoin BIP110 Project 2026. Released under the MIT license.
+    </span>
+
+    <span>
+    </span>
+   </div>
+  </footer>
+ </body>
+</html>

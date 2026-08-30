@@ -834,6 +834,14 @@ h1,h2,h3 {
   font-size: 24px;
   line-height: 1.25
 }
+.prose-section h4 {
+  color: var(--black);
+  letter-spacing: -.01em;
+  margin: 30px 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35
+}
 .prose-section p,.prose-section li {
   color: var(--gray-700);
   font-size: 16px;
@@ -1059,7 +1067,9 @@ h1,h2,h3 {
 }
 .source-links a>span:first-child {
   color: var(--gray-500);
-  font: 12px/1 Courier New,Courier,monospace
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  font-weight: 600;
 }
 .source-links strong {
   font-size: 15px
