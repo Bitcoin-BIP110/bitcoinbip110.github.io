@@ -94,38 +94,41 @@
       On this page
      </p>
      <a href="#overview">
-      1. Overview
+      Overview
      </a>
      <a href="#origins">
-      2. Origins and proposal
+      1. BIP 110 Proposal
      </a>
      <a href="#deployment">
-      3. Deployment design
+      2. Signaling and Activation
      </a>
      <a href="#chain-split">
-      4. Chain split
+      3. Chain Split
      </a>
      <a href="#early-branch">
-      5. Early branch history
+      4. Branch History
      </a>
      <a href="#blake2b">
-      6. BLAKE2b continuation
+      5. BLAKE2b Hard Fork
      </a>
      <a href="#identity">
-      7. Network identity
+      6. Network Identity
+     </a>
+     <a href="#timeline">
+      Timeline
      </a>
      <a href="#references">
-      8. References
+      Sources
      </a>
     </aside>
 
     <article>
      <section class="prose-section" id="overview">
       <span class="phase-number">
-       Summary
+       Overview
       </span>
       <h2>
-       Overview
+       What is Bitcoin BIP110?
       </h2>
       <p>
        Bitcoin BIP110 originated from the effort to enforce BIP 110, a proposal for temporary consensus restrictions on certain uses of data in Bitcoin transactions.
@@ -141,16 +144,18 @@
       </p>
       <p>
        Development subsequently began within the Bitcoin Knots on a hard fork that would replace SHA-256d with BLAKE2b and allow the enforcement branch to continue operating.
-       Bitcoin BIP110 is this independent network intended to continue the historical BIP 110 enforcement branch by transitioning its proof-of-work system to BLAKE2b.
+      </p>
+      <p>
+       Bitcoin BIP110 is this independent network intended to continue the historical BIP 110 enforcement branch by transitioning its proof-of-work system to BLAKE2b.  
       </p>
      </section>
 
      <section class="prose-section" id="origins">
       <span class="phase-number">
-       Origins
+       Chapter 1
       </span>
       <h2>
-       BIP 110 proposal
+       BIP 110 Proposal
       </h2>
       <p>
        <a href="https://bips.dev/110/" rel="noreferrer">BIP 110</a> was written by Dathon Ohm and credited Luke Dashjr with the original draft and advice. Its initial draft was recorded on 24 October 2025, it was assigned BIP number 110 on 3 December 2025, and it advanced to <strong>Complete</strong> status on 25 June 2026.<sup><a href="#ref-1">[1]</a></sup>
@@ -202,10 +207,10 @@
 
      <section class="prose-section" id="deployment">
       <span class="phase-number">
-       Deployment
+       Chapter 2
       </span>
       <h2>
-       Signaling and activation design
+       Signaling and Activation
       </h2>
       <p>
        BIP 110 used a modified form of the BIP 9 version-bits system. Its deployment was named <code>reduced_data</code> and assigned version bit 4. Miners could signal support by setting that bit in the version field of a block.
@@ -286,10 +291,10 @@
 
      <section class="prose-section" id="chain-split">
       <span class="phase-number">
-       8 August 2026
+       Chapter 3
       </span>
       <h2>
-       Chain split at height 961,632
+       Chain Split
       </h2>
       <p>
        Mandatory signaling began on 8 August 2026 at block 961,632. At this block height, AntPool mined a block without version bit 4. Nodes not enforcing BIP 110 accepted the block,
@@ -372,10 +377,10 @@
 
      <section class="prose-section" id="early-branch">
       <span class="phase-number">
-       SHA-256d period
+       Chapter 4
       </span>
       <h2>
-       Early enforcement-branch history
+       Branch History
       </h2>
       <p>
        The enforcement branch initially continued to use SHA-256d, the same proof-of-work algorithm as Bitcoin mainnet. It also inherited a mining difficulty of approximately 127.48 trillion, which had been calibrated for the much larger amount of SHA-256d hash power mining Bitcoin. Only a small fraction of that hash power mined the enforcement branch.
@@ -446,10 +451,10 @@
 
      <section class="prose-section" id="blake2b">
       <span class="phase-number">
-       Continuation
+       Chapter 5
       </span>
       <h2>
-       Development of the BLAKE2b hard fork
+       BLAKE2b Hard Fork
       </h2>
       <p>
        On 15 August 2026, Luke Dashjr opened Bitcoin Knots pull request #359, titled <strong>Hardfork: New BLAKE2b proof-of-work algorithm</strong>.<sup><a href="#ref-6">[6]</a></sup> The proposed implementation accepts SHA-256d blocks before a configured activation height and requires a new BLAKE2b proof-of-work calculation and block-header format beginning at that height.
@@ -546,10 +551,10 @@
 
      <section class="prose-section" id="identity">
       <span class="phase-number">
-       Identity
+       Chapter 6
       </span>
       <h2>
-       Network and asset identity
+       Network Identity
       </h2>
       <p>
        The split at height 961,632 created a block history separate from Bitcoin BTC mainnet. A mainnet BLAKE2b activation would introduce a second consensus boundary through a different proof-of-work algorithm and block-header format. The resulting network would require its own compatible nodes, miners, wallets, explorers, and other infrastructure.
@@ -569,6 +574,82 @@
         Bitcoin BTC mainnet and Bitcoin BIP110 share the history through height 961,631. Their block histories diverge at height 961,632. BLAKE2b is the hard fork of the BIP 110 enforcement branch.
        </p>
       </div>
+     </section>
+
+     <section class="prose-section" id="timeline">
+          <span class="phase-number">Timeline</span>
+          <h2>Verified Chronology</h2>
+          <p>The following timeline presents the key dates and block heights in the history of Bitcoin BIP110, 
+            from the original BIP 110 proposal to the development of its BLAKE2b continuation.
+         </p>
+
+          <div class="timeline-list compact-timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">24 Oct 2025</div>
+              <div class="timeline-event"><h3>Initial BIP 110 draft recorded</h3><p>The official BIP changelog records the proposal's initial draft.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">3 Dec 2025</div>
+              <div class="timeline-event"><h3>BIP 110 assigned</h3><p>The proposal entered the BIP repository as Reduced Data Temporary Softfork.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">25 Jun 2026</div>
+              <div class="timeline-event"><h3>Status advanced to Complete</h3><p>The official BIP record was updated before the deployment window.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">8 Aug 2026<br />Height 961,631</div>
+              <div class="timeline-event"><h3>Last shared block</h3><p>The final block included in both histories.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">8 Aug 2026<br />Height 961,632</div>
+              <div class="timeline-event"><h3>Histories diverged</h3><p>Bitcoin mainnet accepted a non-signaling block while enforcing nodes accepted a competing bit-4 block.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">9 Aug 2026</div>
+              <div class="timeline-event"><h3>BIP 110 marked Closed</h3><p>The BIP changelog cites the chain split and stalled mining.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">12 to 23 Aug 2026</div>
+              <div class="timeline-event"><h3>Intermittent SHA-256d blocks</h3><p>The enforcement branch advanced from height 961,634 to 961,638.</p></div>
+              <div class="timeline-status"><span class="status-label">Observed</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">15 Aug 2026</div>
+              <div class="timeline-event"><h3>BLAKE2b implementation opened</h3><p>Bitcoin Knots PR #359 published the header-v2 proof-of-work work for review.</p></div>
+              <div class="timeline-status"><span class="status-label">Proposed</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">21 Aug 2026<br />Testnet4 149,460</div>
+              <div class="timeline-event"><h3>RC1 testnet activation</h3><p>A BLAKE2b chain formed and was later superseded by a new activation boundary.</p></div>
+              <div class="timeline-status"><span class="status-label">Obsolete</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">22 Aug 2026<br />Testnet4 149,537</div>
+              <div class="timeline-event"><h3>RC2 testnet activation</h3><p>The second signed candidate activated and was later superseded by RC3.</p></div>
+              <div class="timeline-status"><span class="status-label">Superseded</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">27 Aug 2026<br />Testnet4 150,027</div>
+              <div class="timeline-event"><h3>RC3 signed testnet tag</h3><p>The current documented release-candidate source moved the BLAKE2b testnet4 boundary.</p></div>
+              <div class="timeline-status"><span class="status-label">Testnet</span></div>
+            </div>
+            <div class="timeline-item pending-item">
+              <div class="timeline-date">Date pending</div>
+              <div class="timeline-event"><h3>Stable mainnet specification and release</h3><p>Requires signed, versioned source with final consensus and network parameters.</p></div>
+              <div class="timeline-status"><span class="status-label">Pending</span></div>
+            </div>
+            <div class="timeline-item pending-item">
+              <div class="timeline-date">Date pending</div>
+              <div class="timeline-event"><h3>First valid BLAKE2b mainnet block</h3><p>Requires independent node observations after the fixed activation boundary.</p></div>
+              <div class="timeline-status"><span class="status-label">Pending</span></div>
+            </div>
+          </div>
      </section>
 
      <section class="prose-section" id="references">
