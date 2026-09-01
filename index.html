@@ -57,9 +57,99 @@
       "url": "https://bitcoinbip110.org/"
     }
   </script>
+
+  <style>
+    /* Network status banner (home page only) */
+    .net-banner {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .net-banner .nb-inner {
+      width: calc(100% - 48px);
+      max-width: var(--content-wide);
+      margin-inline: auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      min-height: 46px;
+      padding: 9px 0;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .net-banner .nb-dot {
+      flex: none;
+      width: 7px;
+      height: 7px;
+      background: var(--bitcoin-orange);
+      border-radius: 50%;
+    }
+
+    .net-banner .nb-text {
+      flex: 1 1 420px;
+      margin: 0;
+    }
+
+    .net-banner .nb-text strong {
+      font-weight: 700;
+    }
+
+    .net-banner .nb-text span {
+      color: var(--gray-300);
+    }
+
+    .net-banner .nb-link {
+      flex: none;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      text-decoration: none;
+      border-bottom: 1px solid #ffffff59;
+      padding-bottom: 1px;
+    }
+
+    .net-banner .nb-link:hover {
+      border-bottom-color: var(--white);
+    }
+
+    /* Single-line banner sits above the sticky header; keep the hero on one screen. */
+    @media (width>=901px) {
+      .home-hero {
+        min-height: calc(100svh - 76px - 46px);
+      }
+    }
+
+    @media (width<=640px) {
+      .net-banner .nb-inner {
+        width: calc(100% - 32px);
+      }
+    }
+  </style>
+
 </head>
 
 <body>
+  <aside class="net-banner" aria-label="Network status">
+    <div class="nb-inner">
+      <span class="nb-dot" aria-hidden="true"></span>
+
+      <p class="nb-text">
+        <strong>BLAKE2b is live.</strong>
+        <span>Bitcoin BIP110 has been producing BLAKE2b proof-of-work blocks since block
+        961,640, mined 30 August 2026 at 06:14&nbsp;UTC.</span>
+      </p>
+
+      <a
+        class="nb-link"
+        href="https://mempool.guide/block/0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb"
+        rel="noreferrer"
+      >Verify the chain &rarr;</a>
+    </div>
+  </aside>
+
   <header class="site-header">
     <div class="header-inner">
       <a
