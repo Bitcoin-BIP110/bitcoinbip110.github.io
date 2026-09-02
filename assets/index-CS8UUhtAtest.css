@@ -862,15 +862,6 @@ h1,h2,h3 {
 .prose-section strong {
   color: var(--black)
 }
-.prose-section a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px
-}
-.prose-section a:hover {
-  text-decoration-thickness: 2px
-}
 .callout {
   border: 1px solid var(--black);
   background: var(--gray-100);
