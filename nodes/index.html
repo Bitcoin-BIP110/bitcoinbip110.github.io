@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    rel="stylesheet"
+    href="../assets/index-CS8UUhtA.css"
+    data-rsc-css-href="../assets/index-CS8UUhtA.css"
+    data-precedence="vite-rsc/importer-resources"
+  />
+
+  <title>Bitcoin BIP110 Nodes Guide | Network Reference</title>
+
+  <meta
+    name="description"
+    content="A practical guide for running and upgrading a Bitcoin BIP110 node, including BLAKE2b-compatible Bitcoin Knots software, existing data directories, chain migration, pruned nodes, reindexing, and node verification."
+  />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link rel="canonical" href="https://bitcoinbip110.org/nodes/" />
+
+  <meta property="og:title" content="Bitcoin BIP110 Nodes Guide | Network Reference" />
+  <meta
+    property="og:description"
+    content="A practical guide for running and upgrading a Bitcoin BIP110 node, including BLAKE2b-compatible Bitcoin Knots software, existing data directories, chain migration, pruned nodes, reindexing, and node verification."
+  />
+  <meta property="og:url" content="https://bitcoinbip110.org/nodes/" />
+  <meta property="og:site_name" content="Bitcoin BIP110" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://bitcoinbip110.org/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta
+    property="og:image:alt"
+    content="Bitcoin BIP110 network reference"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin BIP110 Nodes Guide | Network Reference" />
+  <meta
+    name="twitter:description"
+    content="A practical guide for running and upgrading a Bitcoin BIP110 node, including BLAKE2b-compatible Bitcoin Knots software, existing data directories, chain migration, pruned nodes, reindexing, and node verification."
+  />
+  <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
+  <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Bitcoin BIP110 Nodes Guide",
+      "description": "A practical guide for running and upgrading a Bitcoin BIP110 node, including BLAKE2b-compatible Bitcoin Knots software, existing data directories, chain migration, pruned nodes, reindexing, and node verification.",
+      "url": "https://bitcoinbip110.org/nodes/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Bitcoin BIP110",
+        "alternateName": "Bitcoin BIP110 Network Reference",
+        "url": "https://bitcoinbip110.org/"
+      }
+    }
+  </script>
+ </head>
+
+ <body>
+
+  <aside class="net-banner" aria-label="Network status">
+    <div class="nb-inner">
+      <span class="nb-dot" aria-hidden="true"></span>
+
+      <p class="nb-text">
+        <strong>BITCOIN BIP110 is live.</strong>
+        <span>Bitcoin BIP110 has been producing BLAKE2b proof-of-work blocks since block
+        961,640, mined 30 August 2026 at 06:14&nbsp;UTC.</span>
+      </p>
+
+      <a
+        class="nb-link"
+        href="https://mempool.guide/"
+        rel="noreferrer"
+      >Verify the Chain &rarr;</a>
+    </div>
+  </aside>
+
+  <aside class="psa-banner" aria-label="Public safety warning">
+    <div class="psa-inner">
+      <span class="psa-label">Public Safety Warning</span>
+
+      <p class="psa-text">
+        <strong>Neoxa Exchange / neoxa.exchange</strong> is a high-risk, unverified custodial exchange claiming to offer Bitcoin BIP110.
+        We've received multiple reports of users being unable to make withdrawals.
+      </p>
+
+      <a class="psa-link" href="../psa/#PSA-260901">Read Full Report &rarr;</a>
+    </div>
+  </aside>
+
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+      class="bitcoin-logo"
+      src="../favicon.svg"
+      alt=""
+      aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../">Overview</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-label" tabindex="0">Learning</span>
+        <div class="nav-dropdown-menu">
+          <a href="../history">History</a>
+          <a href="../user_guide">User Guide</a>
+          <a href="../nodes">Nodes Guide</a>
+        </div>
+      </div>
+      <div class="nav-dropdown nav-resources">
+        <span class="nav-dropdown-label" tabindex="0">Resources</span>
+        <div class="nav-dropdown-menu">
+          <a href="../psa">Announcements</a>
+          <a href="../technicals">Technicals</a>
+          <a href="../software">Software</a>
+        </div>
+      </div>
+      <a href="../about">About</a>
+    </nav>
+   </div>
+  </header>
+
+  <main>
+   <section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">
+      Bitcoin BIP110 Nodes Guide
+     </p>
+
+     <h1>
+      Running a Bitcoin BIP110 Node
+     </h1>
+
+     <div class="intro-copy">
+      <p>
+       Practical guidance for running, upgrading, and recovering a Bitcoin BIP110 node after the transition
+       to BLAKE2b proof of work, including existing nodes, Bitcoin Core migrations, older Bitcoin Knots installations,
+       pruned nodes, and reindexing.
+      </p>
+     </div>
+    </div>
+
+    <a
+     class="scroll-cue"
+     href="#guide-content"
+    >
+     <img
+      src="../scroll-down.svg"
+      alt=""
+      aria-hidden="true"
+     />
+    </a>
+   </section>
+
+   <div class="article-layout" id="guide-content">
+    <aside aria-label="Nodes guide sections" class="article-nav">
+     <p>
+      On this page
+     </p>
+
+     <a href="#overview">
+      Overview
+     </a>
+
+     <a href="#software">
+      1. Node Software
+     </a>
+
+     <a href="#upgrade">
+      2. Existing BIP110 Nodes
+     </a>
+
+     <a href="#switching">
+      3. Switching Nodes
+     </a>
+
+     <a href="#pruned">
+      4. Pruned Nodes and Reindexing
+     </a>
+
+     <a href="#rules">
+      5. What Nodes Enforce
+     </a>
+
+     <a href="#verification">
+      6. Verification and Troubleshooting
+     </a>
+
+     <a href="#sources">
+      Sources
+     </a>
+    </aside>
+
+    <article>
+     <section class="prose-section" id="overview">
+      <span class="phase-number">
+       Overview
+      </span>
+
+      <h2>
+       Bitcoin BIP110 Nodes Guide
+      </h2>
+
+      <p>
+       This guide provides practical information for operating a Bitcoin BIP110 full node following the network's
+       transition from SHA256d to BLAKE2b proof of work. The BLAKE2b chain began at block <strong>961,640</strong>,
+       after block <strong>961,639</strong>, the final SHA256d block on this branch.
+      </p>
+
+      <p>
+       Running Bitcoin BIP110 requires a Bitcoin Knots version that includes the BLAKE2b consensus changes.
+       Bitcoin Core and older Bitcoin Knots releases continue to require SHA256d and therefore follow a different
+       blockchain after the split.
+      </p>
+
+      <p>
+       The source material distinguishes two consensus events. BIP 110 enforcement began at block <strong>961,632</strong>.
+       The later BLAKE2b hardfork began at block <strong>961,640</strong>, after block <strong>961,639</strong>, the last SHA256d
+       block on this branch. The temporary reduced-data rules were moved to the BLAKE2b activation height rather than
+       beginning on 8 August.
+      </p>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Node situation
+          </th>
+          <th>
+           What to do
+          </th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td>
+           <strong>Already running the BLAKE2b-capable Knots build</strong>
+          </td>
+          <td>
+           Continue using the existing Bitcoin data directory. A blockchain re-download is normally not required.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Switching from Core or older Knots</strong>
+          </td>
+          <td>
+           Install the BLAKE2b-capable Knots build. It will usually walk back post-fork SHA256d blocks and then download the BLAKE2b chain.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Pruned node missing required old blocks</strong>
+          </td>
+          <td>
+           A complete chain download may be required if the blocks needed for the automatic walk-back are no longer available locally.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           <strong>Database contains an invalid BLAKE2b block</strong>
+          </td>
+          <td>
+           Use <code>-reindex</code> to rebuild the block database from locally stored block files.
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        You do not need to move your coins in order to operate or upgrade a node. According to the current Bitcoin Knots
+        BLAKE2b release guidance, coins created before the fork remain spendable.
+       </p>
+      </div>
+     </section>
+
+     <section class="prose-section" id="software">
+      <span class="phase-number">
+       Chapter 1
+      </span>
+
+      <h2>
+       Node Software
+      </h2>
+
+      <h3>
+       Which software should I use for Bitcoin BIP110?
+      </h3>
+
+      <p>
+       The current and only implementation of Bitcoin BIP110 is <a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">
+       Bitcoin Knots</a> containing the BLAKE2b proof-of-work hard fork and associated consensus updates.
+      </p>
+
+      <ul>
+        <li>
+            The current Bitcoin Knots build is <strong><a href="https://bitcoinknots.org/files/29.x/29.4.1.knots20260508/" rel="noreferrer">
+            29.4.1.knots20260508</a></strong>.
+        </li>
+        <li>
+            The source code is <a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">
+            Bitcoin Knots</a>.
+        </li>
+       <li>Report bugs through the <a href="https://github.com/bitcoinknots/bitcoin/issues" rel="noreferrer">
+        Bitcoin Knots issue tracker</a>.
+       </li>
+       <li>Stay up to date by subscribing <a href="https://bitcoinknots.org/#news" rel="noreferrer">
+        Bitcoin Knots mailing list</a>.
+       </li>
+      </ul>
+
+      <h3>
+       Which operating systems are supported?
+      </h3>
+
+      <p>
+       The following operating systems are supported:
+      </p>
+
+      <ul>
+       <li>Linux</li>
+       <li>macOS 13 and later</li>
+       <li>Windows 10 and later</li>
+      </ul>
+
+      <p>
+       Running the software on unsupported operating systems is not recommended.
+      </p>
+
+      <h3>
+       How do I upgrade the software?
+      </h3>
+
+      <p>
+       Shut down the node before replacing or upgrading the software.
+      </p>
+
+      <ul>
+       <li><strong>Windows:</strong> run the new installer after the old node has fully shut down.</li>
+       <li><strong>macOS:</strong> replace the existing <code>/Applications/Bitcoin-Qt</code> application.</li>
+       <li><strong>Linux:</strong> replace the <code>bitcoind</code> and/or <code>bitcoin-qt</code> binaries.</li>
+      </ul>
+
+      <p>
+       Direct upgrades from very old Bitcoin Core or Bitcoin Knots versions are possible. The data-directory
+       migration may take additional time. Older Bitcoin Knots wallets are supported.
+      </p>
+     </section>
+
+     <section class="prose-section" id="upgrade">
+      <span class="phase-number">
+       Chapter 2
+      </span>
+
+      <h2>
+       Existing Bitcoin BIP110 Nodes
+      </h2>
+
+      <h3>
+       I already upgraded before the BLAKE2b fork. What do I need to do?
+      </h3>
+
+      <p>
+       If your node is already running the BLAKE2b-capable Bitcoin Knots software, you can continue using
+       your existing data directory normally.
+      </p>
+
+      <p>
+       A blockchain re-download is not required simply because of the hardfork
+       and you do not need to move funds as part of the upgrade.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        Keep the existing data directory when upgrading. Deleting it unnecessarily can turn a simple
+        software upgrade into a complete blockchain re-download.
+       </p>
+      </div>
+
+      <h3>
+       Does the BLAKE2b hardfork require a new data directory?
+      </h3>
+
+      <p>
+       No. The operators who already upgraded can continue using their existing data directory.
+      </p>
+
+      <p>
+       The software continues from the existing blockchain data and follows the BLAKE2b branch under the new consensus rules.
+      </p>
+     </section>
+
+     <section class="prose-section" id="switching">
+      <span class="phase-number">
+       Chapter 3
+      </span>
+
+      <h2>
+       Switching from Core or Older Knots
+      </h2>
+
+      <h3>
+       What happens if my node followed the SHA256d chain after the split?
+      </h3>
+
+      <p>
+       Bitcoin Core and older Bitcoin Knots releases may have continued following the SHA256d blockchain after the Bitcoin BIP110
+       branch moved to BLAKE2b.
+      </p>
+
+      <p>
+       When a BLAKE2b-capable Knots node starts using an existing data directory, it will typically recognize that the local chain contains SHA256d-mined blocks beyond the BLAKE2b fork point. 
+       It will roll back the local chain state to that fork point, discard the incompatible continuation, and then download and validate the BLAKE2b chain from there.
+      </p>
+
+      <p>
+       The automatic walk-back applies to <strong>SHA256d blocks at or after the fork</strong>. This allows many operators to migrate
+       without deleting the entire blockchain and starting again.
+      </p>
+
+      <h3>
+       Do I need to delete my blockchain first?
+      </h3>
+
+      <p>
+       Typically no. BLAKE2b-capable releases performs the required walk-back automatically
+       when the local node has followed post-fork SHA256d blocks.
+      </p>
+
+      <p>
+       The exception are if the local data needed for recovery is unavailable or the database cannot be
+       repaired through the normal migration process. For these cases, a full re-download is required.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Important:</strong>
+        Bitcoin Core and older Bitcoin Knots releases do not become Bitcoin BIP110 nodes simply by 
+        connecting to Bitcoin BIP110 peers. They require software that implements the BLAKE2b consensus change.
+       </p>
+      </div>
+     </section>
+
+     <section class="prose-section" id="pruned">
+      <span class="phase-number">
+       Chapter 4
+      </span>
+
+      <h2>
+       Pruned Nodes and Reindexing
+      </h2>
+
+      <h3>
+       What if my node is pruned?
+      </h3>
+
+      <p>
+       A pruned node deletes older block files to reduce disk usage. This can affect migration if the node followed the SHA256d chain
+       after the split and later needs those blocks that have already been deleted.
+      </p>
+
+      <p>
+       If the blocks required for the walk-back have been deleted then the node may need to rebuild and download the blockchain again.
+       The current release will prompt the user if a resync is required.
+      </p>
+
+      <h3>
+       When should I use <code>-reindex</code>?
+      </h3>
+
+      <p>
+       The automatic post-fork walk-back is specifically for SHA256d blocks at or after the fork. Run <code>-reindex</code> if 
+       a BLAKE2b block itself caused an invalid local block-index state because it violated the applicable data or sizing rules.
+      </p>
+
+      <p>
+       Reindexing rebuilds the block database from the block files available locally. This is different from redownloading the
+       entire blockchain again.
+      </p>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>
+           Situation
+          </th>
+          <th>
+           Expected recovery path
+          </th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td>
+           Post-fork SHA256d blocks are present locally
+          </td>
+          <td>
+           Normal startup should walk back those blocks and continue on BLAKE2b.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           A BLAKE2b block caused an invalid block-index state
+          </td>
+          <td>
+           Start the node with <code>-reindex</code>.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           Pruning removed blocks required for recovery
+          </td>
+          <td>
+           Rebuild and download the blockchain again.
+          </td>
+         </tr>
+
+         <tr>
+          <td>
+           Late upgrade followed invalid blocks and cannot recover locally
+          </td>
+          <td>
+           Rebuild and download the blockchain again.
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </section>
+
+     <section class="prose-section" id="rules">
+      <span class="phase-number">
+       Chapter 5
+      </span>
+
+      <h2>
+       What Nodes Enforce
+      </h2>
+
+      <p>
+       The BLAKE2b-capable Bitcoin Knots release is a incompatible to the Bitcoin BTC. 
+       It is only compatible with the new Bitcoin BIP110 branch using BLAKE2b proof-of-work
+      </p>
+
+      <h3>
+       BLAKE2b proof-of-work
+      </h3>
+
+      <p>
+       Bitcoin BIP110 changed the Bitcoin BTC proof-of-work consensus from SHA256d to BLAKE2b beginning at block <strong>961,640</strong>.
+       Software that require SHA256d cannot validate new Bitcoin BIP110 blocks as part of this chain.
+      </p>
+
+      <h3>
+       Reduced-data rules
+      </h3>
+
+      <p>
+       The <a href="https://bips.dev/110/" rel="noreferrer">BIP 110</a> reduced-data restrictions 
+       began at block <strong>961,640</strong> and continue to be enforced.
+       In addition to these restrictions, there is an additional block limit of
+       <strong>800,000 weight units</strong>, approximately <strong>300 kB serialized</strong>.
+      </p>
+
+      <p>
+       Coins created before the fork remain spendable under the earlier script rules.
+      </p>
+
+      <h3>
+       Peer discovery and networking
+      </h3>
+
+      <p>
+       Bitcoin BIP110 also includes peer-to-peer networking changes that request peers advertise <code>NODE_BLAKE2B</code>.
+       This helps compatible nodes identify peers participating in the Bitcoin BIP110 network.
+      </p>
+
+      <p>
+       In addition to preferring <code>NODE_BLAKE2B</code> peers, Bitcoin BIP110 includes a testnet4 DNS seed and changes DNS-seed
+       behavior so startup peer discovery is based on the number of <code>NODE_BLAKE2B</code> peers available.
+      </p>
+
+      <h3>
+       Replay protection for cross-chain spending
+      </h3>
+
+      <p>
+       Bitcoin BIP110 includes the opt-in <code>SIGHASH_UNIFIED</code> signature format for transactions that could 
+       also be valid on Bitcoin BTC. Without replay protection, a transaction spending pre-fork coins on Bitcoin BIP110 
+       could potentially be copied and broadcast on Bitcoin BTC as well. 
+      </p>
+
+      <p>
+       To separate your coins safely, first send them to yourself using <code>SIGHASH_UNIFIED</code> and wait for the transaction to confirm. 
+       This creates a BIP110-specific spend that cannot be replayed on Bitcoin BTC.
+      </p>
+
+      <h3>
+       Version 2 block headers and RPC output
+      </h3>
+
+      <p>
+        The Bitcoin BIP110 also introduces a new 164-byte version 2 block header designed around the new mining system. 
+        In addition to the traditional Bitcoin header fields, it adds expanded nonce space, miner-side time rolling, 
+        a transaction-count commitment, optional block-withholding protection, multiple ASIC input profiles, and a hook for future merge mining.
+      </p>
+
+      <p>
+        The <code>getblockheader</code> and <code>getblock</code> RPCs expose these fields through <code>header_version</code>, <code>nonce2</code>, <code>nonce3</code>, 
+        <code>extranonce</code>, <code>time_offset</code>, <code>header_flags</code>, <code>xor_key</code>, <code>xor_key_mask_clear_bits</code>, and <code>mm_rhs</code>.
+      </p>
+    
+      <p>
+        The new <code>txcount</code> field reports the transaction count committed by a version 2 header when available. The older <code>nTx</code> 
+        field remains for compatibility but is deprecated.
+      </p>
+
+      <h3>
+       Additional validation and protocol changes
+      </h3>
+
+      <p>
+       The Bitcoin BIP110 includes several protocol-hardening changes. It addresses validation-cost attacks involving deliberately 
+       expensive blocks (<code>CVE-2013-2292</code>), a transaction-signing weakness that can result in unexpectedly large fees (<code>CVE-2020-14199</code>), 
+       and the Merkle-tree ambiguity behind <code>CVE-2017-12842</code>. The new version 2 header addresses the latter by committing the block's transaction count directly into the header.
+      </p>
+
+      <p>
+       The redesigned header also introduces an opt-in defense against worker block-withholding attacks, expands the mining search space to reduce work for ASIC controllers, 
+       and adds a hook for future merge-mined sidechains. Its layout also reserves a path toward extending Bitcoin's 32-bit block timestamp to 40 bits, 
+       although activating 40-bit timestamps would require a future hardfork.
+      </p>
+
+      <p>
+       The Bitcoin BIP110 also changes how the network activates and validates its consensus rules. The temporary reduced-data rules activate automatically at flag day, 
+       so the first Blake2b blocks will satisfy those restrictions without a separate miner-signaling process.
+      </p>
+
+      <p>
+       Bitcoin BIP110 updates the built-in mainnet and testnet4 parameters and checkpoints to describe the new chain and its activation points. 
+       It also adds an internal block-index consistency check after <code>InvalidateBlock</code> changes chain state, helping detect problems while a node rolls back or reorganizes its local chain.
+      </p>
+
+      <p>
+       Because the reduced-data rules are built directly into Bitcoin BIP110's scheduled consensus transition, 
+       the earlier <code>consensusrules=rdts</code> user-consent mechanism is removed.
+      </p>
+
+      <h3>
+       Transaction policy
+      </h3>
+
+      <p>
+       Bitcoin BIP110 also enables the <code>rejecttokens</code> spam filter by default and extends that filter to identify
+       counter-party transactions.
+      </p>
+     </section>
+
+     <section class="prose-section" id="verification">
+      <span class="phase-number">
+       Chapter 6
+      </span>
+
+      <h2>
+       Verification and Troubleshooting
+      </h2>
+
+      <h3>
+       How do I know that my node is on Bitcoin BIP110?
+      </h3>
+
+      <p>
+       First, verify that you are running a Bitcoin Knots build that explicitly includes the BLAKE2b hardfork changes.
+       Bitcoin Core and older Bitcoin Knots versions will remain on SHA256d and therefore cannot serve as Bitcoin BIP110 nodes.
+      </p>
+
+      <p>
+       Next, verify that your node has synchronized beyond block <strong>961,640</strong> on the  chain and compare the chain
+       tip against an independent <a href="https://mempool.guide/" rel="noreferrer"> Bitcoin BIP110 network explorer </a>.
+      </p>
+
+      <p>
+       For protocol-level inspection, Bitcoin BIP110 exposes the new version 2 header fields through the
+       <code>getblockheader</code> and <code>getblock</code> RPCs.
+      </p>
+
+      <h3>
+       My node appears stuck on the SHA256d branch. What should I check?
+      </h3>
+
+      <ul>
+       <li>Confirm that the installed Bitcoin Knots build includes the BLAKE2b hardfork.</li>
+       <li>Allow the software to complete its automatic walk-back of post-fork SHA256d blocks.</li>
+       <li>If the node is pruned, determine whether the blocks required for recovery are still available locally.</li>
+       <li>If the local state contains an invalid BLAKE2b block-index condition described by the release, use <code>-reindex</code>.</li>
+       <li>If local data is insufficient for recovery, rebuild the node and download the blockchain again.</li>
+      </ul>
+
+      <h3>
+       Which RPC checks can confirm BLAKE2b activation?
+      </h3>
+
+      <p>
+       Check <code>getblockchaininfo</code> and
+       <code>getdeploymentinfo</code>. For a synchronized Bitcoin BIP110 mainnet node, <code>blake2b.height</code> should be 
+       <strong>961640</strong> with <code>blake2b.active</code> set to true, and the
+       <code>reduced_data</code> deployment should report the same activation height and the active state.
+      </p>
+
+      <h3>
+       Known release issues
+      </h3>
+
+      <p>
+       A virtual-size reporting discrepancy remains in some GUI and RPC views. The transaction-details dialog 
+       and several <code>vsize</code> fields may omit penalties from unusually high signature-operation counts 
+       or datacarrier usage, causing the displayed virtual size to appear smaller than the effective size used by mempool 
+       and mining policy.
+      </p>
+
+      <h3>
+       Do I need to move my Bitcoin BIP110 before changing node software?
+      </h3>
+
+      <p>
+       No. Moving coins is not required for the node migration and coins created before the fork continue to be spendable.
+      </p>
+     </section>
+
+     <section class="prose-section" id="sources">
+      <span class="phase-number">
+       Sources
+      </span>
+
+      <h2>
+       Technical Changes
+      </h2>
+
+      <ol>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">Knots #357</a> - Unified opt-in sighash for all transaction types.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/358" rel="noreferrer">Knots #358</a> - Activate reduced-data rules at the proof-of-work hardfork flag day.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">Knots #359</a> - New BLAKE2b proof-of-work algorithm.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/360" rel="noreferrer">Knots #360</a> - Check the block index after <code>InvalidateBlock</code> repairs it.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/385" rel="noreferrer">Knots #385</a> - BLAKE2b mainnet and testnet4 parameters and fork checkpoints.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/368" rel="noreferrer">Knots #368</a> - Prefer <code>NODE_BLAKE2B</code> peers.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/375" rel="noreferrer">Knots #375</a> - Add the Léo Haf testnet4 seed.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/386" rel="noreferrer">Knots #386</a> - Find and prefer <code>NODE_BLAKE2B</code> peers during startup.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/349" rel="noreferrer">Knots #349</a> - Reject Counterparty messages under <code>-rejecttokens</code>.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/354" rel="noreferrer">Knots #354</a> - Enable <code>rejecttokens</code> by default.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/377" rel="noreferrer">Knots #377</a> - GUI build fix for <code>MempoolStats::drawChart</code>.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/363" rel="noreferrer">Knots #363</a> - Expose version 2 block-header fields through RPC JSON.</li>
+       <li><a href="https://github.com/bitcoinknots/bitcoin/pull/362" rel="noreferrer">Knots #362</a> - Remove the reduced-data consent requirement.</li>
+      </ol>
+     </section>
+
+    </article>
+   </div>
+  </main>
+
+  <footer class="site-footer">
+   <div class="footer-grid">
+    <div>
+     <p class="footer-title">
+      Bitcoin BIP110
+     </p>
+
+     <p>
+      This is a public reference for the Bitcoin BIP110 network, its history,
+      protocol, software, infrastructure, and operational status.
+     </p>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Reference
+     </p>
+
+     <a href="../history">History</a>
+     <a href="../user_guide">User Guide</a>
+     <a href="../nodes">Nodes Guide</a>
+     <a href="../technicals">Technical data</a>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Sources
+     </p>
+
+     <a href="../sources">
+      Sources and policy
+     </a>
+
+     <a
+      href="https://bips.dev/110/"
+      rel="noreferrer"
+     >
+      Original BIP 110
+     </a>
+
+     <a
+      href="https://github.com/bitcoinknots/bitcoin/pull/359"
+      rel="noreferrer"
+     >
+      BLAKE2b development
+     </a>
+    </div>
+   </div>
+
+   <div class="footer-bottom">
+    <span>
+     © Bitcoin BIP110 Project 2026. Released under the MIT license.
+    </span>
+
+    <span>
+    </span>
+   </div>
+  </footer>
+ </body>
+</html>

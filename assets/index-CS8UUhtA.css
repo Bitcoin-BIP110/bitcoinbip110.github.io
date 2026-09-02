@@ -365,6 +365,79 @@ code {
 .site-header nav a:hover {
   color: var(--black)
 }
+.nav-dropdown {
+  position: relative
+}
+.nav-dropdown-label {
+  color: var(--gray-700);
+  cursor: default;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  user-select: none
+}
+.nav-dropdown-label:after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  margin-top: -3px;
+  transform: rotate(45deg);
+  transition: transform .15s ease
+}
+.nav-dropdown:hover .nav-dropdown-label,
+.nav-dropdown:focus-within .nav-dropdown-label {
+  color: var(--black)
+}
+.nav-dropdown:hover .nav-dropdown-label:after,
+.nav-dropdown:focus-within .nav-dropdown-label:after {
+  margin-top: 3px;
+  transform: rotate(225deg)
+}
+.nav-dropdown-menu {
+  min-width: 168px;
+  border: 1px solid var(--gray-200);
+  background: #fff;
+  padding: 8px;
+  position: absolute;
+  z-index: 100;
+  top: calc(100% + 14px);
+  left: -16px;
+  box-shadow: 0 12px 30px #00000012;
+  display: none
+}
+.nav-dropdown-menu:before {
+  content: "";
+  height: 15px;
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: block
+}
+.site-header .nav-dropdown-menu a {
+  color: var(--gray-700);
+  white-space: nowrap;
+  padding: 9px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  display: block
+}
+.site-header .nav-dropdown-menu a:hover,
+.site-header .nav-dropdown-menu a:focus-visible {
+  color: var(--black);
+  background: var(--gray-100)
+}
+.nav-resources .nav-dropdown-menu {
+  left: auto;
+  right: -16px
+}
 .eyebrow {
   color: var(--gray-700);
   letter-spacing: .13em;
@@ -633,6 +706,15 @@ h1,h2,h3 {
   font-size: 13px;
   line-height: 1.45
 }
+.branch-card dd a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px
+}
+.branch-card dd a:hover {
+  text-decoration-thickness: 2px
+}
 .route-section {
   border-bottom: 1px solid var(--gray-200)
 }
@@ -736,6 +818,10 @@ h1,h2,h3 {
   margin-top: 8px;
   font-weight: 700;
   display: inline-block
+}
+.external-link span {
+  margin-left: 4px;
+  font-size: 0.85em;
 }
 .closing-cta {
   background: var(--gray-100);

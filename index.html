@@ -106,13 +106,24 @@
         />
         <span>Bitcoin BIP110</span>
       </a>
-
       <nav aria-label="Primary navigation">
         <a href="./">Overview</a>
-        <a href="./history">History</a>
-        <a href="./user_guide">User Guide</a>
-        <a href="./technicals">Technicals</a>
-        <a href="./psa">PSAs</a>
+        <div class="nav-dropdown">
+          <span class="nav-dropdown-label" tabindex="0">Learning</span>
+          <div class="nav-dropdown-menu">
+            <a href="./history">History</a>
+            <a href="./user_guide">User Guide</a>
+          <a href="./nodes">Nodes Guide</a>
+          </div>
+        </div>
+        <div class="nav-dropdown nav-resources">
+          <span class="nav-dropdown-label" tabindex="0">Resources</span>
+          <div class="nav-dropdown-menu">
+            <a href="./psa">Announcements</a>
+            <a href="./technicals">Technicals</a>
+            <a href="./software">Software</a>
+          </div>
+        </div>
         <a href="./about">About</a>
       </nav>
     </div>
@@ -194,11 +205,15 @@
               <dl>
                 <div>
                   <dt>Algorithm</dt>
-                  <dd>SHA-256d Proof-of-Work</dd>
+                  <dd><a href="https://github.com/bitcoin/bitcoin/blob/master/src/crypto/sha256.h" rel="noreferrer">
+                    SHA-256d Proof-of-Work
+                  </a></dd>
                 </div>
                 <div>
                   <dt>Primary Implementation</dt>
-                  <dd>Bitcoin Core</dd>
+                  <dd><a href="https://github.com/bitcoin-core" rel="noreferrer">
+                    Bitcoin Core
+                  </a></dd>
                 </div>
                 <div>
                   <dt>Maximum Supply</dt>
@@ -221,11 +236,15 @@
               <dl>
                 <div>
                   <dt>Algorithm</dt>
-                  <dd>BLAKE2b Proof-of-Work (pending)</dd>
+                  <dd><a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
+                    BLAKE2b Proof-of-Work
+                  </a></dd>
                 </div>
                 <div>
                   <dt>Primary Implementation</dt>
-                  <dd>Bitcoin Knots</dd>
+                  <dd><a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">
+                    Bitcoin Knots
+                  </a></dd>
                 </div>
                 <div>
                   <dt>Maximum Supply</dt>

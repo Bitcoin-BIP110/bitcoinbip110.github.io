@@ -112,24 +112,24 @@
      </span>
     </a>
     <nav aria-label="Primary navigation">
-     <a href="../">
-      Overview
-     </a>
-     <a href="../history">
-      History
-     </a>
-     <a href="../user_guide">
-      User Guide
-     </a>
-     <a href="../technicals">
-      Technicals
-     </a>
-     <a href="../psa">
-      PSAs
-     </a>
-     <a href="../about">
-      About
-     </a>
+      <a href="../">Overview</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-label" tabindex="0">Learning</span>
+        <div class="nav-dropdown-menu">
+          <a href="../history">History</a>
+          <a href="../user_guide">User Guide</a>
+          <a href="../nodes">Nodes Guide</a>
+        </div>
+      </div>
+      <div class="nav-dropdown nav-resources">
+        <span class="nav-dropdown-label" tabindex="0">Resources</span>
+        <div class="nav-dropdown-menu">
+          <a href="../psa">Announcements</a>
+          <a href="../technicals">Technicals</a>
+          <a href="../software">Software</a>
+        </div>
+      </div>
+      <a href="../about">About</a>
     </nav>
    </div>
   </header>
@@ -205,7 +205,7 @@
        What is Bitcoin BIP110?
       </h2>
       <p>
-       Bitcoin BIP110 originated from the effort to enforce BIP 110, a proposal for temporary consensus restrictions on certain uses of data in Bitcoin transactions.
+       Bitcoin BIP110 originated from the effort to enforce <a href="https://bips.dev/110/" rel="noreferrer">BIP 110</a>, a proposal for temporary consensus restrictions on certain uses of data in Bitcoin transactions.
       </p>
       <p>
        The proposal's mandatory-signaling period began on 8 August 2026. At block height 961,632, nodes enforcing BIP 110 rejected a block that did not contain the required signal,
@@ -220,7 +220,7 @@
        Development subsequently began within the Bitcoin Knots on a hard fork that would replace SHA-256d with BLAKE2b and allow the enforcement branch to continue operating.
       </p>
       <p>
-       Bitcoin BIP110 is this independent network intended to continue the historical BIP 110 enforcement branch by transitioning its proof-of-work system to BLAKE2b.  
+       Bitcoin BIP110 continues the historical BIP 110 enforcement branch as an independent network that uses BLAKE2b for proof-of-work.
       </p>
      </section>
 
