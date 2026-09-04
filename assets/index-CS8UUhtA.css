@@ -388,12 +388,10 @@ code {
   transform: rotate(45deg);
   transition: transform .15s ease
 }
-.nav-dropdown:hover .nav-dropdown-label,
-.nav-dropdown:focus-within .nav-dropdown-label {
+.nav-dropdown:hover .nav-dropdown-label {
   color: var(--black)
 }
-.nav-dropdown:hover .nav-dropdown-label:after,
-.nav-dropdown:focus-within .nav-dropdown-label:after {
+.nav-dropdown:hover .nav-dropdown-label:after {
   margin-top: 3px;
   transform: rotate(225deg)
 }
@@ -417,8 +415,7 @@ code {
   left: 0;
   right: 0
 }
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu {
+.nav-dropdown:hover .nav-dropdown-menu {
   display: block
 }
 .site-header .nav-dropdown-menu a {
