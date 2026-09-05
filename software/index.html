@@ -105,14 +105,9 @@
        </a>
       </div>
      </div>
-     <div class="nav-dropdown nav-resources">
-      <span class="nav-dropdown-label">
-       Resources
-      </span>
+    <div class="nav-dropdown nav-resources">
+      <span class="nav-dropdown-label">Resources</span>
       <div class="nav-dropdown-menu">
-       <a href="../resources">
-        Resources &amp; Releases
-       </a>
        <a href="../psa">
         Announcements
        </a>
@@ -164,17 +159,14 @@
      <a href="#code">
       2. Source Code
      </a>
-     <a href="#operators">
-      3. Nodes &amp; Mining
+     <a href="#protocol">
+      3. Protocol Development
      </a>
      <a href="#network">
       4. Network Verification
      </a>
-     <a href="#protocol">
-      5. Protocol &amp; Development
-     </a>
-     <a href="#updates">
-      6. Security &amp; Updates
+     <a href="#other">
+      5. Other Resources
      </a>
     </aside>
     <article>
@@ -250,7 +242,7 @@
           <td>
            <a href="https://test.bitcoinknots.org/~luke-jr/programs/bitcoin/files/bitcoin-knots/29.x/29.4.1.knots20260508/test/rc5/SHA256SUMS" rel="noreferrer">
             <strong>
-             29.4.1 RC5 SHA256SUMS
+             29.4.1 RC5 Checksum
             </strong>
            </a>
           </td>
@@ -320,19 +312,19 @@
        </table>
       </div>
      </section>
-     <section class="prose-section" id="operators">
+     <section class="prose-section" id="protocol">
       <span class="phase-number">
        Chapter 3
       </span>
       <h2>
-       Nodes and Mining
+       Protocol and Development
       </h2>
       <div class="data-table-wrap">
        <table class="data-table">
         <thead>
          <tr>
           <th>
-           Resource
+           Reference
           </th>
           <th>
            Description
@@ -342,42 +334,90 @@
         <tbody>
          <tr>
           <td>
-           <a href="../nodes" rel="noreferrer">
-            Node Operators
+           <a href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">
+            BIP 110 Release Notes
            </a>
           </td>
           <td>
-           Guidance for upgrades, existing data directories, chain walk-back, pruned nodes, reindexing, and BLAKE2b compatibility.
+           BIP 110 Reduced Data Temporary Softfork specification and official release.
           </td>
          </tr>
          <tr>
           <td>
-           <a href="../technicals" rel="noreferrer">
-            Mining Guide
+           <a href="https://bip110.org/code-walkthrough/" rel="noreferrer">
+            BIP 110 Walkthrough
            </a>
           </td>
           <td>
-           Mainnet configuration, verification commands, ports, mining configuration, and BLAKE2b activation checks.
+           BIP 110 source code review and logic.
           </td>
          </tr>
          <tr>
           <td>
-           <a href="../technicals" rel="noreferrer">
-            Miners and DATUM
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
+            PR #359
            </a>
           </td>
           <td>
-           Mining and DATUM-specific operational guidance.
+           BLAKE2b proof-of-work hardfork implementation.
           </td>
          </tr>
          <tr>
           <td>
-           <a href="https://github.com/CONVOYMining/datum_gateway" rel="noreferrer">
-            CONVOY DATUM Gateway
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/385" rel="noreferrer">
+            PR #385
            </a>
           </td>
           <td>
-           DATUM Gateway source code used by compatible mining infrastructure.
+           Mainnet and testnet4 BLAKE2b parameters and activation checkpoints.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/358" rel="noreferrer">
+            PR #358
+           </a>
+          </td>
+          <td>
+           Reduced-data activation at the proof-of-work change.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">
+            PR #357
+           </a>
+          </td>
+          <td>
+           Opt-in
+           <code>
+            SIGHASH_UNIFIED
+           </code>
+           transaction replay protection.
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/368" rel="noreferrer">
+            PR #368
+           </a>
+          </td>
+          <td>
+           Peer preference using
+           <code>
+            NODE_BLAKE2B
+           </code>
+           .
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/pull/363" rel="noreferrer">
+            PR #363
+           </a>
+          </td>
+          <td>
+           Version 2 block-header fields exposed through block RPC results.
           </td>
          </tr>
         </tbody>
@@ -421,114 +461,12 @@
        </table>
       </div>
      </section>
-     <section class="prose-section" id="protocol">
+     <section class="prose-section" id="other">
       <span class="phase-number">
        Chapter 5
       </span>
       <h2>
-       Protocol and Development
-      </h2>
-      <div class="data-table-wrap">
-       <table class="data-table">
-        <thead>
-         <tr>
-          <th>
-           Reference
-          </th>
-          <th>
-           Description
-          </th>
-         </tr>
-        </thead>
-        <tbody>
-         <tr>
-          <td>
-           <a href="https://bips.dev/110/" rel="noreferrer">
-            BIP 110
-           </a>
-          </td>
-          <td>
-           Reduced Data Temporary Softfork specification.
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
-            Knots PR #359
-           </a>
-          </td>
-          <td>
-           BLAKE2b proof-of-work hardfork implementation.
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/385" rel="noreferrer">
-            Knots PR #385
-           </a>
-          </td>
-          <td>
-           Mainnet and testnet4 BLAKE2b parameters and activation checkpoints.
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/358" rel="noreferrer">
-            Knots PR #358
-           </a>
-          </td>
-          <td>
-           Reduced-data activation at the proof-of-work change.
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">
-            Knots PR #357
-           </a>
-          </td>
-          <td>
-           Opt-in
-           <code>
-            SIGHASH_UNIFIED
-           </code>
-           transaction replay protection.
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/368" rel="noreferrer">
-            Knots PR #368
-           </a>
-          </td>
-          <td>
-           Peer preference using
-           <code>
-            NODE_BLAKE2B
-           </code>
-           .
-          </td>
-         </tr>
-         <tr>
-          <td>
-           <a href="https://github.com/bitcoinknots/bitcoin/pull/363" rel="noreferrer">
-            Knots PR #363
-           </a>
-          </td>
-          <td>
-           Version 2 block-header fields exposed through block RPC results.
-          </td>
-         </tr>
-        </tbody>
-       </table>
-      </div>
-     </section>
-     <section class="prose-section" id="updates">
-      <span class="phase-number">
-       Chapter 6
-      </span>
-      <h2>
-       Software Maintainers
+       Other Resources
       </h2>
       <div class="data-table-wrap">
        <table class="data-table">
@@ -545,12 +483,22 @@
         <tbody>
          <tr>
           <td>
+           <a href="https://bit110.org/" rel="noreferrer">
+            BIP 110 Website
+           </a>
+          </td>
+          <td>
+           BIP 110 maintainer's website for information and documentation.
+          </td>
+         </tr>
+         <tr>
+          <td>
            <a href="https://bitcoinknots.org/" rel="noreferrer">
             Bitcoin Knots Website
            </a>
           </td>
           <td>
-           Maintainers' website for downloads, release information, and documentation.
+           Primary node maintainer's website for downloads, release information, and documentation.
           </td>
          </tr>
          <tr>

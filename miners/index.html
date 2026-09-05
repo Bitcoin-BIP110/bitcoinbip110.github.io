@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link
+    rel="stylesheet"
+    href="../assets/index-CS8UUhtA.css"
+    data-rsc-css-href="../assets/index-CS8UUhtA.css"
+    data-precedence="vite-rsc/importer-resources"
+  />
+
+  <style>
+   .code-block {
+    border: 1px solid var(--gray-300);
+    background: var(--gray-100);
+    margin: 20px 0 0;
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre;
+   }
+
+   .code-block code {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    font-size: inherit;
+   }
+  </style>
+
+  <title>Bitcoin BIP110 Miners Guide | Network Reference</title>
+
+  <meta
+    name="description"
+    content="A practical step-by-step guide for mining Bitcoin BIP110 with Bitcoin Knots 29.4.1, the CONVOY DATUM Gateway, BLAKE2b mining hardware, Stratum, solo-mining configuration, and verification."
+  />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <link rel="canonical" href="https://bitcoinbip110.org/miners/" />
+
+  <meta property="og:title" content="Bitcoin BIP110 Miners Guide | Network Reference" />
+  <meta
+    property="og:description"
+    content="A practical step-by-step guide for mining Bitcoin BIP110 with Bitcoin Knots 29.4.1, the CONVOY DATUM Gateway, BLAKE2b mining hardware, Stratum, solo-mining configuration, and verification."
+  />
+  <meta property="og:url" content="https://bitcoinbip110.org/miners/" />
+  <meta property="og:site_name" content="Bitcoin BIP110" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://bitcoinbip110.org/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Bitcoin BIP110 network reference" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin BIP110 Miners Guide | Network Reference" />
+  <meta
+    name="twitter:description"
+    content="A practical step-by-step guide for mining Bitcoin BIP110 with Bitcoin Knots 29.4.1, the CONVOY DATUM Gateway, BLAKE2b mining hardware, Stratum, solo-mining configuration, and verification."
+  />
+  <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
+  <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Bitcoin BIP110 Miners Guide",
+      "description": "A practical step-by-step guide for mining Bitcoin BIP110 with Bitcoin Knots 29.4.1, the CONVOY DATUM Gateway, BLAKE2b mining hardware, Stratum, solo-mining configuration, and verification.",
+      "url": "https://bitcoinbip110.org/miners/",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Bitcoin BIP110",
+        "alternateName": "Bitcoin BIP110 Network Reference",
+        "url": "https://bitcoinbip110.org/"
+      }
+    }
+  </script>
+ </head>
+
+ <body>
+
+  <aside class="net-banner" aria-label="Network status">
+    <div class="nb-inner">
+      <span class="nb-dot" aria-hidden="true"></span>
+
+      <p class="nb-text">
+        <strong>BITCOIN BIP110 is live.</strong>
+        <span>Bitcoin BIP110 has been producing BLAKE2b proof-of-work blocks since block
+        961,640, mined 30 August 2026 at 06:14&nbsp;UTC.</span>
+      </p>
+
+      <a
+        class="nb-link"
+        href="https://mempool.guide/"
+        rel="noreferrer"
+      >Verify the Chain &rarr;</a>
+    </div>
+  </aside>
+
+  <aside class="psa-banner" aria-label="Public safety warning">
+    <div class="psa-inner">
+      <span class="psa-label">Public Safety Warning</span>
+
+      <p class="psa-text">
+        <strong>Neoxa Exchange / neoxa.exchange</strong> is a high-risk custodial exchange claiming to offer Bitcoin BIP110
+        under the wrong name and wrong ticker. We've also received multiple unverified reports of users being unable to make withdrawals.
+      </p>
+
+      <a class="psa-link" href="../psa/#PSA-260901">Read Full Report &rarr;</a>
+    </div>
+  </aside>
+
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+      class="bitcoin-logo"
+      src="../favicon.svg"
+      alt=""
+      aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <a href="../">Overview</a>
+
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-label">Learning</span>
+        <div class="nav-dropdown-menu">
+          <a href="../history">History</a>
+          <a href="../user_guide">User Guide</a>
+          <a href="../nodes">Nodes Guide</a>
+          <a href="../miners">Miners Guide</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown nav-resources">
+        <span class="nav-dropdown-label">Resources</span>
+        <div class="nav-dropdown-menu">
+          <a href="../psa">Announcements</a>
+          <a href="../technicals">Technicals</a>
+          <a href="../software">Software</a>
+        </div>
+      </div>
+
+      <a href="../about">About</a>
+    </nav>
+   </div>
+  </header>
+
+  <main>
+   <section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">
+      Bitcoin BIP110 Miner's Guide
+     </p>
+
+     <h1>
+      Mining Bitcoin BIP110
+     </h1>
+
+     <div class="intro-copy">
+      <p>
+       A step-by-step guide to mining the Bitcoin BIP110 chain with BLAKE2b hardware with Bitcoin Knots
+       and the CONVOY DATUM Gateway.
+      </p>
+     </div>
+    </div>
+
+    <a
+     class="scroll-cue"
+     href="#guide-content"
+    >
+     <img
+      src="../scroll-down.svg"
+      alt=""
+      aria-hidden="true"
+     />
+    </a>
+   </section>
+
+   <div class="article-layout" id="guide-content">
+    <aside aria-label="Miners guide sections" class="article-nav">
+     <p>
+      On this page
+     </p>
+
+     <a href="#overview">
+      Overview
+     </a>
+
+     <a href="#how-mining-works">
+      1. How Mining Works
+     </a>
+
+     <a href="#before-you-begin">
+      2. Before You Begin
+     </a>
+
+     <a href="#step-knots">
+      3. Configure Bitcoin Knots
+     </a>
+
+     <a href="#step-datum">
+      4. Configure DATUM
+     </a>
+
+     <a href="#step-miners">
+      5. Connect Mining Hardware
+     </a>
+
+     <a href="#step-verify">
+      6. Verify Your Miner
+     </a>
+
+     <a href="#troubleshooting">
+      Troubleshooting
+     </a>
+    </aside>
+
+    <article>
+     <section class="prose-section" id="overview">
+      <span class="phase-number">
+       Overview
+      </span>
+
+      <h2>
+       Bitcoin BIP110 Miner's Guide
+      </h2>
+
+      <p>
+       Bitcoin BIP110 uses <strong>BLAKE2b proof of work</strong>. Block <strong>961,639</strong> was the final SHA256d block
+       on this branch, and block <strong>961,640</strong> was the first BLAKE2b block. SHA256d mining hardware cannot produce
+       valid blocks for the current Bitcoin BIP110 chain.
+      </p>
+
+      <p>
+       Mining uses three main components: a BLAKE2b-capable Bitcoin Knots node, the <a href="https://github.com/CONVOYMining/datum_gateway">
+        CONVOY DATUM Gateway</a>,
+       and compatible BLAKE2b mining hardware. Bitcoin Knots builds the block template, DATUM turns that template
+       into mining work, and the ASIC searches for a valid proof of work.
+      </p>
+     </section>
+
+     <section class="prose-section" id="how-mining-works">
+      <span class="phase-number">
+       Chapter 1
+      </span>
+
+      <h2>
+       How Bitcoin BIP110 Mining Works
+      </h2>
+
+      <h3>
+       The miner controls the block template
+      </h3>
+
+      <p>
+       Bitcoin Knots runs the full node and constructs the block template from the transactions available to it.
+       The node's transaction policy therefore determines which transactions are offered to the miner for inclusion in a block.
+      </p>
+
+      <p>
+       DATUM sits between the node and the mining hardware. It requests a template from Bitcoin Knots with
+       <code>getblocktemplate</code>, converts that template into work the ASIC can understand, receives shares from the ASIC,
+       and submits a discovered block back through the node.
+      </p>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>Connection</th>
+          <th>Protocol</th>
+          <th>What it does</th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td><strong>DATUM &harr; Bitcoin Knots</strong></td>
+          <td>RPC / <code>getblocktemplate</code></td>
+          <td>Requests locally constructed block templates and submits discovered blocks.</td>
+         </tr>
+
+         <tr>
+          <td><strong>DATUM &harr; mining hardware</strong></td>
+          <td>Stratum v1</td>
+          <td>Delivers BLAKE2b header-v2 mining jobs and receives shares.</td>
+         </tr>
+
+         <tr>
+          <td><strong>DATUM &harr; supporting pool</strong></td>
+          <td>DATUM protocol</td>
+          <td>Optionally coordinates pooled rewards while the miner still constructs the block template locally.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+
+      <h3>
+       Solo mining vs pooled DATUM mining
+      </h3>
+
+      <p>
+       DATUM can be used for solo mining or with a DATUM-supporting pool. In solo mode, your local node constructs
+       the template and a block found by your hardware is submitted directly through your node. In pooled mode,
+       the pool coordinates how rewards are divided according to contributed work, while your node still constructs the template.
+      </p>
+
+      <p>
+       The pool does not send a ready-made block template to the miner. The work sent to the ASIC originates from the
+       miner's own Bitcoin Knots node.
+      </p>
+
+      <h3>
+       BLAKE2b mining hardware
+      </h3>
+
+      <p>
+       Bitcoin BIP110 accepts BLAKE2b proof of work from block <strong>961,640</strong>. BLAKE2b and BLAKE2b-sia hardware
+       can be used with the current mining path. Examples of Sia-style BLAKE2b miners include the Antminer A3,
+       Goldshell SC5 Pro, and Goldshell SC Lite.
+      </p>
+
+      <p>
+       SHA256d miners cannot mine the current chain. They were compatible only through block <strong>961,639</strong>.
+      </p>
+
+      <h3>
+       BLAKE2b block templates
+      </h3>
+
+      <p>
+       Bitcoin Knots exposes mining work through ordinary BIP22 <code>getblocktemplate</code>. A Bitcoin BIP110 template
+       advertises <code>!blake2b</code> in its <code>rules</code>. DATUM only serves BLAKE2b work when this rule is present.
+      </p>
+
+      <p>
+       While the reduced-data limits are active, a block is limited to approximately <strong>300 kB serialized</strong>
+       or <strong>800,000 weight units</strong>. Bitcoin Knots reports the applicable limit through
+       <code>getblocktemplate</code> as <code>weightlimit</code>.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Software status:</strong>
+        The current DATUM software is in public beta. Test your configuration and verify accepted shares and block submission behavior before relying on it for production mining.
+       </p>
+      </div>
+     </section>
+
+     <section class="prose-section" id="before-you-begin">
+      <span class="phase-number">
+       Chapter 2
+      </span>
+
+      <h2>
+       Before You Begin
+      </h2>
+
+      <p>
+       Have the node, gateway, payout address, and mining hardware ready before starting the configuration process.
+       The Bitcoin Knots node and DATUM Gateway can run on the same machine.
+      </p>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>Component</th>
+          <th>Current requirement</th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td><strong>Node software</strong></td>
+          <td> <a href="../software/#releases">Bitcoin Knots >=29.4.1</a> with the Bitcoin BIP110
+            BLAKE2b consensus changes.</td>
+         </tr>
+
+         <tr>
+          <td><strong>Gateway</strong></td>
+          <td><a href="https://github.com/CONVOYMining/datum_gateway">CONVOY DATUM Gateway</a>
+             including commit <code>56c31f4</code> or later.</td>
+         </tr>
+
+         <tr>
+          <td><strong>Mining hardware</strong></td>
+          <td>BLAKE2b or BLAKE2b-sia hardware. SHA256d miners are incompatible with the current chain.</td>
+         </tr>
+
+         <tr>
+          <td><strong>Network</strong></td>
+          <td>Bitcoin BIP110 mainnet. Do not configure the mining node as <code>testnet4</code>.</td>
+         </tr>
+
+         <tr>
+          <td><strong>Template interface</strong></td>
+          <td><code>getblocktemplate</code> must advertise <code>!blake2b</code> in its rules.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+
+      <h3>
+       Ports used by the mining setup
+      </h3>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>Service</th>
+          <th>Port</th>
+          <th>Use</th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td>Bitcoin BIP110 P2P</td>
+          <td><code>8333</code></td>
+          <td>Peer-to-peer mainnet traffic. Forward inbound TCP 8333 if you want inbound peers.</td>
+         </tr>
+
+         <tr>
+          <td>Bitcoin BIP110 RPC</td>
+          <td><code>8332</code></td>
+          <td>Local RPC connection used by DATUM. Keep it bound to localhost.</td>
+         </tr>
+
+         <tr>
+          <td>DATUM Stratum</td>
+          <td><code>23334</code></td>
+          <td>Mining endpoint used by the ASIC.</td>
+         </tr>
+
+         <tr>
+          <td>DATUM API / UI</td>
+          <td><code>7152</code></td>
+          <td>Gateway API and browser interface. It can also receive optional new-block notifications.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+     </section>
+
+     <section class="prose-section" id="step-knots">
+      <span class="phase-number">
+       Chapter 3
+      </span>
+
+      <h2>
+       Step 1: Configure Bitcoin Knots
+      </h2>
+
+      <h3>
+       1. Install Bitcoin Knots
+      </h3>
+
+      <p>
+       Install the current Bitcoin BIP110-compatible Bitcoin Knots build for your operating system and architecture.
+       The current release files are listed on the <a href="../software/#releases">Software page</a>.
+      </p>
+
+      <p>
+       Verify the downloaded package using the published <code>SHA256SUMS</code> and <code>SHA256SUMS.asc</code> files before installing it.
+       If you already have a Bitcoin BIP110 mainnet node, keep the existing data directory.
+      </p>
+
+      <h3>
+       2. Enable RPC for DATUM
+      </h3>
+
+      <p>
+       Open your <code>bitcoin.conf</code> and enable the local RPC server. Replace <code>USER</code> and <code>PASS</code>
+       with credentials you will also place in the DATUM configuration.
+      </p>
+
+      <pre class="code-block"><code>server=1
+rpcbind=127.0.0.1
+rpcallowip=127.0.0.1
+rpcuser=USER
+rpcpassword=PASS
+
+# Optional: notify DATUM when a new block arrives
+blocknotify=curl -fsS -o /dev/null http://127.0.0.1:7152/NOTIFY</code></pre>
+
+      <p>
+       <code>txindex=1</code> is not required for DATUM or <code>getblocktemplate</code>. Keep RPC on
+       <code>127.0.0.1:8332</code> unless you have a specific secured network design that requires otherwise.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>RPC security:</strong>
+        Do not expose an unrestricted RPC service or its credentials to the public internet.
+       </p>
+      </div>
+
+      <h3>
+       3. Confirm mainnet networking
+      </h3>
+
+      <p>
+       Bitcoin BIP110 mainnet uses P2P port <code>8333</code>. Do not set <code>chain=testnet4</code> and do not use
+       testnet4 port <code>48333</code> for this setup.
+      </p>
+
+      <p>
+       If you want other nodes to make inbound connections to your node, forward inbound TCP port <code>8333</code>
+       from your router to the Bitcoin Knots machine. The node can still make outbound peer connections if the port is not forwarded.
+      </p>
+
+      <p>
+       You can also add a known mainnet peer manually if needed:
+      </p>
+
+      <pre class="code-block"><code>addnode=OTHER_HOST:8333</code></pre>
+
+      <h3>
+       4. Start the node and allow it to synchronize
+      </h3>
+
+      <p>
+       Start Bitcoin Knots and allow the node to synchronize with the Bitcoin BIP110 chain. Do not continue to DATUM setup
+       until the node is synchronized and reports the BLAKE2b deployment as active.
+      </p>
+
+      <h3>
+       5. Verify BLAKE2b activation
+      </h3>
+
+      <p>
+       Run the following commands:
+      </p>
+
+      <pre class="code-block"><code>bitcoin-cli getblockchaininfo
+bitcoin-cli getdeploymentinfo</code></pre>
+
+      <p>
+       Confirm that <code>blake2b.height</code> is <strong>961640</strong> and <code>blake2b.active</code> is true.
+       The <code>reduced_data</code> deployment should report the same activation height and an active state.
+      </p>
+     </section>
+
+     <section class="prose-section" id="step-datum">
+      <span class="phase-number">
+       Chapter 4
+      </span>
+
+      <h2>
+       Step 2: Install and Configure DATUM
+      </h2>
+
+      <h3>
+       1. Get the CONVOY DATUM Gateway
+      </h3>
+
+      <p>
+       Use the <a href="https://github.com/CONVOYMining/datum_gateway" rel="noreferrer">CONVOY DATUM Gateway</a>
+       for Bitcoin BIP110 BLAKE2b and header-v2 mining.
+      </p>
+
+      <pre class="code-block"><code>git clone https://github.com/CONVOYMining/datum_gateway.git
+cd datum_gateway</code></pre>
+
+      <p>
+       Build the gateway for your system using the repository build instructions. Use a revision that contains commit
+       <code>56c31f4</code> or later. Older revisions calculate the BLAKE2b H1 commitment differently from Bitcoin Knots 29.4.1
+       and can produce <code>high-hash</code> rejects.
+      </p>
+
+      <h3>
+       2. Create the DATUM configuration file
+      </h3>
+
+      <p>
+       Create <code>datum_gateway_config.json</code>. Replace the RPC credentials, payout address, administrator password,
+       and optional coinbase tag with your own values.
+      </p>
+
+      <pre class="code-block"><code>{
+  "bitcoind": {
+    "rpcuser": "USER",
+    "rpcpassword": "PASS",
+    "rpcurl": "http://127.0.0.1:8332"
+  },
+  "stratum": {
+    "listen_addr": "0.0.0.0",
+    "listen_port": 23334
+  },
+  "api": {
+    "listen_addr": "0.0.0.0",
+    "listen_port": 7152,
+    "admin_password": "CHANGE_ME",
+    "modify_conf": true
+  },
+  "mining": {
+    "pool_address": "bc1q...your_mainnet_address...",
+    "coinbase_tag_primary": "MyTag",
+    "allow_hasher_time_rolling": false
+  },
+  "datum": {
+    "pool_host": "",
+    "pooled_mining_only": false
+  }
+}</code></pre>
+
+      <h3>
+       3. Check the solo-mining settings
+      </h3>
+
+      <p>
+       For solo mining, confirm all of the following before starting the gateway:
+      </p>
+
+      <ol>
+       <li><code>pool_host</code> is empty.</li>
+       <li><code>pooled_mining_only</code> is <code>false</code>.</li>
+       <li><code>allow_hasher_time_rolling</code> is <code>false</code>.</li>
+       <li><code>pool_address</code> contains the Bitcoin BIP110 mainnet address that should receive the block reward.</li>
+       <li>The RPC username and password exactly match the values in <code>bitcoin.conf</code>.</li>
+      </ol>
+
+      <p>
+       CONVOY's built-in defaults are oriented toward pooled mining. An empty <code>pool_host</code> combined with
+       <code>pooled_mining_only</code> still set to true is not a valid solo configuration and the process will exit.
+      </p>
+
+      <h3>
+       4. Start DATUM
+      </h3>
+
+      <pre class="code-block"><code>datum_gateway -c /path/to/datum_gateway_config.json</code></pre>
+
+      <p>
+       With the example configuration, the DATUM browser interface is available at <code>http://HOST:7152</code>.
+       Digest authentication uses the <code>admin_password</code> value from the configuration file.
+      </p>
+
+      <p>
+       The Stratum endpoint for mining hardware is:
+      </p>
+
+      <pre class="code-block"><code>stratum+tcp://HOST:23334</code></pre>
+
+      <h3>
+       5. Confirm DATUM can obtain BLAKE2b work
+      </h3>
+
+      <p>
+       DATUM does not need a separate <code>pow_algorithm</code> setting. It serves BLAKE2b header-v2 work when the block template
+       from Bitcoin Knots advertises the BLAKE2b rule.
+      </p>
+     </section>
+
+     <section class="prose-section" id="step-miners">
+      <span class="phase-number">
+       Chapter 5
+      </span>
+
+      <h2>
+       Step 3: Connect the Mining Hardware
+      </h2>
+
+      <h3>
+       1. Confirm that the ASIC is compatible
+      </h3>
+
+      <p>
+       Use BLAKE2b or BLAKE2b-sia hardware. SHA256d miners cannot produce valid Bitcoin BIP110 blocks after block
+       <strong>961,639</strong>.
+      </p>
+
+      <p>
+       Sia-style BLAKE2b miners such as the Antminer A3, Goldshell SC5 Pro, and Goldshell SC Lite are examples of hardware
+       used with the current BLAKE2b mining path.
+      </p>
+
+      <h3>
+       2. Point the ASIC at DATUM
+      </h3>
+
+      <p>
+       Open the miner's pool or Stratum configuration and set its server URL to the DATUM Stratum endpoint:
+      </p>
+
+      <pre class="code-block"><code>stratum+tcp://GATEWAY_HOST:23334</code></pre>
+
+      <p>
+       Use any worker name accepted by DATUM. A payout address can also be used as the worker name.
+      </p>
+
+      <h3>
+       3. Confirm that Bitcoin Knots advertises BLAKE2b
+      </h3>
+
+      <p>
+       From the Bitcoin Knots machine, request a BLAKE2b-aware block template:
+      </p>
+
+      <pre class="code-block"><code>bitcoin-cli getblocktemplate '{"rules":["segwit","blake2b"]}'</code></pre>
+
+      <p>
+       Look for <code>!blake2b</code> in the returned <code>rules</code>. If it is missing, DATUM will not serve BLAKE2b work to the miner.
+      </p>
+
+      <h3>
+       4. Confirm the miner remains connected
+      </h3>
+
+      <p>
+       Watch the DATUM interface or logs. The miner should remain connected, receive work, submit shares, and receive fresh jobs
+       when the Bitcoin BIP110 chain tip changes.
+      </p>
+     </section>
+
+     <section class="prose-section" id="step-verify">
+      <span class="phase-number">
+       Chapter 6
+      </span>
+
+      <h2>
+       Step 4: Verify the Mining Setup
+      </h2>
+
+      <h3>
+       1. Verify the node
+      </h3>
+
+      <p>
+       Confirm that <code>getdeploymentinfo</code> reports BLAKE2b active at height <strong>961,640</strong> and that
+       <code>reduced_data</code> is active at the same height.
+      </p>
+
+      <h3>
+       2. Verify the block template
+      </h3>
+
+      <p>
+       Confirm that a BLAKE2b-aware <code>getblocktemplate</code> request includes <code>!blake2b</code> in the template rules.
+      </p>
+
+      <h3>
+       3. Verify the ASIC connection and shares
+      </h3>
+
+      <p>
+       The ASIC should remain connected to DATUM, receive BLAKE2b header-v2 jobs, and submit accepted shares.
+       Hashrate should appear in the DATUM statistics or browser interface.
+      </p>
+
+      <h3>
+       4. Verify a discovered block
+      </h3>
+
+      <p>
+       When a real block is found, DATUM should report:
+      </p>
+
+      <pre class="code-block"><code>BLOCK FOUND - &lt;hash&gt;</code></pre>
+
+      <p>
+       Compare that hash with the new Bitcoin Knots chain tip. The hashes should match. Bitcoin Knots accepts the block through
+       <code>submitblock</code>.
+      </p>
+
+      <p>
+       A second log entry reporting <code>duplicate</code> can be normal after a successful block find. DATUM submits the block through
+       two paths, so one submission can reach the node after the first has already been accepted.
+      </p>
+
+      <div class="callout">
+       <p>
+        <strong>Working setup:</strong>
+        The node reports BLAKE2b active, GBT advertises <code>!blake2b</code>, the ASIC stays connected and submits accepted shares,
+        and a <code>BLOCK FOUND</code> hash matches the new chain tip.
+       </p>
+      </div>
+     </section>
+
+     <section class="prose-section" id="troubleshooting">
+      <span class="phase-number">
+       Troubleshooting
+      </span>
+
+      <h2>
+       Troubleshooting Common Issues
+      </h2>
+
+      <div class="data-table-wrap">
+       <table class="data-table">
+        <thead>
+         <tr>
+          <th>Problem</th>
+          <th>What to check</th>
+         </tr>
+        </thead>
+
+        <tbody>
+         <tr>
+          <td>DATUM prints repeated <code>high-hash</code> rejects</td>
+          <td>Confirm the gateway contains commit <code>56c31f4</code> or later.</td>
+         </tr>
+
+         <tr>
+          <td>DATUM exits when configured for solo mining</td>
+          <td>Confirm <code>pool_host</code> is empty and <code>pooled_mining_only</code> is <code>false</code>.</td>
+         </tr>
+
+         <tr>
+          <td>No mining work is served</td>
+          <td>Confirm Bitcoin Knots is synchronized and a supporting GBT request advertises <code>!blake2b</code>.</td>
+         </tr>
+
+         <tr>
+          <td>Miner cannot connect to DATUM</td>
+          <td>Confirm the ASIC is pointed to the correct gateway host and Stratum port <code>23334</code>.</td>
+         </tr>
+
+         <tr>
+          <td>Wrong network or peer port</td>
+          <td>Use mainnet and P2P port <code>8333</code>. Do not configure <code>testnet4</code> or use port <code>48333</code>.</td>
+         </tr>
+
+         <tr>
+          <td>No inbound node connections</td>
+          <td>Forward inbound TCP <code>8333</code> to the Bitcoin Knots host if inbound peers are desired.</td>
+         </tr>
+
+         <tr>
+          <td><code>BLOCK FOUND</code> followed by <code>duplicate</code></td>
+          <td>Compare the reported block hash with the new chain tip. A duplicate from the second submission path can be benign after the block was accepted.</td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+
+      <h3>
+       Quick health check
+      </h3>
+
+      <ol>
+       <li>Confirm the miner stays connected and receives fresh jobs when the chain tip changes.</li>
+       <li>Confirm shares are accepted without repeated <code>unknown-work</code> or <code>high-hash</code> errors.</li>
+       <li>Confirm a supporting GBT request shows <code>!blake2b</code>.</li>
+       <li>Confirm the <code>BLOCK FOUND</code> hash matches the new Bitcoin BIP110 chain tip.</li>
+      </ol>
+
+      <div class="callout">
+       <p>
+        <strong>Final deployment check:</strong>
+        Run the Bitcoin Knots node on mainnet, use CONVOY DATUM at <code>56c31f4</code> or later,
+        connect BLAKE2b or BLAKE2b-sia hardware to Stratum port <code>23334</code>, keep hasher time rolling disabled,
+        and verify any discovered block against the node's new chain tip.
+       </p>
+      </div>
+     </section>
+
+    </article>
+   </div>
+  </main>
+
+  <footer class="site-footer">
+   <div class="footer-grid">
+    <div>
+     <p class="footer-title">
+      Bitcoin BIP110
+     </p>
+
+     <p>
+      This is a public reference for the Bitcoin BIP110 network, its history,
+      protocol, software, infrastructure, and operational status.
+     </p>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Reference
+     </p>
+
+     <a href="../history">History</a>
+     <a href="../user_guide">User Guide</a>
+     <a href="../nodes">Nodes Guide</a>
+     <a href="../miners">Miners Guide</a>
+     <a href="../technicals">Technical data</a>
+    </div>
+
+    <div>
+     <p class="footer-label">
+      Software
+     </p>
+
+     <a href="../software">
+      Bitcoin BIP110 Software
+     </a>
+
+     <a href="https://github.com/CONVOYMining/datum_gateway" rel="noreferrer">
+      DATUM Gateway
+     </a>
+
+     <a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">
+      Bitcoin Knots source
+     </a>
+    </div>
+   </div>
+
+   <div class="footer-bottom">
+    <span>
+     &copy; Bitcoin BIP110 Project 2026. Released under the MIT license.
+    </span>
+
+    <span>
+    </span>
+   </div>
+  </footer>
+ </body>
+</html>
