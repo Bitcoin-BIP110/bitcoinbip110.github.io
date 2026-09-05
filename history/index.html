@@ -15,7 +15,7 @@
 
   <meta
     name="description"
-    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, BLAKE2b activation, and the first release."
   />
   <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -24,7 +24,7 @@
   <meta property="og:title" content="Bitcoin BIP110 History | Network Reference" />
   <meta
     property="og:description"
-    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, BLAKE2b activation, and the first release."
   />
   <meta property="og:url" content="https://bitcoinbip110.org/history/" />
   <meta property="og:site_name" content="Bitcoin BIP110" />
@@ -41,7 +41,7 @@
   <meta name="twitter:title" content="Bitcoin BIP110 History | Network Reference" />
   <meta
     name="twitter:description"
-    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development."
+    content="A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, BLAKE2b activation, and the first release."
   />
   <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
   <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
@@ -53,7 +53,7 @@
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Bitcoin BIP110 History",
-      "description": "A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, and BLAKE2b development.",
+      "description": "A sourced history of Bitcoin BIP110, covering the BIP 110 proposal, the chain split at block 961,632, the SHA-256d enforcement branch, BLAKE2b activation, and the first release.",
       "url": "https://bitcoinbip110.org/history/",
       "isPartOf": {
         "@type": "WebSite",
@@ -146,7 +146,7 @@
      <div class="intro-copy">
       <p>
        A chronological record of the BIP 110 proposal, the 8 August 2026 chain split, the SHA-256d enforcement branch, 
-       and the transition to BLAKE2b proof-of-work.
+       the BLAKE2b activation at block 961,640, and the first release.
      </p>
      </div>
     </div>
@@ -206,7 +206,7 @@
        What is Bitcoin BIP110?
       </h2>
       <p>
-       Bitcoin BIP110 originated from the effort to enforce <a href="https://bips.dev/110/" rel="noreferrer">BIP 110</a>, a proposal for temporary consensus restrictions on certain uses of data in Bitcoin transactions.
+       Bitcoin BIP110 originated from the effort to enforce <a href="https://bip110.org" rel="noreferrer">BIP 110</a>, a proposal for temporary consensus restrictions on certain uses of data in Bitcoin transactions.
       </p>
       <p>
        The proposal's mandatory-signaling period began on 8 August 2026. At block height 961,632, nodes enforcing BIP 110 rejected a block that did not contain the required signal,
@@ -218,10 +218,10 @@
        it attracted only a small fraction of the network hash power. This resulted in long intervals between blocks and prevented the branch from operating at the normal pace.
       </p>
       <p>
-       Development subsequently began within the Bitcoin Knots on a hard fork that would replace SHA-256d with BLAKE2b and allow the enforcement branch to continue operating.
+       Development subsequently moved to a Bitcoin Knots hard fork that replaced SHA-256d with BLAKE2b. The final mainnet parameters set block 961,640 as the first BLAKE2b block, following block 961,639, the final SHA-256d block on the branch.<sup><a href="#ref-12">[12]</a></sup>
       </p>
       <p>
-       Bitcoin BIP110 continues the historical BIP 110 enforcement branch as an independent network that uses BLAKE2b for proof-of-work.
+       Bitcoin BIP110 continues the historical BIP 110 enforcement branch as an independent network using BLAKE2b proof-of-work. The BLAKE2b chain became active on 30 August 2026, and Bitcoin BIP110 first mainnet released on 2 September 2026.<sup><a href="#ref-15">[15]</a></sup>
       </p>
      </section>
 
@@ -233,7 +233,7 @@
        BIP 110 Proposal
       </h2>
       <p>
-       <a href="https://bips.dev/110/" rel="noreferrer">BIP 110</a> was written by Dathon Ohm and credited Luke Dashjr with the original draft and advice. Its initial draft was recorded on 24 October 2025, it was assigned BIP number 110 on 3 December 2025, and it advanced to <strong>Complete</strong> status on 25 June 2026.<sup><a href="#ref-1">[1]</a></sup>
+       <a href="https://bip110.org" rel="noreferrer">BIP 110</a> was written by Dathon Ohm and credited Luke Dashjr with the original draft and advice. Its initial draft was recorded on 24 October 2025, it was assigned BIP number 110 on 3 December 2025, and it advanced to <strong>Complete</strong> status on 25 June 2026.<sup><a href="#ref-1">[1]</a></sup>
       </p>
       <p>
        The proposal described arbitrary-data storage as a burden on node operators and as competition for block space that could otherwise be used for payments. It proposed seven temporary consensus restrictions intended to remain active for 52,416 blocks, approximately one year, while longer-term approaches were considered.
@@ -461,7 +461,7 @@
        The enforcement branch initially continued to use SHA-256d, the same proof-of-work algorithm as Bitcoin mainnet. It also inherited a mining difficulty of approximately 127.48 trillion, which had been calibrated for the much larger amount of SHA-256d hash power mining Bitcoin. Only a small fraction of that hash power mined the enforcement branch.
       </p>
       <p>
-       Roughnecks mined the first two branch blocks on 8 August. Later blocks appeared intermittently, with gaps lasting from several hours to more than five days. The observed branch tip on 24 August 2026 was block 961,638.<sup><a href="#ref-5">[5]</a></sup>
+       Roughnecks mined the first two branch blocks on 8 August. Later blocks appeared intermittently, with gaps lasting from several hours to more than five days. Block 961,638 was observed on 23 August 2026,<sup><a href="#ref-5">[5]</a></sup> and one additional SHA-256d block, 961,639, was subsequently mined. Under the final mainnet parameters, block 961,639 became the last SHA-256d block before the BLAKE2b transition at height 961,640.<sup><a href="#ref-12">[12]</a></sup>
       </p>
 
       <div class="data-table-wrap">
@@ -515,12 +515,17 @@
           <td>23 August 2026, 05:04:57</td>
           <td>1 day 10 hours 16 minutes</td>
          </tr>
+         <tr>
+          <td>961,639</td>
+          <td>28 August 2026, 17:14:29</td>
+          <td>5 days 12 hours 9 minutes</td>
+         </tr>
         </tbody>
        </table>
       </div>
 
       <p>
-       Bitcoin ordinarily adjusts its mining difficulty every 2,016 blocks. The branch's low block-production rate therefore also delayed its progress toward the next adjustment. This created the operational problem that later motivated development of a different proof-of-work system.
+       Bitcoin ordinarily adjusts its mining difficulty every 2,016 blocks. The branch's low block-production rate therefore delayed its progress toward the next adjustment. The BLAKE2b hard fork addressed this operational problem by defining a new proof-of-work system and new starting parameters beginning at block 961,640.
       </p>
      </section>
 
@@ -532,27 +537,27 @@
        BLAKE2b Hard Fork
       </h2>
       <p>
-       On 15 August 2026, Luke Dashjr opened Bitcoin Knots pull request #359, titled <strong>Hardfork: New BLAKE2b proof-of-work algorithm</strong>.<sup><a href="#ref-6">[6]</a></sup> The proposed implementation accepts SHA-256d blocks before a configured activation height and requires a new BLAKE2b proof-of-work calculation and block-header format beginning at that height.
+       On 15 August 2026, Luke Dashjr opened Bitcoin Knots pull request #359, titled <strong>Hardfork: New BLAKE2b proof-of-work algorithm</strong>.<sup><a href="#ref-6">[6]</a></sup> The work introduced a BLAKE2b proof-of-work calculation and a version-2 block-header format intended to continue the BIP 110 enforcement branch after its stalled SHA-256d period.
       </p>
       <p>
-       The proposed hard fork was designed as a continuation of the BIP 110 enforcement branch. It would preserve the branch's earlier Bitcoin history, inherited UTXO set, and SHA-256d branch blocks rather than begin from a new genesis block. Changing proof of work would also allow the implementation to introduce a BLAKE2b-specific starting difficulty and use mining hardware designed for BLAKE2b instead of competing for SHA-256d miners.
+       The hard fork preserves the branch's earlier Bitcoin history, inherited UTXO set, and SHA-256d branch blocks rather than beginning from a new genesis block. Final mainnet parameters set block <strong>961,640</strong> as the first BLAKE2b block and include checkpoints covering the first BIP 110 branch block, the final SHA-256d block, and the first BLAKE2b block.<sup><a href="#ref-12">[12]</a></sup>
       </p>
 
       <h3>
        Header and mining design
       </h3>
       <p>
-       Pull request #359 introduced a 164-byte version-2 block header. The design includes four selectable ASIC profiles, additional nonce space, fields for an opt-in block-withholding defense, future merge-mining support, block height, and a transaction-count commitment. Its stated hardware target is compatibility with several types of Sia-style BLAKE2b mining equipment.<sup><a href="#ref-6">[6]</a></sup>
+       Bitcoin BIP110 uses a 164-byte version-2 block header. The design includes four selectable ASIC profiles, additional nonce space, fields for an opt-in block-withholding defense, future merge-mining support, block height, and a transaction-count commitment.<sup><a href="#ref-6">[6]</a></sup> The release exposes the additional header fields through the <code>getblockheader</code> and <code>getblock</code> RPC methods.<sup><a href="#ref-15">[15]</a></sup>
       </p>
       <p>
-       General support for the BLAKE2b function does not by itself establish miner compatibility. Hardware, firmware, pool software, and the new header and job formats must work together for a miner to produce valid blocks.
+       General support for the BLAKE2b function does not by itself establish miner compatibility. Hardware, firmware, pool software, and the version-2 header and job formats must work together for a miner to produce valid blocks.
       </p>
 
       <h3>
-       Testnet releases
+       Release path to mainnet
       </h3>
       <p>
-       Bitcoin Knots published a series of signed release-candidate tags for testing the BLAKE2b transition on testnet4. Each candidate created a separate experimental history when its activation parameters changed.
+       Bitcoin Knots published a sequence of signed release candidates while the BLAKE2b implementation moved from testnet4 testing to mainnet activation. RC1 through RC3 used changing testnet4 activation boundaries. RC4 introduced the mainnet activation at height 961,640, RC5 retained the resulting mainnet chain, and the 29.4.1 release preserved those consensus parameters.
       </p>
 
       <div class="data-table-wrap">
@@ -560,13 +565,13 @@
         <thead>
          <tr>
           <th>
-           Source tag
+           Release
           </th>
           <th>
-           Tag date
+           Date
           </th>
           <th>
-           Testnet4 activation height
+           Network role
           </th>
           <th>
            Historical status
@@ -579,7 +584,7 @@
            <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc1" rel="noreferrer">v29.4.1.knots20260508rc1</a>
           </td>
           <td>21 August 2026</td>
-          <td>149,460</td>
+          <td>Testnet4 activation at height 149,460</td>
           <td>Superseded by RC2</td>
          </tr>
          <tr>
@@ -587,7 +592,7 @@
            <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc2" rel="noreferrer">v29.4.1.knots20260508rc2</a>
           </td>
           <td>22 August 2026</td>
-          <td>149,537</td>
+          <td>Testnet4 activation at height 149,537</td>
           <td>Superseded by RC3</td>
          </tr>
          <tr>
@@ -595,33 +600,59 @@
            <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc3" rel="noreferrer">v29.4.1.knots20260508rc3</a>
           </td>
           <td>27 August 2026</td>
-          <td>150,027</td>
-          <td>Latest signed testnet candidate as of 30 August 2026</td>
+          <td>Testnet4 activation at height 150,027</td>
+          <td>Superseded by RC4</td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc4" rel="noreferrer">v29.4.1.knots20260508rc4</a>
+          </td>
+          <td>30 August 2026</td>
+          <td>Mainnet BLAKE2b activation at height 961,640</td>
+          <td>First live mainnet candidate</td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc5" rel="noreferrer">v29.4.1.knots20260508rc5</a>
+          </td>
+          <td>1 September 2026</td>
+          <td>Retained height 961,640 and checkpointed the live chain</td>
+          <td>Final release candidate</td>
+         </tr>
+         <tr>
+          <td>
+           <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508" rel="noreferrer">v29.4.1.knots20260508</a>
+          </td>
+          <td>2 September 2026</td>
+          <td>First production mainnet released</td>
+          <td>Released</td>
          </tr>
         </tbody>
        </table>
       </div>
 
       <p>
-       A public testnet guide documented live validation across RC2's activation height and emphasized that the implementation was unmerged and subject to change.<sup><a href="#ref-10">[10]</a></sup> RC3 subsequently changed the activation height again. These testnet parameters did not establish the final composition or activation parameters of a mainnet release.
+       RC4 was tagged on 30 August 2026 at 02:09 UTC.<sup><a href="#ref-13">[13]</a></sup> The first BLAKE2b mainnet block, height <strong>961,640</strong>, was mined later that morning at <strong>06:14:39 UTC</strong>. Its block hash is <code>0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb</code>, and the block uses the new 164-byte version-2 header.<sup><a href="#ref-12">[12]</a></sup>
+      </p>
+      <p>
+       RC5 was tagged on 1 September at 00:56 UTC and retained the chain that began at block 961,640.<sup><a href="#ref-14">[14]</a></sup> Bitcoin Knots then published 29.4.1.knots20260508 release on 2 September at 19:02 UTC. The final release includes the BLAKE2b proof-of-work algorithm, the temporary 800 kWU block-weight limit, the reduced-data flag-day changes, and the unified opt-in signature hash.<sup><a href="#ref-15">[15]</a></sup>
       </p>
 
       <h3>
-       Related replay-protection work
+       Replay protection
       </h3>
       <p>
-       A change in proof of work does not make ordinary transactions valid on only one chain. A separate Bitcoin Knots proposal, pull request #357, introduced an optional signature mode called <code>SIGHASH_UNIFIED</code>.<sup><a href="#ref-11">[11]</a></sup> Signatures that opt in use a different signed message and therefore fail verification on software that does not implement the rule. 
-       Transactions signed without the option can remain replayable between compatible histories.
+       A change in proof of work does not automatically make ordinary transactions valid on only one chain. Bitcoin Knots pull request #357 introduced the optional <code>SIGHASH_UNIFIED</code> signature mode,<sup><a href="#ref-11">[11]</a></sup> and the implementation was included in the 29.4.1 release.<sup><a href="#ref-15">[15]</a></sup> Signatures that opt in use a different signed message and therefore are not valid under software that does not implement that signature mode.
       </p>
       <p>
-       The replay-protection proposal and the BLAKE2b proof-of-work proposal were separate development efforts. Their appearance together in testnet release candidates did not by itself establish that both would appear together under final mainnet rules.
+       Transactions using ordinary signature modes can remain replayable between compatible histories. Replay protection therefore depends on using the chain-specific signature mode when separating or spending coins across the two histories.
       </p>
 
       <h3>
-       Development status
+       Mainnet status
       </h3>
       <p>
-       As of 30 August 2026, pull request #359 remains open, and the project has not yet published a signed stable Bitcoin BIP110 mainnet release. Bitcoin BIP110 will become operational under BLAKE2b once the final consensus parameters are published in a mainnet release and miners produce a valid activation block that independent nodes can verify.
+       Bitcoin BIP110 is operational under BLAKE2b proof-of-work. Block 961,639 is the final SHA-256d block on this branch, block 961,640 is the first BLAKE2b block, and Bitcoin Knots 29.4.1.knots20260508 is the signed final release carrying the mainnet consensus changes.<sup><a href="#ref-12">[12]</a></sup><sup><a href="#ref-15">[15]</a></sup>
       </p>
      </section>
 
@@ -633,31 +664,29 @@
        Network Identity
       </h2>
       <p>
-       The split at height 961,632 created a block history separate from Bitcoin (BTC) mainnet. Bitcoin BTC continued on the non-signaling SHA-256d chain, while Bitcoin BIP110 is intended to continue the BIP 110 enforcement branch.
+       The split at height 961,632 created a block history separate from Bitcoin (BTC) mainnet. Bitcoin BTC continued on the non-signaling SHA-256d chain, while Bitcoin BIP110 continues the BIP 110 enforcement branch.
       </p>
       <p>
-       Once Bitcoin BIP110 activates BLAKE2b on mainnet, it would transition proof of work from SHA-256d to BLAKE2b and introduce the new header-v2 block format required for BLAKE2b mining. 
-       From that point forward, Bitcoin BIP110 would require its own compatible nodes, miners, wallets, explorers, exchanges, and supporting infrastructure.
+       At block <strong>961,640</strong>, Bitcoin BIP110 transitioned from SHA-256d to BLAKE2b proof-of-work and began using the version-2 block-header format. Block <strong>961,639</strong> is the final SHA-256d block on this branch.<sup><a href="#ref-12">[12]</a></sup> From height 961,640 forward, the chain requires compatible BLAKE2b nodes, miners, wallets, explorers, exchanges, and supporting infrastructure.
       </p>
       <p>
-       Despite these technical differences, Bitcoin BIP110 inherits Bitcoin's blockchain history and UTXO set through block 961,631, together with the BIP 110 enforcement-branch blocks that follow.
-       Holders of eligible pre-split Bitcoin UTXOs may therefore control corresponding coins on both histories. Bitcoin BIP110 is a native proof-of-work coin rather than a token issued through a contract.
+       Despite these technical differences, Bitcoin BIP110 inherits Bitcoin's blockchain history and UTXO set through block 961,631, together with the BIP 110 enforcement-branch blocks that follow. Holders of eligible pre-split Bitcoin UTXOs may therefore control corresponding coins on both histories. Bitcoin BIP110 is a native proof-of-work coin rather than a token issued through a contract.
       </p>
       <p>
-       Bitcoin BIP110's monetary policy also preserves Bitcoin's 21 million coin maximum supply. The hard fork changes the chain's proof-of-work system and other consensus behavior, rather than creating an additional token supply on top of the inherited ledger.
+       Bitcoin BIP110's monetary policy preserves Bitcoin's 21 million coin maximum supply. The hard fork changes the chain's proof-of-work system and other consensus behavior rather than creating an additional token supply on top of the inherited ledger.
+      </p>
+      <p>
+       The first mainnet implementation is Bitcoin Knots 29.4.1.knots20260508, released on 2 September 2026. Its release notes document the BLAKE2b proof-of-work hard fork, the reduced-data flag-day changes, the temporary 800 kWU block-weight limit, the unified opt-in signature hash, and the version-2 block-header RPC fields.<sup><a href="#ref-15">[15]</a></sup>
       </p>
       <p>
        <strong>Bitcoin BIP110</strong> is the pending exchange listed name, and <strong>BIP110</strong> is its pending exchange listed ticker.
-      </p>
-      <p>
-       Bitcoin BIP110's final consensus parameters have not yet been published in a signed stable release. BitcoinBIP110.org will publish the exact subsidy and halving rules when Bitcoin Knots releases the final mainnet implementation.
       </p>
       <div class="callout">
        <p>
         <strong>
          Historical distinction:
         </strong>
-        Bitcoin BTC mainnet and Bitcoin BIP110 share the history through height 961,631. Their block histories diverge at height 961,632. BLAKE2b is the hard fork of the BIP 110 enforcement branch.
+        Bitcoin BTC mainnet and Bitcoin BIP110 share the history through height 961,631. Their block histories diverge at height 961,632. Bitcoin BIP110 later changed proof of work from SHA-256d to BLAKE2b at height 961,640.
        </p>
       </div>
      </section>
@@ -666,7 +695,7 @@
           <span class="phase-number">Timeline</span>
           <h2>Verified Chronology</h2>
           <p>The following timeline presents the key dates and block heights in the history of Bitcoin BIP110, 
-            from the original BIP 110 proposal to the development of its BLAKE2b continuation.
+            from the original BIP 110 proposal through BLAKE2b mainnet activation and the first Bitcoin BIP110 release.
          </p>
 
           <div class="timeline-list compact-timeline">
@@ -701,19 +730,19 @@
               <div class="timeline-status"><span class="status-label">Verified</span></div>
             </div>
             <div class="timeline-item">
-              <div class="timeline-date">12 to 23 Aug 2026</div>
-              <div class="timeline-event"><h3>Intermittent SHA-256d blocks</h3><p>The enforcement branch advanced from height 961,634 to 961,638.</p></div>
+              <div class="timeline-date">12 to 28 Aug 2026</div>
+              <div class="timeline-event"><h3>Intermittent SHA-256d blocks</h3><p>The enforcement branch advanced through height 961,639, which became its final SHA-256d block.</p></div>
               <div class="timeline-status"><span class="status-label">Observed</span></div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">15 Aug 2026</div>
-              <div class="timeline-event"><h3>BLAKE2b implementation opened</h3><p>Bitcoin Knots PR #359 published the header-v2 proof-of-work work for review.</p></div>
-              <div class="timeline-status"><span class="status-label">Proposed</span></div>
+              <div class="timeline-event"><h3>BLAKE2b implementation opened</h3><p>PR #359 published the header-v2 proof-of-work work for review.</p></div>
+              <div class="timeline-status"><span class="status-label">Development</span></div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">21 Aug 2026<br />Testnet4 149,460</div>
-              <div class="timeline-event"><h3>RC1 testnet activation</h3><p>A BLAKE2b chain formed and was later superseded by a new activation boundary.</p></div>
-              <div class="timeline-status"><span class="status-label">Obsolete</span></div>
+              <div class="timeline-event"><h3>RC1 testnet activation</h3><p>A BLAKE2b test chain formed and was later superseded by a new activation boundary.</p></div>
+              <div class="timeline-status"><span class="status-label">Superseded</span></div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">22 Aug 2026<br />Testnet4 149,537</div>
@@ -722,18 +751,23 @@
             </div>
             <div class="timeline-item">
               <div class="timeline-date">27 Aug 2026<br />Testnet4 150,027</div>
-              <div class="timeline-event"><h3>RC3 signed testnet tag</h3><p>The current documented release-candidate source moved the BLAKE2b testnet4 boundary.</p></div>
-              <div class="timeline-status"><span class="status-label">Testnet</span></div>
+              <div class="timeline-event"><h3>RC3 signed testnet tag</h3><p>The third candidate moved the BLAKE2b testnet4 boundary before mainnet parameters were introduced.</p></div>
+              <div class="timeline-status"><span class="status-label">Superseded</span></div>
             </div>
-            <div class="timeline-item pending-item">
-              <div class="timeline-date">Date pending</div>
-              <div class="timeline-event"><h3>Stable mainnet specification and release</h3><p>Requires signed, versioned source with final consensus and network parameters.</p></div>
-              <div class="timeline-status"><span class="status-label">Pending</span></div>
+            <div class="timeline-item">
+              <div class="timeline-date">30 Aug 2026<br />Height 961,640</div>
+              <div class="timeline-event"><h3>BLAKE2b mainnet activated</h3><p>RC4 set the mainnet transition height, and the first version-2 BLAKE2b block was mined at 06:14:39 UTC.</p></div>
+              <div class="timeline-status"><span class="status-label">Active</span></div>
             </div>
-            <div class="timeline-item pending-item">
-              <div class="timeline-date">Date pending</div>
-              <div class="timeline-event"><h3>First valid BLAKE2b mainnet block</h3><p>Requires independent node observations after the fixed activation boundary.</p></div>
-              <div class="timeline-status"><span class="status-label">Pending</span></div>
+            <div class="timeline-item">
+              <div class="timeline-date">1 Sep 2026</div>
+              <div class="timeline-event"><h3>RC5 retained the live chain</h3><p>The next signed candidate preserved the height-961,640 activation history and added the mainnet transition checkpoints.</p></div>
+              <div class="timeline-status"><span class="status-label">Verified</span></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2 Sep 2026<br />19:02 UTC</div>
+              <div class="timeline-event"><h3>Bitcoin BIP110 first mainnet released</h3><p>The first signed production release Knots 29.4.1 shipped with the BLAKE2b mainnet consensus changes.</p></div>
+              <div class="timeline-status"><span class="status-label">Released</span></div>
             </div>
           </div>
      </section>
@@ -746,7 +780,7 @@
   </p>
 
   <div class="source-links guide-source-links">
-    <a href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">
+    <a id="ref-1" href="https://github.com/bitcoin/bips/blob/master/bip-0110.mediawiki" rel="noreferrer">
       <span>01</span>
       <span>
         <strong>Official BIP 110 record</strong>
@@ -755,7 +789,7 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://mempool.space/block/00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a" rel="noreferrer">
+    <a id="ref-2" href="https://mempool.space/block/00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a" rel="noreferrer">
       <span>02</span>
       <span>
         <strong>Bitcoin block 961,631</strong>
@@ -764,7 +798,7 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://mempool.space/block/00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba" rel="noreferrer">
+    <a id="ref-3" href="https://mempool.space/block/00000000000000000000d1e01392faa65ceeaed307f0a3159144b84146ff24ba" rel="noreferrer">
       <span>03</span>
       <span>
         <strong>Bitcoin BTC block 961,632</strong>
@@ -773,7 +807,7 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://mempool.guide/block/0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16" rel="noreferrer">
+    <a id="ref-4" href="https://mempool.guide/block/0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16" rel="noreferrer">
       <span>04</span>
       <span>
         <strong>BIP 110 enforcement-branch block 961,632</strong>
@@ -782,16 +816,16 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://mempool.guide/block/000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f" rel="noreferrer">
+    <a id="ref-5" href="https://mempool.guide/block/000000000000000000002e54f5ee1567dca91a3e169d983e30786956a617ca5f" rel="noreferrer">
       <span>05</span>
       <span>
         <strong>BIP 110 enforcement-branch block 961,638</strong>
-        <small>Observed SHA-256d branch tip on 24 August 2026</small>
+        <small>Observed SHA-256d branch block before the final pre-fork block</small>
       </span>
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
+    <a id="ref-6" href="https://github.com/bitcoinknots/bitcoin/pull/359" rel="noreferrer">
       <span>06</span>
       <span>
         <strong>BLAKE2b proof-of-work development</strong>
@@ -800,34 +834,34 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc1" rel="noreferrer">
+    <a id="ref-7" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc1" rel="noreferrer">
       <span>07</span>
       <span>
-        <strong>Bitcoin Knots RC1 source tag</strong>
+        <strong>RC1 source tag</strong>
         <small>First documented BLAKE2b testnet4 release candidate</small>
       </span>
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc2" rel="noreferrer">
+    <a id="ref-8" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc2" rel="noreferrer">
       <span>08</span>
       <span>
-        <strong>Bitcoin Knots RC2 source tag</strong>
+        <strong>RC2 source tag</strong>
         <small>Superseding BLAKE2b testnet4 release candidate</small>
       </span>
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc3" rel="noreferrer">
+    <a id="ref-9" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc3" rel="noreferrer">
       <span>09</span>
       <span>
-        <strong>Bitcoin Knots RC3 source tag</strong>
-        <small>Later signed development release candidate</small>
+        <strong>RC3 source tag</strong>
+        <small>Final testnet-focused candidate before mainnet activation</small>
       </span>
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/AcesHigh70/blake2b-testnet4" rel="noreferrer">
+    <a id="ref-10" href="https://github.com/AcesHigh70/blake2b-testnet4" rel="noreferrer">
       <span>10</span>
       <span>
         <strong>BLAKE2b testnet4 mining guide</strong>
@@ -836,7 +870,7 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">
+    <a id="ref-11" href="https://github.com/bitcoinknots/bitcoin/pull/357" rel="noreferrer">
       <span>11</span>
       <span>
         <strong>Opt-in unified signature hash</strong>
@@ -845,8 +879,44 @@
       <b aria-hidden="true">↗</b>
     </a>
 
-    <a href="../sources">
+    <a id="ref-12" href="https://github.com/bitcoinknots/bitcoin/pull/385" rel="noreferrer">
       <span>12</span>
+      <span>
+        <strong>BLAKE2b mainnet parameters</strong>
+        <small>Activation height, transition checkpoints, headline rule, and block 961,640 verification</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a id="ref-13" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc4" rel="noreferrer">
+      <span>13</span>
+      <span>
+        <strong>RC4 source tag</strong>
+        <small>Mainnet activation release candidate tagged 30 August 2026</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a id="ref-14" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508rc5" rel="noreferrer">
+      <span>14</span>
+      <span>
+        <strong>RC5 source tag</strong>
+        <small>Final candidate retaining the live height-961,640 chain</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a id="ref-15" href="https://github.com/bitcoinknots/bitcoin/releases/tag/v29.4.1.knots20260508" rel="noreferrer">
+      <span>15</span>
+      <span>
+        <strong>Bitcoin BIP110 first mainnet releasd</strong>
+        <small>Signed production release containing the BLAKE2b mainnet consensus changes</small>
+      </span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <a id="ref-16" href="../sources">
+      <span>16</span>
       <span>
         <strong>BitcoinBIP110.org sources</strong>
         <small>Site reference index and dated evidence</small>
@@ -892,7 +962,7 @@
         </a>
 
         <a
-          href="https://bips.dev/110/"
+          href="https://bip110.org"
           rel="noreferrer"
         >
           Original BIP 110

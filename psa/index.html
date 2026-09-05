@@ -15,7 +15,7 @@
 
   <meta
     name="description"
-    content="Public service announcements from BitcoinBIP110.org covering exchange risk, scams, phishing, custody concerns, misleading market information, and other risks affecting Bitcoin BIP110 users."
+    content="Public Service Announcements from BitcoinBIP110.org covering network releases, mainnet status, exchange risk, scams, custody concerns, and other important information affecting Bitcoin BIP110 users."
   />
   <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -24,7 +24,7 @@
   <meta property="og:title" content="Public Service Announcements | Bitcoin BIP110" />
   <meta
     property="og:description"
-    content="Dated public service announcements covering exchange risk, scams, phishing, custody concerns, misleading market information, and other risks affecting Bitcoin BIP110 users."
+    content="Dated Bitcoin BIP110 announcements covering network releases, mainnet status, public warnings, exchange risk, custody concerns, and other important information."
   />
   <meta property="og:url" content="https://bitcoinbip110.org/psa/" />
   <meta property="og:site_name" content="Bitcoin BIP110" />
@@ -32,16 +32,16 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:image" content="https://bitcoinbip110.org/og.png" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Bitcoin BIP110 public service announcements" />
+  <meta property="og:image:alt" content="Bitcoin BIP110 announcements" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Public Service Announcements | Bitcoin BIP110" />
+  <meta name="twitter:title" content="Announcements | Bitcoin BIP110" />
   <meta
     name="twitter:description"
-    content="Dated public service announcements covering exchange risk, scams, phishing, custody concerns, misleading market information, and other risks affecting Bitcoin BIP110 users."
+    content="Dated Bitcoin BIP110 announcements covering network releases, mainnet status, public warnings, exchange risk, custody concerns, and other important information."
   />
   <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
-  <meta name="twitter:image:alt" content="Bitcoin BIP110 public service announcements" />
+  <meta name="twitter:image:alt" content="Bitcoin BIP110 announcements" />
 
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
 
@@ -50,7 +50,7 @@
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       "name": "Bitcoin BIP110 Public Service Announcements",
-      "description": "Dated public service announcements and warnings published by BitcoinBIP110.org.",
+      "description": "Dated network announcements, releases, public service announcements, and warnings published by BitcoinBIP110.org.",
       "url": "https://bitcoinbip110.org/psa/",
       "isPartOf": {
         "@type": "WebSite",
@@ -136,14 +136,14 @@
         <h1>Public Service Announcements</h1>
         <div class="intro-copy">
           <p>
-            Public warnings and safety notices concerning Bitcoin BIP110, exchanges,
-            custody, scams, phishing, misleading market information, and other risks
-            that may affect users.
+            Network releases, operational updates, public warnings, and safety notices
+            concerning Bitcoin BIP110 and the services, software, and infrastructure
+            surrounding the network.
           </p>
         </div>
       </div>
 
-      <a class="scroll-cue" href="#psa-content" aria-label="Continue to public service announcements">
+      <a class="scroll-cue" href="#psa-content" aria-label="Continue to announcements">
         <img
           src="../scroll-down.svg"
           alt=""
@@ -153,15 +153,118 @@
     </section>
 
     <div class="article-layout" id="psa-content">
-      <aside aria-label="Public service announcement sections" class="article-nav">
+      <aside aria-label="Announcement sections" class="article-nav">
         <p>On this page</p>
+        <a href="#PSA-260902">PSA-260902: Bitcoin BIP110 Mainnet Launch</a>
         <a href="#PSA-260901">PSA-260901: High-Risk Neoxa Exchange</a>
       </aside>
 
       <article>
+        <section class="prose-section psa-post" id="PSA-260902">
+          <span class="phase-number">PSA-260902 · September 2, 2026</span>
+          <span class="psa-kicker psa-kicker--green">Network is Live</span>
+
+          <h2>Bitcoin BIP110 mainnet is live with its first production release.</h2>
+
+          <p>
+            <strong>Bitcoin BIP110 has completed its transition to BLAKE2b proof of work and
+            reached its first production mainnet release.</strong>
+          </p>
+
+          <p>
+            The live chain transitioned from SHA-256d to <strong>BLAKE2b proof of work at block 961,640</strong>
+            on August 30, 2026. Bitcoin Knots <strong>v29.4.1.knots20260508</strong> was then released on
+            September 2, 2026 as the first final production release carrying the Bitcoin BIP110 mainnet consensus changes.
+          </p>
+
+          <div class="callout">
+            <p>
+              <strong>Mainnet status:</strong>
+              Block 961,639 is the final SHA-256d block on this branch. Block 961,640 is the first
+              BLAKE2b block and was mined on August 30, 2026 at 06:14:39 UTC.
+            </p>
+          </div>
+
+          <p>
+            The final release retains the live chain established during the release-candidate process.
+            There was no mainnet reset between RC5 and the production release. Nodes following the
+            BLAKE2b chain therefore continue from the same block history beginning at height 961,640.
+          </p>
+
+          <ul>
+            <li>
+              Bitcoin BIP110 now uses BLAKE2b proof of work and version-2 block headers from height 961,640 forward.
+            </li>
+            <li>
+              The release includes the reduced-data flag-day changes and temporary 800 kWU block-weight limit.
+            </li>
+            <li>
+              Opt-in <code>SIGHASH_UNIFIED</code> support is included for chain-specific transaction signing.
+            </li>
+            <li>
+              Nodes, miners, wallets, explorers, exchanges, and other infrastructure must support the Bitcoin BIP110
+              consensus rules to operate on the current network.
+            </li>
+          </ul>
+
+          <h3>Running Bitcoin BIP110</h3>
+
+          <p>
+            Node operators should use the current Bitcoin BIP110 release and verify downloads before installing or upgrading.
+            The <a href="../software">Software</a> page contains the current release, release notes, checksums, signatures,
+            source code, and supporting resources.
+          </p>
+
+          <p>
+            The <a href="../nodes">Node's Guide</a> covers installation, configuration, verification, upgrading,
+            and operation of a Bitcoin BIP110 node. Existing operators should confirm that their node is following
+            the BLAKE2b chain from block 961,640.
+          </p>
+
+          <h3>Mining Bitcoin BIP110</h3>
+
+          <p>
+            Bitcoin BIP110 can no longer be mined with SHA-256d Bitcoin ASICs. Miners must use BLAKE2b-compatible
+            hardware together with software capable of constructing and submitting Bitcoin BIP110 blocks.
+            The <a href="../miners">Miner's Guide</a> covers the current mining workflow and network requirements.
+          </p>
+
+          <div class="callout">
+            <p>
+              <strong>Verify the chain:</strong>
+              The current Bitcoin BIP110 network should show block 961,639 as the final SHA-256d block and
+              block 961,640 as the first BLAKE2b block. Network status can be independently checked using
+              compatible nodes and explorers such as <a href="https://mempool.guide/" rel="noreferrer">mempool.guide</a>.
+            </p>
+          </div>
+
+          <dl class="psa-status-box">
+            <div class="psa-status-row">
+              <dt>Status</dt>
+              <dd>MAINNET LIVE</dd>
+            </div>
+            <div class="psa-status-row">
+              <dt>First production release</dt>
+              <dd>Bitcoin Knots v29.4.1.knots20260508</dd>
+            </div>
+            <div class="psa-status-row">
+              <dt>Proof of work</dt>
+              <dd>BLAKE2b</dd>
+            </div>
+            <div class="psa-status-row">
+              <dt>First BLAKE2b block</dt>
+              <dd>961,640 · August 30, 2026</dd>
+            </div>
+            <div class="psa-status-row">
+              <dt>Production release</dt>
+              <dd>September 2, 2026</dd>
+            </div>
+          </dl>
+        </section>
+
         <section class="prose-section psa-post" id="PSA-260901">
-          <span class="phase-number">PSA-260901 · September 2, 2026</span>
-          <span class="psa-kicker">Public Safety Warning</span>
+          <span class="phase-number">PSA-260901 · September 1, 2026</span>
+          <span class="psa-kicker psa-kicker--red">Public Safety Warning</span>
 
           <h2>Neoxa Exchange / neoxa.exchange is a high-risk exchange claiming to offer Bitcoin BIP110.</h2>
 

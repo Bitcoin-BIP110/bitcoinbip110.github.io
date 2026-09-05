@@ -1462,6 +1462,7 @@ h1,h2,h3 {
    ========================================================= */
 :root {
   --warning-red: #b42318;
+  --announcement-green: #15803d;
 }
 
 .net-banner {
@@ -1616,9 +1617,9 @@ h1,h2,h3 {
   align-items: center;
   width: fit-content;
   margin: 0 0 24px;
-  background-color: #b42318;
+  background-color: var(--warning-red);
   color: #fff;
-  border: 1px solid #b42318;
+  border: 1px solid var(--warning-red);
   border-radius: 0;
   padding: 8px 10px;
   font-size: 12px;
@@ -1626,6 +1627,16 @@ h1,h2,h3 {
   letter-spacing: .08em;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.psa-kicker--red {
+  background-color: var(--warning-red);
+  border-color: var(--warning-red);
+}
+
+.psa-kicker--green {
+  background-color: var(--announcement-green);
+  border-color: var(--announcement-green);
 }
 
 .psa-hero h1 {
