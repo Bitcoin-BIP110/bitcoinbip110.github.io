@@ -1,13 +1,14 @@
-# Bitcoin BIP110 Exchange Integration Guide
+# Bitcoin BIP110 Integrations Guide
 
-Updated: 5 September 2026
+Version: 1.1
+Updated: 6 September 2026
 
 This guide is for exchanges, custodians, wallet operators, and infrastructure providers integrating the Bitcoin BIP110 chain. It separates customer accounting, custody recovery, replay-safe coin separation, wallet integration, deposit and withdrawal support, and production launch.
 
 ## Important chain facts
 
-- Project display name: Bitcoin BIP110
-- Project-declared ticker: BIP110
+- Exchange listing name: Bitcoin BIP110
+- Exchange listing ticker: BIP110
 - Asset type: native UTXO coin
 - Decimal places: 8
 - Shared Bitcoin history through height 961631

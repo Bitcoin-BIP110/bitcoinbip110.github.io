@@ -136,15 +136,14 @@
         "-blake2b_headline=<headline>"
     ],
     "sources": [
+        "https://bitcoinbip110.org/directory/#overview",
+        "https://bitcoinbip110.org/directory/#integrations",
         "https://bitcoinknots.org/files/29.x/29.4.1.knots20260508/",
         "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/release-notes.md",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/kernel/chainparams.cpp",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/chainparamsbase.cpp",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/consensus.h",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/amount.h",
-        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/unified-sighash.md",
-        "https://bitcoin-blake2b.org/developers",
-        "https://bitcoin-blake2b.org/faq",
-        "https://bitcoin-blake2b.org/mining"
+        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/unified-sighash.md"
     ]
 }

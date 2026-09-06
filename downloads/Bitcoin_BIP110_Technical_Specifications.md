@@ -1,8 +1,7 @@
-# Bitcoin BIP110 Exchange Technical Specification
+# Bitcoin BIP110 Technical Specifications
 
-Specification version: 1.0
-Updated: 5 September 2026
-Status: Exchange integration reference
+Version: 1.1
+Updated: 6 September 2026
 
 ## 1. Scope
 
