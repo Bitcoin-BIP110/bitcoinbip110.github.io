@@ -5,10 +5,10 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
   <title>Bitcoin BIP110 Technical Reference | Network Reference</title>
-  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." name="description">
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, official logo assets, replay protection, network parameters, and exchange integration data." name="description">
   <meta content="index, follow" name="robots">
   <meta content="Bitcoin BIP110 Technical Reference | Network Reference" property="og:title">
-  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." property="og:description">
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, official logo assets, replay protection, network parameters, and exchange integration data." property="og:description">
   <meta content="https://bitcoinbip110.org/technicals/" property="og:url">
   <meta content="Bitcoin BIP110" property="og:site_name">
   <meta content="website" property="og:type">
@@ -18,7 +18,7 @@
   <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="Bitcoin BIP110 Technical Reference | Network Reference" name="twitter:title">
-  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." name="twitter:description">
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, official logo assets, replay protection, network parameters, and exchange integration data." name="twitter:description">
   <meta content="../og.png" name="twitter:image">
   <link href="../favicon.svg" rel="shortcut icon">
   <link href="../favicon.svg" rel="icon">
@@ -100,7 +100,7 @@
      <p class="eyebrow">Technical reference</p>
      <h1>Chain identity and integration data</h1>
      <div class="intro-copy">
-      <p>Production reference for Bitcoin BIP110 chain identity, node software, network parameters, BLAKE2b proof of work, replay protection, custody, and exchange integration.</p>
+      <p>Production reference for Bitcoin BIP110 chain identity, node software, network parameters, BLAKE2b proof of work, logo assets, replay protection, custody, and exchange integration.</p>
      </div>
     </div>
 
@@ -166,6 +166,37 @@
       <div class="fact-row"><dt>BIP32 public / private prefix</dt><dd><code>0488b21e</code> / <code>0488ade4</code></dd></div>
      </dl>
      <div class="callout"><p><strong>Issue and supply basis:</strong> the date of issue is the date of the first Bitcoin BIP110 branch block at height 961,632. The 20,067,600 BIP110 figure is the nominal subsidy-derived supply through the last common height 961,631 and does not subtract lost, burned, or otherwise provably unspendable coins.</p></div>
+    </section>
+
+    <section class="technical-block" id="branding">
+     <div class="block-heading">
+      <p class="eyebrow">Branding assets</p>
+      <h2>Official logo files and usage priority</h2>
+      <p>Use the project-provided logo assets below for exchange listings, wallet interfaces, custody systems, directories, and other Bitcoin BIP110 integrations.</p>
+     </div>
+     <div class="data-table-wrap">
+      <table class="data-table">
+       <thead><tr><th>Priority</th><th>Asset</th><th>Usage</th></tr></thead>
+       <tbody>
+        <tr>
+         <td>First choice</td>
+         <td><a href="../downloads/logo-orange-on-transparent-bg.svg"><strong>Orange logo</strong></a></td>
+         <td>Original orange Bitcoin logo. This is the preferred logo.</td>
+        </tr>
+        <tr>
+         <td>Second choice</td>
+         <td><a href="../downloads/logo-black-on-transparent-bg.svg"><strong>Black logo</strong></a></td>
+         <td>Black Bitcoin logo. This is the second choice logo if the first choice cannot be used.</td>
+        </tr>
+        <tr>
+         <td>Second choice (with contour)</td>
+         <td><a href="../downloads/logo-black-on-transparent-bg-with-contour.svg"><strong>Black logo with white contour</strong></a></td>
+         <td>Use when the black logo needs a contour because it is presented on a dark background.</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="callout"><p><strong>Dark-background example:</strong> the contoured black SVG is also the example asset used to show how the black logo should appear on a dark background.</p></div>
     </section>
 
     <section class="technical-block" id="consensus">

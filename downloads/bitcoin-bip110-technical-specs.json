@@ -1,6 +1,6 @@
 {
     "schema_version": "1.0",
-    "updated_at": "2026-09-06",
+    "updated_at": "2026-09-07",
     "status": "exchange-integration-reference",
     "asset": {
         "exchange_listing_name": "Bitcoin BIP110",
@@ -174,6 +174,32 @@
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/chainparamsbase.cpp",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/consensus.h",
         "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/amount.h",
-        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/unified-sighash.md"
-    ]
+        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/unified-sighash.md",
+        "https://bitcoinbip110.org/downloads/logo-orange-on-transparent-bg.svg",
+        "https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg.svg",
+        "https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg"
+    ],
+    "branding": {
+        "preferred_logo": {
+            "priority": 1,
+            "name": "Orange logo",
+            "url": "https://bitcoinbip110.org/downloads/logo-orange-on-transparent-bg.svg",
+            "usage": "Preferred Bitcoin BIP110 logo."
+        },
+        "secondary_logo": {
+            "priority": 2,
+            "name": "Black logo",
+            "url": "https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg.svg",
+            "usage": "Use when the orange logo cannot be used."
+        },
+        "dark_background_logo": {
+            "name": "Black logo with white contour",
+            "url": "https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg",
+            "usage": "Use when the black logo is presented on a dark background."
+        },
+        "dark_background_example": {
+            "url": "https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg",
+            "note": "The Resource Directory uses the same contoured SVG asset as the dark-background example."
+        }
+    }
 }

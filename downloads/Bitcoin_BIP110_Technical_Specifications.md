@@ -1,7 +1,7 @@
 # Bitcoin BIP110 Technical Specifications
 
-Version: 1.2
-Updated: 6 September 2026
+Version: 1.3
+Updated: 7 September 2026
 
 ## 1. Scope
 
@@ -81,7 +81,20 @@ Production deployments SHOULD verify release hashes and signatures before instal
 | Address URL template | `https://mempool.guide/address/{address}` |
 | Circulating supply URL | No dedicated endpoint currently published |
 
-## 6. Mainnet network parameters
+## 6. Branding assets
+
+| Field | Value |
+|---|---|
+| Preferred logo | `https://bitcoinbip110.org/downloads/logo-orange-on-transparent-bg.svg` |
+| Secondary logo | `https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg.svg` |
+| Dark-background logo | `https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg` |
+| Preferred usage | Orange logo is the first choice |
+| Secondary usage | Black logo is the second choice when the orange logo cannot be used |
+| Dark-background usage | Use the black logo with white contour when the black logo is presented on a dark background |
+
+The Resource Directory uses the contoured black SVG as the dark-background example.
+
+## 8. Mainnet network parameters
 
 | Field | Value |
 |---|---|
@@ -110,7 +123,7 @@ The values above overlap Bitcoin BTC mainnet. An exchange MUST NOT identify the 
 
 The fork-anchor hashes are the required identity mechanism for this specification.
 
-## 7. Proof of work and block headers
+## 8. Proof of work and block headers
 
 | Field | Value |
 |---|---|
@@ -142,7 +155,7 @@ The reference node exposes additional fields in `getblockheader` and `getblock`,
 
 An exchange that delegates validation to the reference node can consume normalized RPC output. An exchange that independently hashes headers MUST implement the reference BLAKE2b header rules.
 
-## 8. Temporary reduced-data consensus window
+## 9. Temporary reduced-data consensus window
 
 | Field | Value |
 |---|---|
@@ -157,7 +170,7 @@ Inputs spending coins created before the fork are exempt from the new script and
 
 Exchange systems SHOULD use the reference node for consensus validation rather than duplicating these temporary rules in an application-layer indexer.
 
-## 9. Monetary parameters
+## 10. Monetary parameters
 
 | Field | Value |
 |---|---|
@@ -170,7 +183,7 @@ Exchange systems SHOULD use the reference node for consensus validation rather t
 
 Accounting systems MUST use integer base units internally.
 
-## 10. Replay model
+## 11. Replay model
 
 ### 9.1 Ordinary signatures
 
@@ -210,7 +223,7 @@ UNKNOWN
 
 Normal customer withdrawals SHOULD use `BIP110_ONLY` outputs.
 
-## 11. Coin-separation procedure
+## 12. Coin-separation procedure
 
 For a shared pre-fork UTXO:
 
@@ -225,7 +238,7 @@ For a shared pre-fork UTXO:
 
 An exchange SHOULD complete separation before enabling normal withdrawals from recovered fork inventory.
 
-## 12. Wallet architecture requirements
+## 13. Wallet architecture requirements
 
 BTC and BIP110 systems SHOULD use:
 
@@ -240,7 +253,7 @@ BTC and BIP110 systems SHOULD use:
 
 Address encodings overlap. An address string MUST NOT be used as the network discriminator.
 
-## 13. Deposit specification
+## 14. Deposit specification
 
 A BIP110 deposit processor MUST:
 
@@ -254,7 +267,7 @@ A BIP110 deposit processor MUST:
 
 Deposit UI MUST explicitly identify the network as Bitcoin BIP110 / BIP110.
 
-## 14. Withdrawal specification
+## 15. Withdrawal specification
 
 A BIP110 withdrawal processor MUST:
 
@@ -267,7 +280,7 @@ A BIP110 withdrawal processor MUST:
 7. broadcast through BIP110 infrastructure only;
 8. monitor confirmation on the BIP110 chain.
 
-## 15. Customer fork-credit accounting
+## 16. Customer fork-credit accounting
 
 The protocol creates corresponding on-chain outputs for keys that controlled pre-fork UTXOs. It does not create exchange customer database balances.
 
@@ -281,7 +294,7 @@ Before enabling credited balances for withdrawal:
 verified BIP110 custody assets >= credited BIP110 customer liabilities + operational reserves
 ```
 
-## 16. Node health requirements
+## 17. Node health requirements
 
 Recommended precondition for deposit and withdrawal service:
 
@@ -297,7 +310,7 @@ signer_health == healthy
 
 Any failed mandatory condition SHOULD place the BIP110 asset into a fail-closed state.
 
-## 17. RPC verification profile
+## 18. RPC verification profile
 
 Minimum recommended startup profile:
 
@@ -313,7 +326,7 @@ Expected fork hashes are defined in Section 3.
 
 During the reduced-data window, `getdeploymentinfo` should report BLAKE2b active at height 961640 and the reduced-data deployment active at the same height.
 
-## 18. Testing profile
+## 19. Testing profile
 
 An exchange integration SHOULD pass these tests before production:
 
@@ -356,7 +369,7 @@ An exchange integration SHOULD pass these tests before production:
 - signer outage pauses withdrawal creation;
 - reorg handling does not double credit.
 
-## 19. Regtest support for engineering tests
+## 20. Regtest support for engineering tests
 
 The reference software exposes regtest-only arguments including:
 

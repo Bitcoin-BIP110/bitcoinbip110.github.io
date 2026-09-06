@@ -1,7 +1,7 @@
 # Bitcoin BIP110 Integrations Guide
 
-Version: 1.2
-Updated: 6 September 2026
+Version: 1.3
+Updated: 7 September 2026
 
 This guide is for exchanges, custodians, wallet operators, and infrastructure providers integrating the Bitcoin BIP110 chain. It separates customer accounting, custody recovery, replay-safe coin separation, wallet integration, deposit and withdrawal support, and production launch.
 
@@ -18,6 +18,9 @@ This guide is for exchanges, custodians, wallet operators, and infrastructure pr
 - Transaction URL template: https://mempool.guide/tx/{txid}
 - Address URL template: https://mempool.guide/address/{address}
 - Circulating supply URL: No dedicated circulating-supply endpoint is currently published
+- Preferred logo: https://bitcoinbip110.org/downloads/logo-orange-on-transparent-bg.svg
+- Secondary logo: https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg.svg
+- Secondary logo (on dark backgorund): https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg
 - Asset type: native UTXO coin
 - Decimal places: 8
 - Shared Bitcoin history through height 961631
@@ -37,6 +40,18 @@ This guide is for exchanges, custodians, wallet operators, and infrastructure pr
 For integration metadata, the date of issue is defined as the date of the first Bitcoin BIP110 branch block at height 961632. The circulating-supply-at-issuance figure is the nominal subsidy-derived supply through the last common height 961631. It does not subtract coins that were lost, burned, or otherwise provably unspendable.
 
 Authoritative implementation references are listed at the end of this guide.
+
+## Branding and logo assets
+
+Use the project-provided Bitcoin logo assets for exchange listings, wallet interfaces, custody systems, and integration pages.
+
+| Priority | Asset | URL | Usage |
+|---|---|---|---|
+| First choice | Orange logo | `https://bitcoinbip110.org/downloads/logo-orange-on-transparent-bg.svg` | Preferred Bitcoin BIP110 logo. |
+| Second choice | Black logo | `https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg.svg` | Use when the orange logo cannot be used. |
+|  | Black logo with white contour | `https://bitcoinbip110.org/downloads/logo-black-on-transparent-bg-with-contour.svg` | Use the white-contour version when the black logo is presented on a dark background. |
+
+The Resource Directory also shows the contoured black logo as the dark-background example. The example uses the same contoured SVG asset.
 
 ## What the exchange owns and what the customer owns
 
