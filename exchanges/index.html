@@ -1,73 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
+  <title>Bitcoin BIP110 Exchange Integration | Network Reference</title>
+  <meta content="Bitcoin BIP110 listing identity, node release, explorer templates, ports, fork anchors, and downloadable exchange integration package." name="description">
+  <meta content="index, follow" name="robots">
+  <meta content="Bitcoin BIP110 Exchange Integration | Network Reference" property="og:title">
+  <meta content="Bitcoin BIP110 listing identity, node release, explorer templates, ports, fork anchors, and downloadable exchange integration package." property="og:description">
+  <meta content="https://bitcoinbip110.org/exchanges/" property="og:url">
+  <meta content="Bitcoin BIP110" property="og:site_name">
+  <meta content="website" property="og:type">
+  <meta content="../og.png" property="og:image">
+  <meta content="1200" property="og:image:width">
+  <meta content="630" property="og:image:height">
+  <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="Bitcoin BIP110 Exchange Integration | Network Reference" name="twitter:title">
+  <meta content="Bitcoin BIP110 listing identity, node release, explorer templates, ports, fork anchors, and downloadable exchange integration package." name="twitter:description">
+  <meta content="../og.png" name="twitter:image">
+  <link href="../favicon.svg" rel="shortcut icon">
+  <link href="../favicon.svg" rel="icon">
+  <link href="https://bitcoinbip110.org/exchanges/" rel="canonical">
+ </head>
+ <body>
 
-  <link
-    rel="stylesheet"
-    href="/assets/index-CS8UUhtA.css"
-  />
+  <aside class="net-banner" aria-label="Network status">
+    <div class="nb-inner">
+      <span class="nb-dot" aria-hidden="true"></span>
 
-  <title>Coming Soon | Bitcoin BIP110</title>
-  <meta
-    name="description"
-    content="This Bitcoin BIP110 resource is currently being prepared and will be available soon."
-  />
-  <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#ffffff" />
+      <p class="nb-text">
+        <strong>BITCOIN BIP110 is live.</strong>
+        <span>Bitcoin BIP110 has been producing BLAKE2b proof-of-work blocks since block
+        961,640, mined 30 August 2026 at 06:14&nbsp;UTC.</span>
+      </p>
 
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-</head>
+      <a
+        class="nb-link"
+        href="https://mempool.guide/"
+        rel="noreferrer"
+      >Verify the Chain &rarr;</a>
+    </div>
+  </aside>
 
-<body class="coming-soon-page">
-  <div class="coming-soon-shell">
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="/" aria-label="Bitcoin BIP110 home">
-          <img
-            class="bitcoin-logo"
-            src="/favicon.svg"
-            alt=""
-            aria-hidden="true"
-          />
-          <span>Bitcoin BIP110</span>
+  <aside class="psa-banner" aria-label="Public safety warning">
+    <div class="psa-inner">
+      <span class="psa-label">Public Safety Warning</span>
+
+      <p class="psa-text">
+        <strong>Neoxa Exchange / neoxa.exchange</strong> is a high-risk custodial exchange claiming to offer Bitcoin BIP110
+        under the wrong name and wrong ticker. We've also received multiple unverified reports of users being unable to make withdrawals.
+      </p>
+
+      <a class="psa-link" href="../psa/#PSA-260901">Read Full Report &rarr;</a>
+    </div>
+  </aside>
+
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+        class="bitcoin-logo"
+        src="../favicon.svg"
+        alt=""
+        aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../">Overview</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-label">Learning</span>
+        <div class="nav-dropdown-menu">
+          <a href="../history">History</a>
+          <a href="../users">Users Guide</a>
+          <a href="../nodes">Nodes Guide</a>
+          <a href="../miners">Miners Guide</a>
+        </div>
+      </div>
+      <div class="nav-dropdown nav-resources">
+        <span class="nav-dropdown-label">Resources</span>
+        <div class="nav-dropdown-menu">
+          <a href="../psa">Announcements</a>
+          <a href="../directory">Directory</a>
+          <a href="../technicals">Technicals</a>
+          <a href="../exchanges">Exchanges</a>
+        </div>
+      </div>
+      <a href="../about">About</a>
+    </nav>
+   </div>
+  </header>
+  <main>
+<section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">Bitcoin BIP110 Integrations</p>
+     <h1>Exchange Integration Package</h1>
+     <div class="intro-copy"><p>Operational identity and reference links for exchanges, custodians, brokers, and wallet infrastructure providers integrating Bitcoin BIP110.</p></div>
+    </div>
+   </section>
+   <div class="technical-page content-wide">
+    <section class="technical-block" id="listing">
+     <div class="block-heading"><p class="eyebrow">Listing identity</p><h2>Required public and operational fields</h2></div>
+     <dl class="fact-sheet">
+      <div class="fact-row"><dt>Preferred listing name</dt><dd>Bitcoin BIP110</dd></div>
+      <div class="fact-row"><dt>Project-declared ticker</dt><dd>BIP110</dd></div>
+      <div class="fact-row"><dt>Website</dt><dd><a href="https://bitcoinbip110.org/" rel="noreferrer">https://bitcoinbip110.org/</a></dd></div>
+      <div class="fact-row"><dt>GitHub / node software</dt><dd><a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">Bitcoin Knots</a></dd></div>
+      <div class="fact-row"><dt>Recommended release</dt><dd><code>29.4.1.knots20260508</code></dd></div>
+      <div class="fact-row"><dt>Block explorer</dt><dd><a href="https://mempool.guide/" rel="noreferrer">https://mempool.guide/</a></dd></div>
+      <div class="fact-row"><dt>Explorer TX template</dt><dd><code>https://mempool.guide/tx/{txid}</code></dd></div>
+      <div class="fact-row"><dt>Explorer address template</dt><dd><code>https://mempool.guide/address/{address}</code></dd></div>
+      <div class="fact-row"><dt>Circulating supply URL</dt><dd>No dedicated circulating-supply endpoint is currently published.</dd></div>
+      <div class="fact-row"><dt>P2P message start</dt><dd><code>f9 be b4 d9</code></dd></div>
+      <div class="fact-row"><dt>Default P2P / RPC ports</dt><dd><code>8333</code> / <code>8332</code></dd></div>
+     </dl>
+    </section>
+    <section class="technical-block" id="anchors">
+     <div class="block-heading"><p class="eyebrow">Chain identity</p><h2>Mandatory fork anchors</h2><p>BTC and BIP110 overlap on network magic, ports, genesis, and address encodings. Use these hashes as the chain discriminator.</p></div>
+     <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Height</th><th>Expected hash</th></tr></thead><tbody>
+      <tr><td>961,632</td><td><code>0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16</code></td></tr>
+      <tr><td>961,639</td><td><code>00000000000000000001bbc439e13f749dca850d32c7a2834165338713027e65</code></td></tr>
+      <tr><td>961,640</td><td><code>0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb</code></td></tr>
+     </tbody></table></div>
+     <div class="callout"><p>Deposit crediting and withdrawal broadcast should fail closed when a mandatory checkpoint does not match.</p></div>
+    </section>
+    <section class="technical-block" id="package">
+     <div class="block-heading"><p class="eyebrow">Downloads</p><h2>Complete integration documentation</h2><p>The full package covers custody recovery, replay-safe separation, node deployment, wallet architecture, deposits, withdrawals, testing, and production readiness.</p></div>
+     <div class="button-row">
+      <a class="button button-light" download href="../downloads/Bitcoin_BIP110_Technical_Specifications.pdf">Technical Specifications PDF</a>
+      <a class="button button-light" download href="../downloads/Bitcoin_BIP110_Integration_Guide.pdf">Integration Guide PDF</a>
+      <a class="button button-light" download href="../downloads/bitcoin-bip110-technical-specs.json">Technical Specs JSON</a>
+     </div>
+    </section>
+   </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">
+          Bitcoin BIP110
+        </p>
+
+        <p>
+          This is a public reference for the Bitcoin BIP110 network, its history,
+          protocol, software, infrastructure, and operational status.
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Reference
+        </p>
+
+        <a href="../history">History</a>
+        <a href="../timeline">Timeline</a>
+        <a href="../technicals">Technical data</a>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Sources
+        </p>
+
+        <a href="../sources">
+          Sources and policy
         </a>
 
-        <a class="coming-soon-back-link" href="/">Return to main site &rarr;</a>
+        <a
+          href="https://bips.dev/110/"
+          rel="noreferrer"
+        >
+          Original BIP 110
+        </a>
+
+        <a
+          href="https://github.com/bitcoinknots/bitcoin/pull/359"
+          rel="noreferrer"
+        >
+          BLAKE2b development
+        </a>
       </div>
-    </header>
+    </div>
 
-    <main class="coming-soon-main">
-      <div class="content-narrow coming-soon-inner">
-        <div class="coming-soon-status" aria-label="Status: in development">
-          <span class="coming-soon-status-dot" aria-hidden="true"></span>
-          <span>In Development</span>
-        </div>
+    <div class="footer-bottom">
+      <span>
+        © Bitcoin BIP110 Project 2026. Released under the MIT license.
+      </span>
 
-        <h1>Coming Soon</h1>
-
-        <p class="coming-soon-lede">
-          This section of the Bitcoin BIP110 network reference is currently being prepared.
-          New documentation and technical material will be published here soon.
-        </p>
-
-        <div class="button-row">
-          <a class="button button-dark" href="/">Return to Bitcoin BIP110</a>
-        </div>
-
-        <p class="coming-soon-note">
-          Independent technical reference for the Bitcoin BIP110 network.
-        </p>
-      </div>
-    </main>
-
-    <footer class="coming-soon-footer">
-      <div class="content-wide coming-soon-footer-inner">
-        <strong>Bitcoin BIP110</strong>
-        <span>Network Reference</span>
-      </div>
-    </footer>
-  </div>
-</body>
+      <span>
+      </span>
+    </div>
+  </footer>
+ </body>
 </html>
+

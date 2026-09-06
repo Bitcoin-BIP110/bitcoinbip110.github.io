@@ -15,7 +15,7 @@
 
   <meta
     name="description"
-    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b development, network status, technical data, and user safety."
+    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b mainnet status, network identity, technical data, and user safety."
   />
   <meta name="robots" content="index, follow, max-image-preview:large" />
 
@@ -24,7 +24,7 @@
   <meta property="og:title" content="Bitcoin BIP110 | Network Reference" />
   <meta
     property="og:description"
-    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b development, network status, technical data, and user safety."
+    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b mainnet status, network identity, technical data, and user safety."
   />
   <meta property="og:url" content="https://bitcoinbip110.org/" />
   <meta property="og:site_name" content="Bitcoin BIP110" />
@@ -41,7 +41,7 @@
   <meta name="twitter:title" content="Bitcoin BIP110 | Network Reference" />
   <meta
     name="twitter:description"
-    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b development, network status, technical data, and user safety."
+    content="Independent technical reference for Bitcoin BIP110, covering the BIP 110 chain split, BLAKE2b mainnet status, network identity, technical data, and user safety."
   />
   <meta name="twitter:image" content="https://bitcoinbip110.org/og.png" />
   <meta name="twitter:image:alt" content="Bitcoin BIP110 network reference" />
@@ -111,8 +111,8 @@
         <div class="nav-dropdown">
           <span class="nav-dropdown-label">Learning</span>
           <div class="nav-dropdown-menu">
-            <a href="./history">History</a>
-            <a href="./users">Users Guide</a>
+          <a href="./history">History</a>
+          <a href="./users">Users Guide</a>
           <a href="./nodes">Nodes Guide</a>
           <a href="./miners">Miners Guide</a>
           </div>
@@ -120,9 +120,10 @@
         <div class="nav-dropdown nav-resources">
           <span class="nav-dropdown-label">Resources</span>
           <div class="nav-dropdown-menu">
-            <a href="./psa">Announcements</a>
+          <a href="./psa">Announcements</a>
           <a href="./directory">Directory</a>
-            <a href="./technicals">Technicals</a>
+          <a href="./technicals">Technicals</a>
+          <a href="./exchanges">Exchanges</a>
 
           </div>
         </div>
@@ -155,7 +156,7 @@
 
           <a
             class="button button-light"
-            href="./technical"
+            href="./technicals"
           >
             Implications for Users
           </a>
@@ -300,15 +301,14 @@
             <span class="card-index">02</span>
             <h3>Timeline of key events and milestones</h3>
             <p>
-              Separate implemented events from open development work and
-              pending milestones.
+              Follow the implementation path from the chain split through BLAKE2b mainnet activation and the production release.
             </p>
             <span class="card-action">
               See the timeline →
             </span>
           </a>
 
-          <a href="./technical">
+          <a href="./technicals">
             <span class="card-index">03</span>
             <h3>Integration facts and chain identity</h3>
             <p>
@@ -344,24 +344,23 @@
           </div>
 
           <div>
-            <span class="status-label">Verified on testnet</span>
+            <span class="status-label">Verified</span>
             <p>
-              RC2 BLAKE2b activation at testnet4 height 149,537.
+              Block 961,639 is the final SHA-256d block on the Bitcoin BIP110 branch.
             </p>
           </div>
 
           <div>
-            <span class="status-label">Proposed</span>
+            <span class="status-label">Active</span>
             <p>
-              BLAKE2b header-v2 proof of work and opt-in unified signatures.
+              BLAKE2b proof of work and the 164-byte version-2 header are active from block 961,640.
             </p>
           </div>
 
           <div>
-            <span class="status-label">Pending</span>
+            <span class="status-label">Released</span>
             <p>
-              A signed stable mainnet release, activation height, and first
-              valid block.
+              Bitcoin Knots 29.4.1.knots20260508 is the signed production reference release.
             </p>
           </div>
         </div>
@@ -383,9 +382,8 @@
         <div>
           <p>
             Ordinary transactions can remain valid across compatible histories.
-            The proposed <code>SIGHASH_UNIFIED</code> design is opt-in,
-            signature-specific, and active only in documented RC2 testnet code
-            as of this snapshot.
+            <code>SIGHASH_UNIFIED</code> is an opt-in, signature-specific replay-protection mechanism
+            implemented in the production Bitcoin Knots reference release.
           </p>
 
           <p>
@@ -398,7 +396,7 @@
             href="https://github.com/bitcoinknots/bitcoin/pull/357"
             rel="noreferrer"
           >
-            Review the unified signature-hash proposal
+            Review the unified signature-hash implementation
             <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -445,7 +443,7 @@
 
         <a href="./history">History</a>
         <a href="./timeline">Timeline</a>
-        <a href="./technical">Technical data</a>
+        <a href="./technicals">Technical data</a>
       </div>
 
       <div>

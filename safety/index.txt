@@ -126,7 +126,7 @@
         <div class="nav-dropdown-menu">
           <a href="../psa">Announcements</a>
           <a href="../technicals">Technicals</a>
-          <a href="../software">Software</a>
+          <a href="../directory">Directory</a>
         </div>
       </div>
       <a href="../about">About</a>
@@ -241,7 +241,7 @@
            <strong>Name / Ticker</strong>
           </td>
           <td>
-           Bitcoin BIP110 / BIP110 (pending)
+           Bitcoin BIP110 / BIP110
           </td>
          </tr>
 
@@ -250,7 +250,7 @@
            <strong>Network Status</strong>
           </td>
           <td>
-           BLAKE2b mainnet (pending)
+           BLAKE2b mainnet (active from height 961,640)
           </td>
          </tr>
 
@@ -527,13 +527,13 @@
       <div class="callout">
       <p>
       <strong>Important:</strong>
-       Currently Bitcoin BIP110 is not listed on any exchanges. BitcoinBIP110.org will update this status once this changes.
+       BitcoinBIP110.org publishes exchange support only after the service and its operational Bitcoin BIP110 support can be verified.
       </p>
       </div>
 
       <p>
-       Currently, the pending exchange listed name is <strong>Bitcoin BIP110</strong>,
-       and the pending exchange listed ticker is <strong>BIP110</strong>.
+       The project-declared exchange listing name is <strong>Bitcoin BIP110</strong>,
+       and the project-declared ticker is <strong>BIP110</strong>.
       </p>
 
       <p>
@@ -1126,7 +1126,7 @@
 
      <a href="../history">History</a>
      <a href="../user_guide">User Guide</a>
-     <a href="../technical">Technical data</a>
+     <a href="../technicals">Technical data</a>
     </div -->
 
     <div>

@@ -1,73 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
+  <title>Bitcoin BIP110 Developer Reference | Network Reference</title>
+  <meta content="Bitcoin BIP110 developer reference for BLAKE2b activation, version-2 headers, fork-anchor RPC checks, SIGHASH_UNIFIED, and regtest integration testing." name="description">
+  <meta content="index, follow" name="robots">
+  <meta content="Bitcoin BIP110 Developer Reference | Network Reference" property="og:title">
+  <meta content="Bitcoin BIP110 developer reference for BLAKE2b activation, version-2 headers, fork-anchor RPC checks, SIGHASH_UNIFIED, and regtest integration testing." property="og:description">
+  <meta content="https://bitcoinbip110.org/developers/" property="og:url">
+  <meta content="Bitcoin BIP110" property="og:site_name">
+  <meta content="website" property="og:type">
+  <meta content="../og.png" property="og:image">
+  <meta content="1200" property="og:image:width">
+  <meta content="630" property="og:image:height">
+  <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="Bitcoin BIP110 Developer Reference | Network Reference" name="twitter:title">
+  <meta content="Bitcoin BIP110 developer reference for BLAKE2b activation, version-2 headers, fork-anchor RPC checks, SIGHASH_UNIFIED, and regtest integration testing." name="twitter:description">
+  <meta content="../og.png" name="twitter:image">
+  <link href="../favicon.svg" rel="shortcut icon">
+  <link href="../favicon.svg" rel="icon">
+  <link href="https://bitcoinbip110.org/developers/" rel="canonical">
+ </head>
+ <body>
 
-  <link
-    rel="stylesheet"
-    href="/assets/index-CS8UUhtA.css"
-  />
+  <aside class="net-banner" aria-label="Network status">
+    <div class="nb-inner">
+      <span class="nb-dot" aria-hidden="true"></span>
 
-  <title>Coming Soon | Bitcoin BIP110</title>
-  <meta
-    name="description"
-    content="This Bitcoin BIP110 resource is currently being prepared and will be available soon."
-  />
-  <meta name="robots" content="noindex, follow" />
-  <meta name="theme-color" content="#ffffff" />
+      <p class="nb-text">
+        <strong>BITCOIN BIP110 is live.</strong>
+        <span>Bitcoin BIP110 has been producing BLAKE2b proof-of-work blocks since block
+        961,640, mined 30 August 2026 at 06:14&nbsp;UTC.</span>
+      </p>
 
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-</head>
+      <a
+        class="nb-link"
+        href="https://mempool.guide/"
+        rel="noreferrer"
+      >Verify the Chain &rarr;</a>
+    </div>
+  </aside>
 
-<body class="coming-soon-page">
-  <div class="coming-soon-shell">
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="/" aria-label="Bitcoin BIP110 home">
-          <img
-            class="bitcoin-logo"
-            src="/favicon.svg"
-            alt=""
-            aria-hidden="true"
-          />
-          <span>Bitcoin BIP110</span>
+  <aside class="psa-banner" aria-label="Public safety warning">
+    <div class="psa-inner">
+      <span class="psa-label">Public Safety Warning</span>
+
+      <p class="psa-text">
+        <strong>Neoxa Exchange / neoxa.exchange</strong> is a high-risk custodial exchange claiming to offer Bitcoin BIP110
+        under the wrong name and wrong ticker. We've also received multiple unverified reports of users being unable to make withdrawals.
+      </p>
+
+      <a class="psa-link" href="../psa/#PSA-260901">Read Full Report &rarr;</a>
+    </div>
+  </aside>
+
+  <header class="site-header">
+   <div class="header-inner">
+    <a aria-label="Bitcoin BIP110 home" class="brand" href="../">
+     <img
+        class="bitcoin-logo"
+        src="../favicon.svg"
+        alt=""
+        aria-hidden="true"
+     />
+     <span>
+      Bitcoin BIP110
+     </span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../">Overview</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-label">Learning</span>
+        <div class="nav-dropdown-menu">
+          <a href="../history">History</a>
+          <a href="../users">Users Guide</a>
+          <a href="../nodes">Nodes Guide</a>
+          <a href="../miners">Miners Guide</a>
+        </div>
+      </div>
+      <div class="nav-dropdown nav-resources">
+        <span class="nav-dropdown-label">Resources</span>
+        <div class="nav-dropdown-menu">
+          <a href="../psa">Announcements</a>
+          <a href="../directory">Directory</a>
+          <a href="../technicals">Technicals</a>
+          <a href="../exchanges">Exchanges</a>
+        </div>
+      </div>
+      <a href="../about">About</a>
+    </nav>
+   </div>
+  </header>
+  <main>
+<section class="page-intro">
+    <div class="content-narrow">
+     <p class="eyebrow">Developer reference</p>
+     <h1>Building for Bitcoin BIP110</h1>
+     <div class="intro-copy"><p>Consensus transition, raw-header compatibility, chain identity, RPC verification, replay protection, and engineering-test references for Bitcoin BIP110 software.</p></div>
+    </div>
+   </section>
+   <div class="technical-page content-wide">
+    <section class="technical-block" id="boundary">
+     <div class="block-heading"><p class="eyebrow">Consensus boundary</p><h2>Height 961,640 changes proof of work and header format</h2></div>
+     <div class="data-table-wrap"><table class="data-table"><thead><tr><th>Property</th><th>Before 961,640</th><th>From 961,640</th></tr></thead><tbody>
+      <tr><td>Proof of work</td><td>SHA-256d</td><td>BLAKE2b</td></tr>
+      <tr><td>Header size</td><td>80 bytes</td><td>164 bytes</td></tr>
+      <tr><td>Header generation</td><td>Legacy</td><td>Version 2</td></tr>
+     </tbody></table></div>
+     <p>Applications that delegate validation to Bitcoin Knots can consume normalized RPC output. Independent raw-header validators must implement the reference version-2 BLAKE2b rules.</p>
+    </section>
+    <section class="technical-block" id="rpc-checks">
+     <div class="block-heading"><p class="eyebrow">Chain verification</p><h2>Verify fork anchors before operating</h2></div>
+     <pre><code>bitcoin-cli getblockchaininfo
+bitcoin-cli getdeploymentinfo
+bitcoin-cli getblockhash 961632
+bitcoin-cli getblockhash 961639
+bitcoin-cli getblockhash 961640</code></pre>
+     <p>Expected hashes are published on the <a href="../technicals/#identity">Technicals page</a> and in the downloadable Technical Specifications.</p>
+    </section>
+    <section class="technical-block" id="signing">
+     <div class="block-heading"><p class="eyebrow">Signing and replay</p><h2>SIGHASH_UNIFIED</h2></div>
+     <p><code>SIGHASH_UNIFIED</code> is opt-in per signature, uses hash-type bit <code>0x20</code>, and requires the value and scriptPubKey of every spent output. Ordinary signatures can remain replayable when the same pre-fork inputs are valid on both histories.</p>
+    </section>
+    <section class="technical-block" id="regtest">
+     <div class="block-heading"><p class="eyebrow">Engineering tests</p><h2>Regtest activation controls</h2></div>
+     <pre><code>-testactivationheight=blake2b@&lt;height&gt;
+-rdtsexpiry=&lt;unix_time&gt;
+-blake2b_headline=&lt;headline&gt;</code></pre>
+     <p>These reference-node arguments allow controlled transition testing without depending on mainnet timing.</p>
+    </section>
+    <section class="technical-block" id="developer-downloads">
+     <div class="block-heading"><p class="eyebrow">Specifications</p><h2>Implementation references</h2></div>
+     <div class="button-row">
+      <a class="button button-dark" href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">Bitcoin Knots source</a>
+      <a class="button button-light" download href="../downloads/Bitcoin_BIP110_Technical_Specifications.pdf">Technical Specifications PDF</a>
+      <a class="button button-light" download href="../downloads/bitcoin-bip110-technical-specs.json">Technical Specs JSON</a>
+     </div>
+    </section>
+   </div>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">
+          Bitcoin BIP110
+        </p>
+
+        <p>
+          This is a public reference for the Bitcoin BIP110 network, its history,
+          protocol, software, infrastructure, and operational status.
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Reference
+        </p>
+
+        <a href="../history">History</a>
+        <a href="../timeline">Timeline</a>
+        <a href="../technicals">Technical data</a>
+      </div>
+
+      <div>
+        <p class="footer-label">
+          Sources
+        </p>
+
+        <a href="../sources">
+          Sources and policy
         </a>
 
-        <a class="coming-soon-back-link" href="/">Return to main site &rarr;</a>
+        <a
+          href="https://bips.dev/110/"
+          rel="noreferrer"
+        >
+          Original BIP 110
+        </a>
+
+        <a
+          href="https://github.com/bitcoinknots/bitcoin/pull/359"
+          rel="noreferrer"
+        >
+          BLAKE2b development
+        </a>
       </div>
-    </header>
+    </div>
 
-    <main class="coming-soon-main">
-      <div class="content-narrow coming-soon-inner">
-        <div class="coming-soon-status" aria-label="Status: in development">
-          <span class="coming-soon-status-dot" aria-hidden="true"></span>
-          <span>In Development</span>
-        </div>
+    <div class="footer-bottom">
+      <span>
+        © Bitcoin BIP110 Project 2026. Released under the MIT license.
+      </span>
 
-        <h1>Coming Soon</h1>
-
-        <p class="coming-soon-lede">
-          This section of the Bitcoin BIP110 network reference is currently being prepared.
-          New documentation and technical material will be published here soon.
-        </p>
-
-        <div class="button-row">
-          <a class="button button-dark" href="/">Return to Bitcoin BIP110</a>
-        </div>
-
-        <p class="coming-soon-note">
-          Independent technical reference for the Bitcoin BIP110 network.
-        </p>
-      </div>
-    </main>
-
-    <footer class="coming-soon-footer">
-      <div class="content-wide coming-soon-footer-inner">
-        <strong>Bitcoin BIP110</strong>
-        <span>Network Reference</span>
-      </div>
-    </footer>
-  </div>
-</body>
+      <span>
+      </span>
+    </div>
+  </footer>
+ </body>
 </html>
+

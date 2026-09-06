@@ -4,14 +4,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link data-precedence="vite-rsc/importer-resources" data-rsc-css-href="../assets/index-CS8UUhtA.css" href="../assets/index-CS8UUhtA.css" rel="stylesheet">
-  <title>
-   Technical Reference | Bitcoin BIP110
-  </title>
-  <meta content="Bitcoin BIP110 chain identity, comparison data, mining and replay status, release information, and exchange or custody integration facts." name="description">
+  <title>Bitcoin BIP110 Technical Reference | Network Reference</title>
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." name="description">
   <meta content="index, follow" name="robots">
-  <meta content="Bitcoin BIP110" property="og:title">
-  <meta content="Independent network reference" property="og:description">
-  <meta content="../" property="og:url">
+  <meta content="Bitcoin BIP110 Technical Reference | Network Reference" property="og:title">
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." property="og:description">
+  <meta content="https://bitcoinbip110.org/technicals/" property="og:url">
   <meta content="Bitcoin BIP110" property="og:site_name">
   <meta content="website" property="og:type">
   <meta content="../og.png" property="og:image">
@@ -19,12 +17,12 @@
   <meta content="630" property="og:image:height">
   <meta content="Bitcoin BIP110 independent network reference" property="og:image:alt">
   <meta content="summary_large_image" name="twitter:card">
-  <meta content="Bitcoin BIP110" name="twitter:title">
-  <meta content="Independent network reference" name="twitter:description">
+  <meta content="Bitcoin BIP110 Technical Reference | Network Reference" name="twitter:title">
+  <meta content="Production Bitcoin BIP110 chain identity, BLAKE2b consensus, node release, explorer templates, replay protection, network parameters, and exchange integration data." name="twitter:description">
   <meta content="../og.png" name="twitter:image">
   <link href="../favicon.svg" rel="shortcut icon">
   <link href="../favicon.svg" rel="icon">
-  <link href="../" rel="canonical">
+  <link href="https://bitcoinbip110.org/technicals/" rel="canonical">
  </head>
  <body>
 
@@ -89,6 +87,7 @@
           <a href="../psa">Announcements</a>
           <a href="../directory">Directory</a>
           <a href="../technicals">Technicals</a>
+          <a href="../technicals">Exchange</a>
         </div>
       </div>
       <a href="../about">About</a>
@@ -96,475 +95,152 @@
    </div>
   </header>
   <main>
-   <section class="page-intro">
+<section class="page-intro">
     <div class="content-narrow">
-     <p class="eyebrow">
-      Technical reference
-     </p>
-     <h1>
-      Chain identity and integration data
-     </h1>
+     <p class="eyebrow">Technical reference</p>
+     <h1>Chain identity and integration data</h1>
      <div class="intro-copy">
-      <p>
-       A dated fact sheet for node operators, miners, wallet developers, researchers, exchanges, and custodians. Unknown fields remain explicit.
-      </p>
+      <p>Production reference for Bitcoin BIP110 chain identity, node software, network parameters, BLAKE2b proof of work, replay protection, custody, and exchange integration.</p>
      </div>
     </div>
    </section>
+
    <div class="technical-page content-wide">
-    <section class="technical-block" id="comparison">
+    <section class="technical-block" id="identity">
      <div class="block-heading">
-      <p class="eyebrow">
-       Chain comparison
-      </p>
-      <h2>
-       Three related states, distinct operational rules
-      </h2>
-      <p>
-       Bitcoin BTC mainnet, the historical SHA-256d enforcement branch, and the intended Bitcoin BIP110 continuation share lineage but require separate identity checks.
-      </p>
+      <p class="eyebrow">Chain identity</p>
+      <h2>Fork anchors are the network discriminator</h2>
+      <p>Bitcoin BIP110 shares Bitcoin's genesis block, mainnet network magic, default ports, and address encodings. Services must identify the chain using the fork-anchor hashes below rather than address appearance or <code>chain=main</code>.</p>
      </div>
      <div class="data-table-wrap">
-      <table class="data-table comparison-table">
-       <thead>
-        <tr>
-         <th>
-          Property
-         </th>
-         <th>
-          Bitcoin (BTC) mainnet
-         </th>
-         <th>
-          BIP 110 enforcement branch
-         </th>
-         <th>
-          Bitcoin BIP110
-         </th>
-        </tr>
-       </thead>
+      <table class="data-table">
+       <thead><tr><th>Checkpoint</th><th>Height</th><th>Expected hash</th></tr></thead>
        <tbody>
-        <tr>
-         <td>
-          First divergent height
-         </td>
-         <td>
-          961,632
-         </td>
-         <td>
-          961,632
-         </td>
-         <td>
-          961,632; later BLAKE2b height pending
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Proof of work
-         </td>
-         <td>
-          SHA-256d
-         </td>
-         <td>
-          SHA-256d
-         </td>
-         <td>
-          BLAKE2b after confirmed activation
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Header format
-         </td>
-         <td>
-          Bitcoin 80-byte header
-         </td>
-         <td>
-          Bitcoin 80-byte header
-         </td>
-         <td>
-          BLAKE2b 164-byte header v2 in current development
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Mining hardware
-         </td>
-         <td>
-          SHA-256d Bitcoin ASICs
-         </td>
-         <td>
-          SHA-256d Bitcoin ASICs
-         </td>
-         <td>
-          Specifically tested BLAKE2b hardware and firmware
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Reduced-data rules
-         </td>
-         <td>
-          Not activated through BIP 110
-         </td>
-         <td>
-          Original deployment never reached ACTIVE
-         </td>
-         <td>
-          Active with BLAKE2b in RC2 testnet code; mainnet pending
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Difficulty
-         </td>
-         <td>
-          Bitcoin mainnet rules
-         </td>
-         <td>
-          Original inherited rules
-         </td>
-         <td>
-          Reset, adjustment, and boundary must be fixed in mainnet source
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Replay behavior
-         </td>
-         <td>
-          Accepts ordinary Bitcoin transactions
-         </td>
-         <td>
-          Ordinary transactions remain mutually replayable
-         </td>
-         <td>
-          Opt-in SIGHASH_UNIFIED on RC2 testnet; mainnet pending
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Reference software
-         </td>
-         <td>
-          Multiple Bitcoin implementations
-         </td>
-         <td>
-          Exact enforcing release and commit required
-         </td>
-         <td>
-          Fork-specific signed release, tag, and commit required
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Asset identity
-         </td>
-         <td>
-          BTC
-         </td>
-         <td>
-          Historical branch state
-         </td>
-         <td>
-          Bitcoin BIP110; project-declared ticker BIP110
-         </td>
-        </tr>
-        <tr>
-         <td>
-          Snapshot status
-         </td>
-         <td>
-          Active network
-         </td>
-         <td>
-          SHA-256d tip 961,638 observed 24 Aug 2026
-         </td>
-         <td>
-          BLAKE2b testnet active; BLAKE2b mainnet inactive
-         </td>
-        </tr>
+        <tr><td>Last common block</td><td>961,631</td><td><code>00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a</code></td></tr>
+        <tr><td>First Bitcoin BIP110 branch block</td><td>961,632</td><td><code>0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16</code></td></tr>
+        <tr><td>Final SHA-256d block</td><td>961,639</td><td><code>00000000000000000001bbc439e13f749dca850d32c7a2834165338713027e65</code></td></tr>
+        <tr><td>First BLAKE2b block</td><td>961,640</td><td><code>0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb</code></td></tr>
        </tbody>
       </table>
      </div>
-
-    <a
-     class="scroll-cue"
-     href="#integration"
-    >
-     <img
-      src="../scroll-down.svg"
-      alt=""
-      aria-hidden="true"
-     />
-    </a>
- 
+     <div class="callout"><p><strong>Mandatory identity rule:</strong> a checkpoint mismatch should disable deposit crediting and withdrawal broadcast.</p></div>
     </section>
+
     <section class="technical-block" id="integration">
      <div class="block-heading">
-      <p class="eyebrow">
-       Exchange and custody integration
-      </p>
-      <h2>
-       Fact sheet
-      </h2>
-      <p>
-       Integration should begin after maintainers publish reproducible software and stable network parameters. The block-hash identity check is essential because the current RPC chain name, network magic, port, and address formats overlap Bitcoin mainnet.
-      </p>
+      <p class="eyebrow">Exchange and custody integration</p>
+      <h2>Production fact sheet</h2>
+      <p>These are the project-declared and operational values intended for exchange, wallet, custodian, explorer, and infrastructure integration.</p>
      </div>
      <dl class="fact-sheet">
-      <div class="fact-row">
-       <dt>
-        Exchange display name
-       </dt>
-       <dd>
-        Bitcoin BIP110 (project declaration)
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Exchange ticker
-       </dt>
-       <dd>
-        BIP110 (project declaration; services may choose another identifier)
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Asset type
-       </dt>
-       <dd>
-        Native coin
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Consensus
-       </dt>
-       <dd>
-        Proof of work
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Proof of work at observed branch tip
-       </dt>
-       <dd>
-        SHA-256d at height 961,638, observed 24 August 2026
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Planned proof of work
-       </dt>
-       <dd>
-        BLAKE2b header v2; final mainnet parameters pending
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Origin chain
-       </dt>
-       <dd>
-        Bitcoin
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Last common height
-       </dt>
-       <dd>
-        961,631
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Last common block hash
-       </dt>
-       <dd>
-        00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        First divergent height
-       </dt>
-       <dd>
-        961,632
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        First Bitcoin BIP110 block hash
-       </dt>
-       <dd>
-        0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        First BLAKE2b mainnet height
-       </dt>
-       <dd>
-        Unavailable. A mainnet activation height has not been published.
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        First BLAKE2b mainnet hash
-       </dt>
-       <dd>
-        Unavailable. No BLAKE2b mainnet block has been mined.
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Genesis block hash
-       </dt>
-       <dd>
-        000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        RPC network name
-       </dt>
-       <dd>
-        main (not a unique Bitcoin BIP110 chain identifier)
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Required RPC identity check
-       </dt>
-       <dd>
-        getblockhash 961632 must return 0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        P2P network magic
-       </dt>
-       <dd>
-        f9 be b4 d9 in current development source; identical to Bitcoin mainnet and subject to change
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Default P2P port
-       </dt>
-       <dd>
-        8333 in current development source; identical to Bitcoin mainnet and subject to change
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Address formats
-       </dt>
-       <dd>
-        P2PKH 1... (0x00); P2SH 3... (0x05); SegWit bc1q...; Taproot bc1p...
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Decimal places
-       </dt>
-       <dd>
-        8
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Subsidy and halving
-       </dt>
-       <dd>
-        Initial subsidy 50 BIP110; halves every 210,000 blocks; 3.125 BIP110 at height 961,638; next halving at 1,050,000
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Coinbase maturity
-       </dt>
-       <dd>
-        100 blocks
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Replay protection
-       </dt>
-       <dd>
-        None active on the observed SHA-256d branch; opt-in SIGHASH_UNIFIED implemented on RC2 testnet; mainnet pending
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Reference node status
-       </dt>
-       <dd>
-        No stable Bitcoin BIP110 mainnet release published
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Testnet reference candidate
-       </dt>
-       <dd>
-        Bitcoin Knots 29.4.1 / Knots 20260508rc2; tag v29.4.1.knots20260508rc2
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        RC2 commit
-       </dt>
-       <dd>
-        c25ad6bcd18fa65cd78f176a52be062411507741
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Mainnet release hashes and signatures
-       </dt>
-       <dd>
-        Unavailable because no stable mainnet artifacts have been published
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Website
-       </dt>
-       <dd>
-        bitcoinbip110.org
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Technical contact
-       </dt>
-       <dd>
-        Not yet published
-       </dd>
-      </div>
-      <div class="fact-row">
-       <dt>
-        Security contact
-       </dt>
-       <dd>
-        Not yet published
-       </dd>
-      </div>
+      <div class="fact-row"><dt>Preferred listing name</dt><dd>Bitcoin BIP110</dd></div>
+      <div class="fact-row"><dt>Project-declared ticker</dt><dd>BIP110</dd></div>
+      <div class="fact-row"><dt>Website</dt><dd><a href="https://bitcoinbip110.org/" rel="noreferrer">https://bitcoinbip110.org/</a></dd></div>
+      <div class="fact-row"><dt>Asset type</dt><dd>Native UTXO coin</dd></div>
+      <div class="fact-row"><dt>Decimal places</dt><dd>8</dd></div>
+      <div class="fact-row"><dt>Base units per coin</dt><dd>100,000,000</dd></div>
+      <div class="fact-row"><dt>Reference implementation</dt><dd><a href="https://github.com/bitcoinknots/bitcoin" rel="noreferrer">Bitcoin Knots</a></dd></div>
+      <div class="fact-row"><dt>Recommended release</dt><dd><code>29.4.1.knots20260508</code> / <code>v29.4.1.knots20260508</code></dd></div>
+      <div class="fact-row"><dt>Release directory</dt><dd><a href="https://bitcoinknots.org/files/29.x/29.4.1.knots20260508/" rel="noreferrer">bitcoinknots.org/files/29.x/29.4.1.knots20260508/</a></dd></div>
+      <div class="fact-row"><dt>Block explorer</dt><dd><a href="https://mempool.guide/" rel="noreferrer">https://mempool.guide/</a></dd></div>
+      <div class="fact-row"><dt>Explorer transaction template</dt><dd><code>https://mempool.guide/tx/{txid}</code></dd></div>
+      <div class="fact-row"><dt>Explorer address template</dt><dd><code>https://mempool.guide/address/{address}</code></dd></div>
+      <div class="fact-row"><dt>Circulating supply URL</dt><dd>No dedicated circulating-supply endpoint is currently published.</dd></div>
+      <div class="fact-row"><dt>RPC chain name</dt><dd><code>main</code> (not unique to Bitcoin BIP110)</dd></div>
+      <div class="fact-row"><dt>P2P message start</dt><dd><code>f9 be b4 d9</code></dd></div>
+      <div class="fact-row"><dt>Default P2P port</dt><dd><code>8333</code></dd></div>
+      <div class="fact-row"><dt>Default RPC port</dt><dd><code>8332</code></dd></div>
+      <div class="fact-row"><dt>P2PKH / P2SH</dt><dd><code>0x00</code> / <code>0x05</code></dd></div>
+      <div class="fact-row"><dt>Bech32 HRP</dt><dd><code>bc</code></dd></div>
+      <div class="fact-row"><dt>BIP32 public / private prefix</dt><dd><code>0488b21e</code> / <code>0488ade4</code></dd></div>
      </dl>
-     <div class="download-card">
-      <div>
-       <strong>
-        Machine-readable network snapshot
-       </strong>
-       <p>
-        JSON fields match this dated reference and retain pending values as explicit nulls.
-       </p>
-      </div>
-      <a class="button button-dark" download href="../downloads/bitcoin-bip110-integration-assets.json">
-       Download JSON
-      </a>
+    </section>
+
+    <section class="technical-block" id="consensus">
+     <div class="block-heading">
+      <p class="eyebrow">Consensus transition</p>
+      <h2>BLAKE2b and version-2 headers</h2>
+      <p>The Bitcoin BIP110 branch used SHA-256d through height 961,639 and permanently switched to BLAKE2b at height 961,640 on 30 August 2026.</p>
+     </div>
+     <div class="data-table-wrap">
+      <table class="data-table">
+       <thead><tr><th>Property</th><th>Value</th></tr></thead>
+       <tbody>
+        <tr><td>Proof of work through 961,639</td><td>SHA-256d</td></tr>
+        <tr><td>Proof of work from 961,640</td><td>BLAKE2b, permanent</td></tr>
+        <tr><td>Legacy header size</td><td>80 bytes</td></tr>
+        <tr><td>Header size from 961,640</td><td>164 bytes, header generation 2</td></tr>
+        <tr><td>Target spacing</td><td>600 seconds</td></tr>
+        <tr><td>Legacy target timespan parameter</td><td>1,209,600 seconds</td></tr>
+        <tr><td>Mainnet BLAKE2b target shift</td><td>22</td></tr>
+        <tr><td>Coinbase maturity</td><td>100 blocks</td></tr>
+        <tr><td>Subsidy halving interval</td><td>210,000 blocks</td></tr>
+        <tr><td>Next halving height</td><td>1,050,000</td></tr>
+       </tbody>
+      </table>
+     </div>
+     <p>Raw-header consumers must support the version-2 fields exposed by the reference node, including <code>txcount</code>, <code>header_version</code>, <code>nonce2</code>, <code>nonce3</code>, <code>extranonce</code>, <code>time_offset</code>, <code>header_flags</code>, <code>xor_key</code>, <code>xor_key_mask_clear_bits</code>, and <code>mm_rhs</code>.</p>
+    </section>
+
+    <section class="technical-block" id="reduced-data">
+     <div class="block-heading">
+      <p class="eyebrow">Temporary consensus window</p>
+      <h2>Reduced-data rules</h2>
+      <p>The temporary reduced-data window activates with BLAKE2b at height 961,640 and expires according to previous-block median time past at 1 September 2027 00:00 UTC. BLAKE2b remains active after expiry.</p>
+     </div>
+     <dl class="fact-sheet">
+      <div class="fact-row"><dt>Activation height</dt><dd>961,640</dd></div>
+      <div class="fact-row"><dt>Expiry clock</dt><dd>Previous block median time past</dd></div>
+      <div class="fact-row"><dt>Expiry time</dt><dd>1 September 2027 00:00 UTC</dd></div>
+      <div class="fact-row"><dt>Temporary maximum block weight</dt><dd>800,000 weight units</dd></div>
+      <div class="fact-row"><dt>Approximate serialized size</dt><dd>About 300 kB</dd></div>
+     </dl>
+    </section>
+
+    <section class="technical-block" id="replay">
+     <div class="block-heading">
+      <p class="eyebrow">Replay protection and custody</p>
+      <h2>SIGHASH_UNIFIED is opt-in</h2>
+      <p>Ordinary signatures spending shared pre-fork outputs can remain valid on both histories. <code>SIGHASH_UNIFIED</code> uses hash-type bit <code>0x20</code> and tagged hash <code>UnifiedSighash</code> to provide one-way replay protection for signatures that opt in.</p>
+     </div>
+     <div class="data-table-wrap">
+      <table class="data-table">
+       <thead><tr><th>Property</th><th>Value</th></tr></thead>
+       <tbody>
+        <tr><td>Opt-in granularity</td><td>Per signature</td></tr>
+        <tr><td>Covered script families</td><td>Bare/P2SH, SegWit v0, Taproot key path, Tapscript</td></tr>
+        <tr><td>Signer input data</td><td>Value and scriptPubKey of every spent output</td></tr>
+        <tr><td>Reference test vectors</td><td>166</td></tr>
+        <tr><td>Normal withdrawal inventory</td><td>Use <code>BIP110_ONLY</code> outputs; exclude <code>SHARED</code> and <code>UNKNOWN</code></td></tr>
+       </tbody>
+      </table>
+     </div>
+     <div class="callout"><p>BTC and BIP110 systems should use separate data directories, node processes, wallet databases, signer namespaces, deposit mappings, withdrawal queues, broadcast paths, and accounting asset IDs.</p></div>
+    </section>
+
+    <section class="technical-block" id="rpc">
+     <div class="block-heading">
+      <p class="eyebrow">Production verification</p>
+      <h2>Minimum RPC identity profile</h2>
+     </div>
+     <pre><code>bitcoin-cli getblockchaininfo
+bitcoin-cli getdeploymentinfo
+bitcoin-cli getblockhash 961632
+bitcoin-cli getblockhash 961639
+bitcoin-cli getblockhash 961640</code></pre>
+     <p>A service should fail closed if a mandatory checkpoint fails, the node reports initial block download, the wallet or indexer materially lags the node, RPC health fails, or the signer is unavailable.</p>
+    </section>
+
+    <section class="technical-block" id="downloads">
+     <div class="block-heading">
+      <p class="eyebrow">Integration package</p>
+      <h2>Downloadable specifications</h2>
+      <p>The Markdown, PDF, and JSON files below carry the same production chain identity and integration values used by this page.</p>
+     </div>
+     <div class="button-row">
+      <a class="button button-light" download href="../downloads/Bitcoin_BIP110_Technical_Specifications.pdf">Technical Specifications PDF</a>
+      <a class="button button-light" download href="../downloads/Bitcoin_BIP110_Integration_Guide.pdf">Integration Guide PDF</a>
+      <a class="button button-light" download href="../downloads/bitcoin-bip110-technical-specs.json">Technical Specs JSON</a>
      </div>
     </section>
    </div>
@@ -587,9 +263,9 @@
           Reference
         </p>
 
-        <a href="./history">History</a>
-        <a href="./timeline">Timeline</a>
-        <a href="./technical">Technical data</a>
+        <a href="../history">History</a>
+        <a href="../timeline">Timeline</a>
+        <a href="../technicals">Technical data</a>
       </div>
 
       <div>
@@ -597,7 +273,7 @@
           Sources
         </p>
 
-        <a href="./sources">
+        <a href="../sources">
           Sources and policy
         </a>
 
