@@ -1,0 +1,150 @@
+{
+    "schema_version": "1.0",
+    "updated_at": "2026-09-05",
+    "status": "exchange-integration-reference",
+    "asset": {
+        "display_name": "Bitcoin BIP110",
+        "project_ticker": "BIP110",
+        "ticker_status": "project-declared; service adoption may vary",
+        "asset_type": "native UTXO coin",
+        "origin_chain": "Bitcoin",
+        "decimal_places": 8,
+        "base_units_per_coin": 100000000,
+        "genesis_block_hash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"
+    },
+    "fork_identity": {
+        "last_common_height": 961631,
+        "last_common_block_hash": "00000000000000000000807f9dc917442a67910426d79ebb2f8aa2149327ce8a",
+        "first_bip110_height": 961632,
+        "first_bip110_block_hash": "0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16",
+        "last_sha256d_height": 961639,
+        "last_sha256d_block_hash": "00000000000000000001bbc439e13f749dca850d32c7a2834165338713027e65",
+        "first_blake2b_height": 961640,
+        "first_blake2b_block_hash": "0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb",
+        "first_blake2b_date": "2026-08-30"
+    },
+    "reference_software": {
+        "implementation": "Bitcoin Knots",
+        "minimum_reference_release": "29.4.1.knots20260508",
+        "release_tag": "v29.4.1.knots20260508",
+        "release_directory": "https://bitcoinknots.org/files/29.x/29.4.1.knots20260508/",
+        "checksum_file": "SHA256SUMS",
+        "signature_file": "SHA256SUMS.asc"
+    },
+    "network": {
+        "rpc_chain_name": "main",
+        "default_p2p_port": 8333,
+        "default_rpc_port": 8332,
+        "p2p_message_start_wire_hex": "f9beb4d9",
+        "p2pkh_prefix_hex": "00",
+        "p2sh_prefix_hex": "05",
+        "private_key_prefix_hex": "80",
+        "bech32_hrp": "bc",
+        "bip32_public_prefix_hex": "0488b21e",
+        "bip32_private_prefix_hex": "0488ade4",
+        "unique_identity_warning": "These identifiers overlap Bitcoin BTC mainnet. Use fork checkpoint hashes for chain identity."
+    },
+    "proof_of_work": {
+        "through_height_961639": "SHA256d",
+        "from_height_961640": "BLAKE2b",
+        "blake2b_activation_height": 961640,
+        "blake2b_permanent": true,
+        "target_spacing_seconds": 600,
+        "legacy_target_timespan_seconds": 1209600,
+        "blake2b_target_shift": 22
+    },
+    "block_headers": {
+        "legacy_header_size_bytes": 80,
+        "v2_header_activation_height": 961640,
+        "v2_header_size_bytes": 164,
+        "rpc_fields": [
+            "txcount",
+            "header_version",
+            "nonce2",
+            "nonce3",
+            "extranonce",
+            "time_offset",
+            "header_flags",
+            "xor_key",
+            "xor_key_mask_clear_bits",
+            "mm_rhs"
+        ]
+    },
+    "temporary_reduced_data_window": {
+        "activation_height": 961640,
+        "expiry_basis": "previous block median time past",
+        "expiry_time_utc": "2027-09-01T00:00:00Z",
+        "max_block_weight": 800000,
+        "blake2b_continues_after_expiry": true
+    },
+    "monetary_policy": {
+        "subsidy_halving_interval_blocks": 210000,
+        "coinbase_maturity_blocks": 100,
+        "subsidy_at_fork_coins": 3.125,
+        "next_halving_height": 1050000,
+        "max_money_sanity_constant_coins": 21000000
+    },
+    "replay_protection": {
+        "ordinary_signatures_replayable_for_shared_inputs": true,
+        "mechanism": "SIGHASH_UNIFIED",
+        "hash_type_bit_hex": "20",
+        "tagged_hash_name": "UnifiedSighash",
+        "opt_in": true,
+        "granularity": "per signature",
+        "direction": "transactions using the algorithm on this chain do not verify on chains that do not implement it",
+        "reverse_protection_for_ordinary_signatures": false,
+        "script_types": [
+            "bare-or-P2SH",
+            "segwit-v0",
+            "taproot-key-path",
+            "tapscript"
+        ],
+        "upstream_test_vector_count": 166,
+        "signer_requires_all_spent_outputs": true
+    },
+    "required_identity_checks": [
+        {
+            "rpc": "getblockhash 961632",
+            "expected": "0000000000000000000169eb6f811ddbd0daf343af7b62180cdb13e7c78dbc16"
+        },
+        {
+            "rpc": "getblockhash 961639",
+            "expected": "00000000000000000001bbc439e13f749dca850d32c7a2834165338713027e65"
+        },
+        {
+            "rpc": "getblockhash 961640",
+            "expected": "0000000000000050c1e5f69672f459293be14f46e5a494e7a8c8541396f18eeb"
+        }
+    ],
+    "exchange_invariants": {
+        "separate_btc_and_bip110_wallet_infrastructure": true,
+        "address_string_is_not_network_identifier": true,
+        "normal_withdrawals_must_exclude_shared_or_unknown_utxos": true,
+        "checkpoint_failure_must_pause_deposits_and_withdrawals": true,
+        "internal_amounts_should_use_integer_base_units": true,
+        "customer_crediting_requires_exchange_defined_snapshot_policy": true
+    },
+    "recommended_utxo_separation_states": [
+        "SHARED",
+        "BIP110_ONLY",
+        "BTC_ONLY",
+        "UNKNOWN"
+    ],
+    "regtest_arguments": [
+        "-testactivationheight=blake2b@<height>",
+        "-rdtsexpiry=<unix_time>",
+        "-blake2b_headline=<headline>"
+    ],
+    "sources": [
+        "https://bitcoinknots.org/files/29.x/29.4.1.knots20260508/",
+        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/release-notes.md",
+        "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/kernel/chainparams.cpp",
+        "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/chainparamsbase.cpp",
+        "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/consensus.h",
+        "https://raw.githubusercontent.com/bitcoinknots/bitcoin/v29.4.1.knots20260508/src/consensus/amount.h",
+        "https://github.com/bitcoinknots/bitcoin/blob/v29.4.1.knots20260508/doc/unified-sighash.md",
+        "https://bitcoin-blake2b.org/developers",
+        "https://bitcoin-blake2b.org/faq",
+        "https://bitcoin-blake2b.org/mining"
+    ]
+}
