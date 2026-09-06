@@ -286,6 +286,7 @@ a {
 img {
   max-width: 100%
 }
+
 code {
   border: 1px solid var(--gray-300);
   border-radius: 3px;
@@ -293,6 +294,7 @@ code {
   font-family: Courier New,Courier,monospace;
   font-size: .88em
 }
+
 ::selection {
   background: var(--black);
   color: var(--white)
@@ -301,6 +303,26 @@ code {
   outline: 2px solid var(--black);
   outline-offset: 4px
 }
+
+.code-block {
+    border: 1px solid var(--gray-300);
+    background: var(--gray-100);
+    margin-top: 20px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre;
+}
+
+.code-block > code {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    font: inherit;
+}
+
 .content-wide,.content-narrow {
   width: calc(100% - 48px);
   margin-inline: auto

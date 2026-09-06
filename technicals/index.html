@@ -87,7 +87,7 @@
           <a href="../psa">Announcements</a>
           <a href="../directory">Directory</a>
           <a href="../technicals">Technicals</a>
-          <a href="../technicals">Exchange</a>
+          <!--a href="./exchanges">Exchanges</a-->
         </div>
       </div>
       <a href="../about">About</a>
@@ -103,6 +103,14 @@
       <p>Production reference for Bitcoin BIP110 chain identity, node software, network parameters, BLAKE2b proof of work, replay protection, custody, and exchange integration.</p>
      </div>
     </div>
+
+      <a class="scroll-cue" href="#identity" aria-label="Continue to Chain Identity">
+        <img
+          src="../scroll-down.svg"
+          alt=""
+          aria-hidden="true"
+        />
+      </a>
    </section>
 
    <div class="technical-page content-wide">
@@ -135,6 +143,9 @@
      <dl class="fact-sheet">
       <div class="fact-row"><dt>Preferred listing name</dt><dd>Bitcoin BIP110</dd></div>
       <div class="fact-row"><dt>Project-declared ticker</dt><dd>BIP110</dd></div>
+      <div class="fact-row"><dt>Date of issue (chain split)</dt><dd>8 August 2026</dd></div>
+      <div class="fact-row"><dt>Max Supply (nominal)</dt><dd>21,000,000 BIP110</dd></div>
+      <div class="fact-row"><dt>Circulating supply at issuance (nominal)</dt><dd>20,067,600 BIP110</dd></div>
       <div class="fact-row"><dt>Website</dt><dd><a href="https://bitcoinbip110.org/" rel="noreferrer">https://bitcoinbip110.org/</a></dd></div>
       <div class="fact-row"><dt>Asset type</dt><dd>Native UTXO coin</dd></div>
       <div class="fact-row"><dt>Decimal places</dt><dd>8</dd></div>
@@ -154,6 +165,7 @@
       <div class="fact-row"><dt>Bech32 HRP</dt><dd><code>bc</code></dd></div>
       <div class="fact-row"><dt>BIP32 public / private prefix</dt><dd><code>0488b21e</code> / <code>0488ade4</code></dd></div>
      </dl>
+     <div class="callout"><p><strong>Issue and supply basis:</strong> the date of issue is the date of the first Bitcoin BIP110 branch block at height 961,632. The 20,067,600 BIP110 figure is the nominal subsidy-derived supply through the last common height 961,631 and does not subtract lost, burned, or otherwise provably unspendable coins.</p></div>
     </section>
 
     <section class="technical-block" id="consensus">
@@ -176,6 +188,8 @@
         <tr><td>Coinbase maturity</td><td>100 blocks</td></tr>
         <tr><td>Subsidy halving interval</td><td>210,000 blocks</td></tr>
         <tr><td>Next halving height</td><td>1,050,000</td></tr>
+        <tr><td>Nominal max supply</td><td>21,000,000 BIP110</td></tr>
+        <tr><td>Nominal issued supply at split</td><td>20,067,600 BIP110</td></tr>
        </tbody>
       </table>
      </div>
@@ -223,12 +237,12 @@
       <p class="eyebrow">Production verification</p>
       <h2>Minimum RPC identity profile</h2>
      </div>
-     <pre><code>bitcoin-cli getblockchaininfo
+    <p>Check the following. A service should fail closed if a mandatory checkpoint fails, the node reports initial block download, the wallet or indexer materially lags the node, RPC health fails, or the signer is unavailable.</p>
+     <pre class="code-block"><code>bitcoin-cli getblockchaininfo
 bitcoin-cli getdeploymentinfo
 bitcoin-cli getblockhash 961632
 bitcoin-cli getblockhash 961639
 bitcoin-cli getblockhash 961640</code></pre>
-     <p>A service should fail closed if a mandatory checkpoint fails, the node reports initial block download, the wallet or indexer materially lags the node, RPC health fails, or the signer is unavailable.</p>
     </section>
 
     <section class="technical-block" id="downloads">
@@ -304,4 +318,3 @@ bitcoin-cli getblockhash 961640</code></pre>
   </footer>
  </body>
 </html>
-

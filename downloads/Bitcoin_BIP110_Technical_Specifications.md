@@ -1,6 +1,6 @@
 # Bitcoin BIP110 Technical Specifications
 
-Version: 1.1
+Version: 1.2
 Updated: 6 September 2026
 
 ## 1. Scope
@@ -13,17 +13,21 @@ This specification is intentionally operational. Consensus behavior remains defi
 
 | Field | Value |
 |---|---|
-| Display name | Bitcoin BIP110 |
-| Project-declared ticker | BIP110 |
+| Exchange listing name | Bitcoin BIP110 |
+| Exchange listing ticker | BIP110 |
+| Date of issue (chain split) | 8 August 2026 |
+| Max supply (nominal) | 21,000,000 BIP110 |
+| Circulating supply at issuance (nominal) | 20,067,600 BIP110 |
 | Asset class | Native UTXO coin |
 | Origin ledger | Bitcoin |
 | Decimal places | 8 |
 | Base units per coin | 100,000,000 |
-| Maximum money sanity constant | 21,000,000 coins |
 | Genesis block | Bitcoin genesis block |
 | Genesis hash | `000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f` |
 
 The ticker is a project declaration. Exchanges may use a different internal or public symbol if required to avoid a collision.
+
+For integration metadata, the date of issue is the date of the first BIP110 branch block at height 961632. The nominal circulating supply at issuance is calculated from the protocol subsidy schedule through the last common height 961631. It does not subtract coins that were lost, burned, or otherwise provably unspendable.
 
 ## 3. Fork identity
 
@@ -66,7 +70,18 @@ A mismatch MUST disable deposit crediting and withdrawal broadcast.
 
 Production deployments SHOULD verify release hashes and signatures before installation.
 
-## 5. Mainnet network parameters
+## 5. Explorer and integration endpoints
+
+| Field | Value |
+|---|---|
+| Project website | `https://bitcoinbip110.org/` |
+| Source repository | `https://github.com/bitcoinknots/bitcoin` |
+| Block explorer | `https://mempool.guide/` |
+| Transaction URL template | `https://mempool.guide/tx/{txid}` |
+| Address URL template | `https://mempool.guide/address/{address}` |
+| Circulating supply URL | No dedicated endpoint currently published |
+
+## 6. Mainnet network parameters
 
 | Field | Value |
 |---|---|
@@ -95,7 +110,7 @@ The values above overlap Bitcoin BTC mainnet. An exchange MUST NOT identify the 
 
 The fork-anchor hashes are the required identity mechanism for this specification.
 
-## 6. Proof of work and block headers
+## 7. Proof of work and block headers
 
 | Field | Value |
 |---|---|
@@ -127,7 +142,7 @@ The reference node exposes additional fields in `getblockheader` and `getblock`,
 
 An exchange that delegates validation to the reference node can consume normalized RPC output. An exchange that independently hashes headers MUST implement the reference BLAKE2b header rules.
 
-## 7. Temporary reduced-data consensus window
+## 8. Temporary reduced-data consensus window
 
 | Field | Value |
 |---|---|
@@ -142,7 +157,7 @@ Inputs spending coins created before the fork are exempt from the new script and
 
 Exchange systems SHOULD use the reference node for consensus validation rather than duplicating these temporary rules in an application-layer indexer.
 
-## 8. Monetary parameters
+## 9. Monetary parameters
 
 | Field | Value |
 |---|---|
@@ -151,10 +166,11 @@ Exchange systems SHOULD use the reference node for consensus validation rather t
 | Coinbase maturity | 100 blocks |
 | Current subsidy era at the fork | 3.125 coins per block before fees |
 | Next halving height | 1,050,000 |
+| Nominal issued supply at split | 20,067,600 coins |
 
 Accounting systems MUST use integer base units internally.
 
-## 9. Replay model
+## 10. Replay model
 
 ### 9.1 Ordinary signatures
 
@@ -194,7 +210,7 @@ UNKNOWN
 
 Normal customer withdrawals SHOULD use `BIP110_ONLY` outputs.
 
-## 10. Coin-separation procedure
+## 11. Coin-separation procedure
 
 For a shared pre-fork UTXO:
 
@@ -209,7 +225,7 @@ For a shared pre-fork UTXO:
 
 An exchange SHOULD complete separation before enabling normal withdrawals from recovered fork inventory.
 
-## 11. Wallet architecture requirements
+## 12. Wallet architecture requirements
 
 BTC and BIP110 systems SHOULD use:
 
@@ -224,7 +240,7 @@ BTC and BIP110 systems SHOULD use:
 
 Address encodings overlap. An address string MUST NOT be used as the network discriminator.
 
-## 12. Deposit specification
+## 13. Deposit specification
 
 A BIP110 deposit processor MUST:
 
@@ -238,7 +254,7 @@ A BIP110 deposit processor MUST:
 
 Deposit UI MUST explicitly identify the network as Bitcoin BIP110 / BIP110.
 
-## 13. Withdrawal specification
+## 14. Withdrawal specification
 
 A BIP110 withdrawal processor MUST:
 
@@ -251,7 +267,7 @@ A BIP110 withdrawal processor MUST:
 7. broadcast through BIP110 infrastructure only;
 8. monitor confirmation on the BIP110 chain.
 
-## 14. Customer fork-credit accounting
+## 15. Customer fork-credit accounting
 
 The protocol creates corresponding on-chain outputs for keys that controlled pre-fork UTXOs. It does not create exchange customer database balances.
 
@@ -265,7 +281,7 @@ Before enabling credited balances for withdrawal:
 verified BIP110 custody assets >= credited BIP110 customer liabilities + operational reserves
 ```
 
-## 15. Node health requirements
+## 16. Node health requirements
 
 Recommended precondition for deposit and withdrawal service:
 
@@ -281,7 +297,7 @@ signer_health == healthy
 
 Any failed mandatory condition SHOULD place the BIP110 asset into a fail-closed state.
 
-## 16. RPC verification profile
+## 17. RPC verification profile
 
 Minimum recommended startup profile:
 
@@ -297,7 +313,7 @@ Expected fork hashes are defined in Section 3.
 
 During the reduced-data window, `getdeploymentinfo` should report BLAKE2b active at height 961640 and the reduced-data deployment active at the same height.
 
-## 17. Testing profile
+## 18. Testing profile
 
 An exchange integration SHOULD pass these tests before production:
 
@@ -340,7 +356,7 @@ An exchange integration SHOULD pass these tests before production:
 - signer outage pauses withdrawal creation;
 - reorg handling does not double credit.
 
-## 18. Regtest support for engineering tests
+## 19. Regtest support for engineering tests
 
 The reference software exposes regtest-only arguments including:
 
@@ -354,4 +370,8 @@ These can be used to exercise the transition in controlled integration tests wit
 
 ## References
 
-Bitcoin BIP110 Resource Directory: https://bitcoinbip110.org/directory/#overview
+Bitcoin BIP110 Resource Directory: https://bitcoinbip110.org/directory/#overview  
+Bitcoin BIP110 Developer Reference: https://bitcoinbip110.org/developers/  
+Bitcoin BIP110 Exchange Integration: https://bitcoinbip110.org/exchanges/  
+Bitcoin BIP110 Technicals: https://bitcoinbip110.org/technicals/  
+Bitcoin Knots source: https://github.com/bitcoinknots/bitcoin

@@ -1,6 +1,6 @@
 # Bitcoin BIP110 Integrations Guide
 
-Version: 1.1
+Version: 1.2
 Updated: 6 September 2026
 
 This guide is for exchanges, custodians, wallet operators, and infrastructure providers integrating the Bitcoin BIP110 chain. It separates customer accounting, custody recovery, replay-safe coin separation, wallet integration, deposit and withdrawal support, and production launch.
@@ -9,6 +9,15 @@ This guide is for exchanges, custodians, wallet operators, and infrastructure pr
 
 - Exchange listing name: Bitcoin BIP110
 - Exchange listing ticker: BIP110
+- Date of issue (chain split): 8 August 2026
+- Max supply (nominal): 21,000,000 BIP110
+- Circulating supply at issuance (nominal): 20,067,600 BIP110
+- Website: https://bitcoinbip110.org/
+- Source repository: https://github.com/bitcoinknots/bitcoin
+- Block explorer: https://mempool.guide/
+- Transaction URL template: https://mempool.guide/tx/{txid}
+- Address URL template: https://mempool.guide/address/{address}
+- Circulating supply URL: No dedicated circulating-supply endpoint is currently published
 - Asset type: native UTXO coin
 - Decimal places: 8
 - Shared Bitcoin history through height 961631
@@ -24,6 +33,8 @@ This guide is for exchanges, custodians, wallet operators, and infrastructure pr
 - Blocks from height 961640 use a 164-byte version 2 header
 - `SIGHASH_UNIFIED` is opt-in and uses hash-type bit `0x20`
 - Ordinary signatures remain replayable where the same pre-fork outputs are valid on both chains
+
+For integration metadata, the date of issue is defined as the date of the first Bitcoin BIP110 branch block at height 961632. The circulating-supply-at-issuance figure is the nominal subsidy-derived supply through the last common height 961631. It does not subtract coins that were lost, burned, or otherwise provably unspendable.
 
 Authoritative implementation references are listed at the end of this guide.
 
@@ -606,5 +617,6 @@ Pause deposits and withdrawals when chain identity or wallet state becomes uncer
 
 1. Bitcoin BIP110 Resource Directory: https://bitcoinbip110.org/directory/#overview
 2. Developer guidance: https://bitcoinbip110.org/developers
-3. Exchange guidance: https://bitcoin-blake2b.org/exchanges
+3. Exchange integration: https://bitcoinbip110.org/exchanges/
+4. Technical specifications: https://bitcoinbip110.org/technicals/
 
