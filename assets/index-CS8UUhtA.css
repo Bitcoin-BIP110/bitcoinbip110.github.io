@@ -1579,6 +1579,12 @@ h1,h2,h3 {
   text-transform: uppercase;
 }
 
+
+.psa-banner .psa-label--listing {
+  background-color: var(--announcement-green);
+  border-color: var(--announcement-green);
+}
+
 .psa-banner .psa-text {
   flex: 1 1 560px;
   margin: 0;
