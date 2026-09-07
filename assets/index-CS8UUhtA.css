@@ -398,11 +398,7 @@ code {
   font-size: 14px;
   font-weight: 600;
   display: flex;
-  list-style: none;
   user-select: none
-}
-.nav-dropdown-label::-webkit-details-marker {
-  display: none
 }
 .nav-dropdown-label:after {
   content: "";
@@ -2056,43 +2052,5 @@ h1,h2,h3 {
     align-items: flex-start;
     gap: 4px;
     padding: 18px 0;
-  }
-}
-
-/* =========================================================
-   Mobile navigation dropdowns
-   Native tap-to-toggle behavior on phones; desktop hover remains unchanged.
-   ========================================================= */
-@media (width<=640px) {
-  .nav-dropdown-label {
-    cursor: pointer;
-  }
-
-  /* Disable the desktop hover-open state on touch-sized layouts. */
-  .nav-dropdown:hover .nav-dropdown-menu {
-    display: none;
-  }
-
-  .nav-dropdown:hover .nav-dropdown-label {
-    color: var(--gray-700);
-  }
-
-  .nav-dropdown:hover .nav-dropdown-label:after {
-    margin-top: -3px;
-    transform: rotate(45deg);
-  }
-
-  /* Tapping the summary toggles the native details open state. */
-  .nav-dropdown[open] .nav-dropdown-menu {
-    display: block;
-  }
-
-  .nav-dropdown[open] .nav-dropdown-label {
-    color: var(--black);
-  }
-
-  .nav-dropdown[open] .nav-dropdown-label:after {
-    margin-top: 3px;
-    transform: rotate(225deg);
   }
 }
