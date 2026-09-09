@@ -255,7 +255,7 @@
            <strong>Already running the BLAKE2b-capable Knots build</strong>
           </td>
           <td>
-           Continue using the existing Bitcoin data directory. A blockchain re-download is normally not required.
+           Continue using the existing Bitcoin data directory. A blockchain reinstallis normally not required.
           </td>
          </tr>
 
@@ -264,7 +264,7 @@
            <strong>Switching from Core or older Knots</strong>
           </td>
           <td>
-           Install the BLAKE2b-capable Knots build. It will usually walk back post-fork SHA256d blocks and then download the BLAKE2b chain.
+           Install the BLAKE2b-capable Knots build. It will usually walk back post-fork SHA256d blocks and then install the BLAKE2b chain.
           </td>
          </tr>
 
@@ -273,7 +273,7 @@
            <strong>Pruned node missing required old blocks</strong>
           </td>
           <td>
-           A complete chain download may be required if the blocks needed for the automatic walk-back are no longer available locally.
+           A complete chain install may be required if the blocks needed for the automatic walk-back are no longer available locally.
           </td>
          </tr>
 
@@ -382,7 +382,7 @@
       </p>
 
       <p>
-       A blockchain re-download is not required simply because of the hardfork
+       A blockchain reinstall is not required simply because of the hardfork
        and you do not need to move funds as part of the upgrade.
       </p>
 
@@ -390,7 +390,7 @@
        <p>
         <strong>Important:</strong>
         Keep the existing data directory when upgrading. Deleting it unnecessarily can turn a simple
-        software upgrade into a complete blockchain re-download.
+        software upgrade into a complete blockchain reinstall.
        </p>
       </div>
 
@@ -427,7 +427,7 @@
 
       <p>
        When a BLAKE2b-capable Knots node starts using an existing data directory, it will typically recognize that the local chain contains SHA256d-mined blocks beyond the BLAKE2b fork point. 
-       It will roll back the local chain state to that fork point, discard the incompatible continuation, and then download and validate the BLAKE2b chain from there.
+       It will roll back the local chain state to that fork point, discard the incompatible continuation, and then install and validate the BLAKE2b chain from there.
       </p>
 
       <p>
@@ -446,7 +446,7 @@
 
       <p>
        The exception are if the local data needed for recovery is unavailable or the database cannot be
-       repaired through the normal migration process. For these cases, a full re-download is required.
+       repaired through the normal migration process. For these cases, a full reinstall is required.
       </p>
 
       <div class="callout">
@@ -477,7 +477,7 @@
       </p>
 
       <p>
-       If the blocks required for the walk-back have been deleted then the node may need to rebuild and download the blockchain again.
+       If the blocks required for the walk-back have been deleted then the node may need to rebuild and install the blockchain again.
        The current release will prompt the user if a resync is required.
       </p>
 
@@ -491,7 +491,7 @@
       </p>
 
       <p>
-       Reindexing rebuilds the block database from the block files available locally. This is different from redownloading the
+       Reindexing rebuilds the block database from the block files available locally. This is different from reinstalling the
        entire blockchain again.
       </p>
 
@@ -532,7 +532,7 @@
            Pruning removed blocks required for recovery
           </td>
           <td>
-           Rebuild and download the blockchain again.
+           Rebuild and install the blockchain again.
           </td>
          </tr>
 
@@ -541,7 +541,7 @@
            Late upgrade followed invalid blocks and cannot recover locally
           </td>
           <td>
-           Rebuild and download the blockchain again.
+           Rebuild and install the blockchain again.
           </td>
          </tr>
         </tbody>
@@ -714,7 +714,7 @@
        <li>Allow the software to complete its automatic walk-back of post-fork SHA256d blocks.</li>
        <li>If the node is pruned, determine whether the blocks required for recovery are still available locally.</li>
        <li>If the local state contains an invalid BLAKE2b block-index condition described by the release, use <code>-reindex</code>.</li>
-       <li>If local data is insufficient for recovery, rebuild the node and download the blockchain again.</li>
+       <li>If local data is insufficient for recovery, rebuild the node and install the blockchain again.</li>
       </ul>
 
       <h3>
